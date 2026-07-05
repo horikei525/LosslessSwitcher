@@ -1116,7 +1116,7 @@
 				<key>SDKROOT</key>
 				<string>macosx</string>
 				<key>WRAPPER_EXTENSION</key>
-				<string>audiop</string>
+				<string>driver</string>
 			</dict>
 			<key>isa</key>
 			<string>XCBuildConfiguration</string>
@@ -1185,7 +1185,7 @@
 				<key>SDKROOT</key>
 				<string>macosx</string>
 				<key>WRAPPER_EXTENSION</key>
-				<string>audiop</string>
+				<string>driver</string>
 			</dict>
 			<key>isa</key>
 			<string>XCBuildConfiguration</string>
@@ -1236,7 +1236,7 @@
 			<string>/bin/sh</string>
 			<key>shellScript</key>
 			<string>mkdir -p "${HOME}/Library/Audio/Plug-Ins/HAL/"
-cp -R "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.audiop" "${HOME}/Library/Audio/Plug-Ins/HAL/"
+cp -R "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.driver" "${HOME}/Library/Audio/Plug-Ins/HAL/"
 </string>
 		</dict>
 		<key>9CA2DE66C3A14ABA834788C8</key>
@@ -1568,7 +1568,7 @@ cp -R "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.audiop" "${HOME}/Library/Audio/Plug
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>path</key>
-			<string>LosslessSwitcherAudioPlugin.audiop</string>
+			<string>LosslessSwitcherAudioPlugin.driver</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>

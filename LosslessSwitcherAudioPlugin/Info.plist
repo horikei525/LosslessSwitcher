@@ -4,6 +4,16 @@
 <!-- LosslessSwitcherAudioPlugin 用の Info.plist -->
 <plist version="1.0">
 <dict>
+    <key>AudioServerPlugIn_LoadingConditions</key>
+    <dict>
+        <key>IOService Matching</key>
+        <array>
+            <dict>
+                <key>IOProviderClass</key>
+                <string>IOPlatformExpertDevice</string>
+            </dict>
+        </array>
+    </dict>
     <key>CFBundleDevelopmentRegion</key>
     <string>en</string>
     <key>CFBundleExecutable</key>
@@ -31,7 +41,7 @@
     </dict>
     <key>CFPlugInTypes</key>
     <dict>
-        <key>443EAA8C-CE6E-4FFC-8CA8-4940FD872A43</key>
+        <key>443EAA8C-CE6E-4FC6-8CA8-4940FD872A43</key>
         <array>
             <string>E1E2C063-4402-4D90-95A6-FA3EAF1502AF</string>
         </array>

@@ -166,7 +166,7 @@ LosslessSwitcher/
 3. **プラグイン安装**
    ```bash
    # CoreAudio プラグインディレクトリへコピー
-   cp -r build/Release/LosslessSwitcherAudioPlugin.audiop \
+   cp -r build/Release/LosslessSwitcherAudioPlugin.driver \
        ~/Library/Audio/Plug-Ins/HAL/
    ```
 

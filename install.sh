@@ -17,7 +17,7 @@ xcodebuild -project Quality.xcodeproj -scheme LosslessSwitcherAudioPlugin -confi
 
 # 2. Check if the build product exists
 # 2. ビルド生成物が存在するか確認します
-PLUGIN_PATH="build/Build/Products/Release/LosslessSwitcherAudioPlugin.audiop"
+PLUGIN_PATH="build/Build/Products/Release/LosslessSwitcherAudioPlugin.driver"
 if [ ! -d "$PLUGIN_PATH" ]; then
     echo "Error: Build output not found at $PLUGIN_PATH"
     echo "エラー: ビルド出力が $PLUGIN_PATH に見つかりませんでした。"

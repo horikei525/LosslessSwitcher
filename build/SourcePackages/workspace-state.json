@@ -1,7 +1,42 @@
 {
   "object" : {
     "artifacts" : [
+      {
+        "kind" : {
+          "xcframework" : {
 
+          }
+        },
+        "packageRef" : {
+          "identity" : "mediaremote",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/PrivateFrameworks/MediaRemote",
+          "name" : "MediaRemote"
+        },
+        "path" : "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/MediaRemote/MediaRemote.xcframework",
+        "source" : {
+          "type" : "local"
+        },
+        "targetName" : "MediaRemote"
+      },
+      {
+        "kind" : {
+          "xcframework" : {
+
+          }
+        },
+        "packageRef" : {
+          "identity" : "protocolbuffer",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/PrivateFrameworks/ProtocolBuffer",
+          "name" : "ProtocolBuffer"
+        },
+        "path" : "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/ProtocolBuffer/ProtocolBuffer.xcframework",
+        "source" : {
+          "type" : "local"
+        },
+        "targetName" : "ProtocolBuffer"
+      }
     ],
     "dependencies" : [
       {

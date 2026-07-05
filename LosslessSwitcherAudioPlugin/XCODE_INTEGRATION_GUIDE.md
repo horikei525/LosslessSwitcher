@@ -25,7 +25,7 @@ This guide explains how to integrate the Audio Server Plugin (C++) into the Xcod
 3. 以下を設定：
    - **Product Name**: `LosslessSwitcherAudioPlugin`
    - **Product Type**: `com.apple.product-type.bundle`
-   - **Wrapper Extension**: `audiop` (Audio Server Plugin extension)
+   - **Wrapper Extension**: `driver` (Audio Server Plugin extension)
    - **FRAMEWORK_SEARCH_PATHS**: 
      - `/System/Library/Frameworks`
      - `/System/Library/PrivateFrameworks`

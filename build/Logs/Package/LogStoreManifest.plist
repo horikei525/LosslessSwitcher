@@ -6,7 +6,7 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>AC756839-C7FD-4D66-9AA2-C16C56EDB0F3</key>
+		<key>5F2BFF1C-4E63-4E38-9985-1F0389AE13D7</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,43 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>AC756839-C7FD-4D66-9AA2-C16C56EDB0F3.xcactivitylog</string>
+			<string>5F2BFF1C-4E63-4E38-9985-1F0389AE13D7.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>signature</key>
+			<string>Resolve Packages</string>
+			<key>timeStartedRecording</key>
+			<real>804935739.38237298</real>
+			<key>timeStoppedRecording</key>
+			<real>804935750.14350295</real>
+			<key>title</key>
+			<string>Resolve Packages</string>
+			<key>uniqueIdentifier</key>
+			<string>5F2BFF1C-4E63-4E38-9985-1F0389AE13D7</string>
+		</dict>
+		<key>DA6BC40D-B948-470B-93C4-6853678116B8</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>DA6BC40D-B948-470B-93C4-6853678116B8.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -34,13 +70,13 @@
 			<key>signature</key>
 			<string>Resolve Packages</string>
 			<key>timeStartedRecording</key>
-			<real>804932379.31015503</real>
+			<real>804934847.50726604</real>
 			<key>timeStoppedRecording</key>
-			<real>804932380.19057095</real>
+			<real>804934847.68646502</real>
 			<key>title</key>
 			<string>Resolve Packages</string>
 			<key>uniqueIdentifier</key>
-			<string>AC756839-C7FD-4D66-9AA2-C16C56EDB0F3</string>
+			<string>DA6BC40D-B948-470B-93C4-6853678116B8</string>
 		</dict>
 	</dict>
 </dict>

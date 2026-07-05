@@ -17,6 +17,8 @@ class Defaults: ObservableObject {
     private let kUserPreferLowLatencyMode = "PreferLowLatencyMode"
     private let kUserPreferMuteNotifications = "PreferMuteNotifications"
     private let kUserPreferAutoUpdateCheck = "PreferAutoUpdateCheck"
+    private let kUserPrioritizedAppList = "com.vincent-neo.LosslessSwitcher-Key-UserPrioritizedAppList"
+    private let kEnableConflictNotifications = "com.vincent-neo.LosslessSwitcher-Key-EnableConflictNotifications"
     
     private init() {
         UserDefaults.standard.register(defaults: [
@@ -25,7 +27,9 @@ class Defaults: ObservableObject {
             kUserPreferSampleRateMultiples : false,
             kUserPreferLowLatencyMode : false,
             kUserPreferMuteNotifications : false,
-            kUserPreferAutoUpdateCheck : true
+            kUserPreferAutoUpdateCheck : true,
+            kUserPrioritizedAppList : ["com.apple.Music", "com.spotify.client", "company.thebrowser.Browser", "com.google.Chrome", "com.apple.Safari"],
+            kEnableConflictNotifications : true
         ])
         
         self.shellScriptPath = UserDefaults.standard.string(forKey: kShellScriptPath)
@@ -35,6 +39,8 @@ class Defaults: ObservableObject {
         self.userPreferLowLatencyMode = UserDefaults.standard.bool(forKey: kUserPreferLowLatencyMode)
         self.userPreferMuteNotifications = UserDefaults.standard.bool(forKey: kUserPreferMuteNotifications)
         self.userPreferAutoUpdateCheck = UserDefaults.standard.bool(forKey: kUserPreferAutoUpdateCheck)
+        self.userPrioritizedAppList = UserDefaults.standard.stringArray(forKey: kUserPrioritizedAppList) ?? []
+        self.enableConflictNotifications = UserDefaults.standard.bool(forKey: kEnableConflictNotifications)
     }
     
     @Published var userPreferIconStatusBarItem: Bool {
@@ -79,6 +85,18 @@ class Defaults: ObservableObject {
     @Published var userPreferAutoUpdateCheck: Bool {
         willSet {
             UserDefaults.standard.set(newValue, forKey: kUserPreferAutoUpdateCheck)
+        }
+    }
+    
+    @Published var userPrioritizedAppList: [String] {
+        willSet {
+            UserDefaults.standard.set(newValue, forKey: kUserPrioritizedAppList)
+        }
+    }
+    
+    @Published var enableConflictNotifications: Bool {
+        willSet {
+            UserDefaults.standard.set(newValue, forKey: kEnableConflictNotifications)
         }
     }
     

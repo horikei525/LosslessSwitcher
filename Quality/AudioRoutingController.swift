@@ -2,13 +2,16 @@
 //  AudioRoutingController.swift
 //  LosslessSwitcher
 //
-//  Created by GitHub Copilot on behalf of the user.
+//  Created by Antigravity on 2026-07-05.
 //
+//  Handles audio source tracking, priority routing, and DAC format switching.
+//  オーディオソースの追跡、優先順位ルーティング、およびDACフォーマットの切り替えを処理します。
 
 import Foundation
 import AppKit
 import CoreAudioTypes
 import SimplyCoreAudio
+import UserNotifications
 
 struct AudioSource: Identifiable, Equatable {
     let id = UUID()
@@ -48,6 +51,10 @@ class AudioRoutingController: ObservableObject {
     private let outputDevices: OutputDevices
     private let defaults = Defaults.shared
     private let virtualProxy: VirtualAudioProxy
+    
+    // CoreAudio manager for device discovery
+    // デバイス検出用のCoreAudioマネージャー
+    private let coreAudio = SimplyCoreAudio()
 
     init(outputDevices: OutputDevices) {
         self.outputDevices = outputDevices
@@ -62,13 +69,32 @@ class AudioRoutingController: ObservableObject {
             }
         }
         
-        virtualDeviceStatus = "Audio Plugin initialized, waiting for input..."
+        // Request notification authorization for conflict alerts
+        // 競合警告用の通知権限を要求します
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in }
+        
+        virtualDeviceStatus = NSLocalizedString("Audio Plugin initialized, waiting for input...", comment: "オーディオプラグインが初期化されました。入力を待機中...")
     }
 
+    /// Sort sources by user prioritized list first, then priority index.
+    /// ユーザー優先リスト順、次に優先インデックス順でソースをソートします。
     var rankedSources: [AudioSource] {
-        prioritySources.sorted { $0.priority < $1.priority }
+        prioritySources.sorted { lhs, rhs in
+            let lhsKey = lhs.bundleID ?? lhs.appName
+            let rhsKey = rhs.bundleID ?? rhs.appName
+            
+            let lhsIndex = defaults.userPrioritizedAppList.firstIndex(of: lhsKey) ?? Int.max
+            let rhsIndex = defaults.userPrioritizedAppList.firstIndex(of: rhsKey) ?? Int.max
+            
+            if lhsIndex != rhsIndex {
+                return lhsIndex < rhsIndex
+            }
+            return lhs.priority < rhs.priority
+        }
     }
 
+    /// Register/update audio source.
+    /// オーディオソースを登録または更新します。
     func addOrUpdateSource(pid: Int,
                            bundleID: String?,
                            appName: String,
@@ -82,11 +108,23 @@ class AudioRoutingController: ObservableObject {
             return
         }
 
+        let key = bundleID ?? appName
+        
+        // Add to priority defaults if not already registered.
+        // 未登録の場合は優先度リストのデフォルトに追加します。
+        if !defaults.userPrioritizedAppList.contains(key) {
+            var currentPriorities = defaults.userPrioritizedAppList
+            currentPriorities.append(key)
+            defaults.userPrioritizedAppList = currentPriorities
+        }
+
         if let index = prioritySources.firstIndex(where: { $0.pid == pid && $0.bundleID == bundleID }) {
             prioritySources[index].sampleRate = sampleRate
             prioritySources[index].bitDepth = bitDepth
             prioritySources[index].sourceURL = sourceURL
-            virtualDeviceStatus = "Updated \(prioritySources[index].displayName)"
+            
+            let display = prioritySources[index].displayName
+            virtualDeviceStatus = String(format: NSLocalizedString("Updated %@", comment: "%@ を更新しました"), display)
         } else {
             let priority = (prioritySources.map { $0.priority }.max() ?? 0) + 1
             let source = AudioSource(pid: pid,
@@ -98,7 +136,7 @@ class AudioRoutingController: ObservableObject {
                                      isNotificationSource: isNotificationSource,
                                      priority: priority)
             prioritySources.append(source)
-            virtualDeviceStatus = "Added \(source.displayName)"
+            virtualDeviceStatus = String(format: NSLocalizedString("Added %@", comment: "%@ を追加しました"), source.displayName)
         }
 
         self.routeAudioIfNeeded()
@@ -106,63 +144,92 @@ class AudioRoutingController: ObservableObject {
 
     func removeSource(pid: Int, bundleID: String?) {
         prioritySources.removeAll { $0.pid == pid && $0.bundleID == bundleID }
-        virtualDeviceStatus = "Removed source for pid \(pid)"
+        virtualDeviceStatus = String(format: NSLocalizedString("Removed source for pid %d", comment: "pid %d のソースを削除しました"), pid)
         self.routeAudioIfNeeded()
     }
 
+    /// Auto routing execution.
+    /// 自動ルーティング処理を実行します。
     func routeAudioIfNeeded() {
-        guard !isManualRoutingPaused, let source = rankedSources.first else {
-            virtualDeviceStatus = "No active sources"
+        // Skip notification sources when switching DAC sample rates.
+        // DACのサンプルレートを変更する際は、通知音ソースをスキップします。
+        guard !isManualRoutingPaused,
+              let source = rankedSources.first(where: { !$0.isNotificationSource }) else {
+            virtualDeviceStatus = NSLocalizedString("No active sources", comment: "アクティブなソースがありません")
             return
         }
 
         activeSampleRate = source.sampleRate
         activeBitDepth = source.bitDepth
-        virtualDeviceStatus = "Routing \(source.displayName) at \(source.readableSampleRate) / \(source.readableBitDepth)"
+        
+        let routingMsg = String(format: NSLocalizedString("Routing %@ at %@ / %@", comment: "%@ を %@ / %@ でルーティング中"),
+                                source.displayName, source.readableSampleRate, source.readableBitDepth)
+        virtualDeviceStatus = routingMsg
 
         if !defaults.userPreferLowLatencyMode {
             virtualProxy.prepareBufferedTransition(sampleRate: source.sampleRate, bitDepth: source.bitDepth)
         } else {
-            virtualDeviceStatus += " (low latency bypass)"
+            virtualDeviceStatus += NSLocalizedString(" (low latency bypass)", comment: " (低遅延バイパス)")
         }
 
         if let device = outputDevices.selectedOutputDevice ?? outputDevices.defaultOutputDevice,
            let format = findBestFormat(for: device, sampleRate: source.sampleRate, bitDepth: source.bitDepth) {
             outputDevices.setFormats(device: device, format: format)
             outputDevices.updateSampleRate(source.sampleRate, bitDepth: source.bitDepth)
+            
+            // Synchronize nominal sample rate of BlackHole if it is active.
+            // 仮想ループバック（BlackHole）のフォーマットも同期させます。
+            syncBlackHoleFormat(sampleRate: source.sampleRate)
+        }
+    }
+    
+    /// Sync BlackHole virtual device sample rate.
+    /// BlackHole仮想デバイスのサンプルレートを同期します。
+    private func syncBlackHoleFormat(sampleRate: Double) {
+        if let blackHole = coreAudio.allDevices.first(where: { $0.name.localizedCaseInsensitiveContains("BlackHole") }) {
+            print("[AudioRoutingController] Syncing BlackHole to \(sampleRate) Hz")
+            blackHole.setNominalSampleRate(sampleRate)
         }
     }
 
+    /// Re-order priority list.
+    /// 優先順位リストを並び替えます。
     func moveSource(_ source: AudioSource, up: Bool) {
-        guard let index = rankedSources.firstIndex(of: source) else { return }
-        let targetIndex = up ? max(index - 1, 0) : min(index + 1, rankedSources.count - 1)
-        if index == targetIndex { return }
-        var sources = rankedSources
-        sources.swapAt(index, targetIndex)
-        for idx in sources.indices {
-            sources[idx].priority = idx
+        let key = source.bundleID ?? source.appName
+        var currentList = defaults.userPrioritizedAppList
+        
+        // Ensure the active key is in the priority list.
+        // アクティブキーが優先度リストに存在することを確認します。
+        if !currentList.contains(key) {
+            currentList.append(key)
         }
-        prioritySources = sources
+        
+        guard let index = currentList.firstIndex(of: key) else { return }
+        let targetIndex = up ? max(index - 1, 0) : min(index + 1, currentList.count - 1)
+        if index == targetIndex { return }
+        
+        currentList.swapAt(index, targetIndex)
+        defaults.userPrioritizedAppList = currentList
         routeAudioIfNeeded()
     }
 
     func toggleManualRoutingPause() {
         isManualRoutingPaused.toggle()
-        virtualDeviceStatus = isManualRoutingPaused ? "Manual routing paused" : "Auto routing enabled"
+        virtualDeviceStatus = isManualRoutingPaused ?
+            NSLocalizedString("Manual routing paused", comment: "手動ルーティング一時停止中") :
+            NSLocalizedString("Auto routing enabled", comment: "自動ルーティング有効")
         if !isManualRoutingPaused {
             routeAudioIfNeeded()
         }
     }
 
     func openAudioMIDISetup() {
-        // macOS の「オーディオMIDI設定」を開く / Open the Audio MIDI Setup app on macOS.
         let appURL = URL(fileURLWithPath: "/Applications/Utilities/Audio MIDI Setup.app")
         NSWorkspace.shared.open(appURL)
     }
 
     func checkForUpdates() {
-        // TODO: GitHub Releases などの自動更新チェック実装
-        virtualDeviceStatus = "Checking for updates..."
+        UpdateChecker.shared.checkForUpdates(currentVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "2.0")
     }
 
     private func findBestFormat(for device: AudioDevice,
@@ -191,29 +258,83 @@ class AudioRoutingController: ObservableObject {
         return rateDelta + bitDepthDelta
     }
     
-    /// Called when the Audio Plugin detects a sample rate change
-    /// Audio Plugin がサンプルレート変更を検出したときに呼ばれる
-    /// この関数は仮想デバイスから直接呼ばれます。
-    /// 
-    /// This function is called directly from the virtual device.
+    /// Trigger system notification when a format conflict occurs.
+    /// フォーマット競合が発生した時にシステム通知をトリガーします。
+    private func notifyConflict(activeSource: String, activeRate: String, newSource: String, newRate: String) {
+        let content = UNMutableNotificationContent()
+        content.title = NSLocalizedString("Audio Conflict Detected / オーディオ競合検知", comment: "")
+        content.body = String(format: NSLocalizedString(
+            "Conflict: %@ (%@) vs %@ (%@). Prioritizing %@.",
+            comment: ""
+        ), activeSource, activeRate, newSource, newRate, activeSource)
+        content.sound = .default
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request)
+    }
+    
+    /// Audio Plugin sample rate change callback handler.
+    /// Audio Plugin のサンプルレート変更コールバックハンドラ。
     @MainActor
     private func onAudioSourceDetected(_ info: AudioPluginBridge.SampleRateChangeInfo) {
-        print("[AudioRoutingController] Source detected: \(info.bundleID) at \(info.newSampleRate) Hz / \(info.bitDepth) bit")
+        let bundleID = info.bundleID
         
-        // Extract app name from bundle ID (simplified)
-        // バンドルID からアプリ名を抽出（簡略版）
-        let appName = info.bundleID.components(separatedBy: ".").last ?? info.bundleID
+        // Define known notification system bundles
+        // 既知 of 通知音発信バンドルを定義します
+        let notificationBundles = [
+            "com.apple.notificationcenterui",
+            "com.apple.systempreferences",
+            "com.tinyspeck.slackmacgap",
+            "com.hnc.Discord"
+        ]
         
-        // Add or update the source in our priority list
-        // 優先度リストにソースを追加または更新
+        let isNotification = notificationBundles.contains(bundleID)
+        
+        // Mute notification handling: ignore if mute is preferred.
+        // 通知ミュート処理: ミュートが優先される場合は無視します。
+        if isNotification && defaults.userPreferMuteNotifications {
+            return
+        }
+        
+        var appName = bundleID.components(separatedBy: ".").last ?? bundleID
+        var sourceURL: String? = nil
+        
+        // Extract browser web site domain name if source is Safari/Chrome/Arc.
+        // ソースがSafari/Chrome/Arcの場合は、ブラウザのウェブサイトドメイン名を抽出します。
+        let browserBundles = ["com.apple.Safari", "com.google.Chrome", "company.thebrowser.Browser"]
+        if browserBundles.contains(bundleID) {
+            if let siteName = BrowserTabDetector.shared.getActiveTabInfo(for: bundleID) {
+                appName = siteName
+                sourceURL = siteName // Use siteName as identifier / 識別子としてサイト名を使用します
+            }
+        }
+        
+        // Detect format conflict between the incoming source and current active source.
+        // 検出されたソースと現在アクティブなソースの間のフォーマット競合を検出します。
+        if !isNotification,
+           let active = rankedSources.first(where: { !$0.isNotificationSource }),
+           active.pid != Int(info.processID),
+           active.sampleRate != info.newSampleRate,
+           defaults.enableConflictNotifications {
+            
+            let activeRateStr = String(format: "%.1f kHz", active.sampleRate / 1000)
+            let newRateStr = String(format: "%.1f kHz", info.newSampleRate / 1000)
+            notifyConflict(
+                activeSource: active.displayName,
+                activeRate: activeRateStr,
+                newSource: appName,
+                newRate: newRateStr
+            )
+        }
+        
         self.addOrUpdateSource(
-            pid: info.processID,
-            bundleID: info.bundleID,
+            pid: Int(info.processID),
+            bundleID: sourceURL ?? bundleID, // Use site name or bundle ID / サイト名またはバンドルIDを使用
             appName: appName,
             sampleRate: info.newSampleRate,
             bitDepth: Int(info.bitDepth),
-            sourceURL: nil,
-            isNotificationSource: false
+            sourceURL: sourceURL,
+            isNotificationSource: isNotification
         )
     }
 }

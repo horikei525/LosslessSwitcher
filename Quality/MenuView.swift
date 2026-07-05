@@ -3,15 +3,71 @@
 //  LosslessSwitcher
 //
 //  Created by Vincent Neo on 23/6/25.
+//  Updated by Antigravity on 2026-07-05.
 //
+//  Defines the primary SwiftUI layout for the Menu Bar dropdown.
+//  メニューバードロップダウンのプライマリSwiftUIレイアウトを定義します。
 
 import SwiftUI
+import CoreAudioTypes
+
+struct AudioFormatItem: Identifiable, Hashable {
+    let id: String
+    let sampleRate: Double
+    let bitDepth: Int
+    let format: AudioStreamBasicDescription
+
+    static func == (lhs: AudioFormatItem, rhs: AudioFormatItem) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
 
 struct MenuView: View {
-    
     @EnvironmentObject private var outputDevices: OutputDevices
     @EnvironmentObject private var audioRoutingController: AudioRoutingController
     @EnvironmentObject private var defaults: Defaults
+    
+    @ObservedObject private var updateChecker = UpdateChecker.shared
+    
+    // Fetch and wrap available formats for manual selection.
+    // 手動選択用に利用可能なフォーマットを取得してラップします。
+    private var availableFormats: [AudioFormatItem] {
+        guard let device = outputDevices.selectedOutputDevice ?? outputDevices.defaultOutputDevice,
+              let streams = device.streams(scope: .output),
+              let formats = streams.first?.availablePhysicalFormats?.compactMap({ $0.mFormat }) else {
+            return []
+        }
+        
+        // Filter duplicate rates/depths and sort.
+        // 重複するレート/深度をフィルタリングしてソートします。
+        var seen = Set<String>()
+        var items = [AudioFormatItem]()
+        
+        for format in formats {
+            let key = "\(format.mSampleRate)-\(format.mBitsPerChannel)"
+            if !seen.contains(key) {
+                seen.insert(key)
+                let item = AudioFormatItem(
+                    id: key,
+                    sampleRate: format.mSampleRate,
+                    bitDepth: Int(format.mBitsPerChannel),
+                    format: format
+                )
+                items.append(item)
+            }
+        }
+        
+        return items.sorted { lhs, rhs in
+            if lhs.sampleRate != rhs.sampleRate {
+                return lhs.sampleRate < rhs.sampleRate
+            }
+            return lhs.bitDepth < rhs.bitDepth
+        }
+    }
     
     var body: some View {
         VStack {
@@ -22,14 +78,14 @@ struct MenuView: View {
             Button {
                 defaults.userPreferIconStatusBarItem.toggle()
             } label: {
-                Text(defaults.statusBarItemTitle)
+                Text(defaults.userPreferIconStatusBarItem ? "ステータスバー：サンプルレートを表示 / Show Sample Rate" : "ステータスバー：アイコンを表示 / Show Icon")
             }
             
             Button {
                 defaults.userPreferBitDepthDetection.toggle()
             } label: {
                 HStack {
-                    Text("Bit Depth Switching")
+                    Text("ビット深度の自動検出 / Bit Depth Switching")
                     if defaults.userPreferBitDepthDetection {
                         Image(systemName: "checkmark")
                     }
@@ -40,7 +96,7 @@ struct MenuView: View {
                 defaults.userPreferSampleRateMultiples.toggle()
             } label: {
                 HStack {
-                    Text("Prefer Closest Sample Rate Multiple")
+                    Text("最も近い倍数のサンプルレートを優先 / Prefer Closest Multiple")
                     if defaults.userPreferSampleRateMultiples {
                         Image(systemName: "checkmark")
                     }
@@ -51,7 +107,7 @@ struct MenuView: View {
                 defaults.userPreferLowLatencyMode.toggle()
             } label: {
                 HStack {
-                    Text("Low Latency Mode")
+                    Text("超低遅延モード (ゲーミング) / Low Latency Mode")
                     if defaults.userPreferLowLatencyMode {
                         Image(systemName: "checkmark")
                     }
@@ -62,8 +118,19 @@ struct MenuView: View {
                 defaults.userPreferMuteNotifications.toggle()
             } label: {
                 HStack {
-                    Text("Mute Notification Sounds")
+                    Text("通知音をミュート / Mute Notification Sounds")
                     if defaults.userPreferMuteNotifications {
+                        Image(systemName: "checkmark")
+                    }
+                }
+            }
+            
+            Button {
+                defaults.enableConflictNotifications.toggle()
+            } label: {
+                HStack {
+                    Text("フォーマット競合時に通知 / Notify on Audio Conflict")
+                    if defaults.enableConflictNotifications {
                         Image(systemName: "checkmark")
                     }
                 }
@@ -73,14 +140,14 @@ struct MenuView: View {
                 audioRoutingController.toggleManualRoutingPause()
             } label: {
                 HStack {
-                    Text(audioRoutingController.isManualRoutingPaused ? "Resume Auto Routing" : "Pause Auto Routing")
+                    Text(audioRoutingController.isManualRoutingPaused ? "自動ルーティングを再開 / Resume Auto Routing" : "自動ルーティングを停止 / Pause Auto Routing")
                     if audioRoutingController.isManualRoutingPaused {
                         Image(systemName: "pause.circle")
                     }
                 }
             }
             
-            Text("Virtual Device: Proxy / BlackHole Layer")
+            Text("仮想デバイスステータス / Virtual Device Status")
                 .font(.caption)
                 .foregroundColor(.secondary)
             
@@ -93,10 +160,10 @@ struct MenuView: View {
             Divider()
 
             Group {
-                Text("Active Sources")
+                Text("優先度ランキング / Active Sources & Priorities")
                     .font(.headline)
                 if audioRoutingController.rankedSources.isEmpty {
-                    Text("No active sources detected")
+                    Text("アクティブな音源がありません / No active sources")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 } else {
@@ -138,7 +205,7 @@ struct MenuView: View {
                     if outputDevices.selectedOutputDevice == nil {
                         Image(systemName: "checkmark")
                     }
-                    Text("Default Device")
+                    Text("デフォルトのデバイス / Default Device")
                 }
 
                 ForEach(outputDevices.outputDevices, id: \.uid) { device in
@@ -153,46 +220,83 @@ struct MenuView: View {
                     }
                 }
             } label: {
-                Text("Selected Device")
+                Text("出力デバイスの選択 / Selected Device")
+            }
+            
+            // Manual format selector submenu.
+            // 手動フォーマット変更サブメニュー。
+            Menu {
+                if availableFormats.isEmpty {
+                    Text("変更可能なフォーマットがありません / No formats available")
+                } else {
+                    ForEach(availableFormats) { item in
+                        Button {
+                            if let device = outputDevices.selectedOutputDevice ?? outputDevices.defaultOutputDevice {
+                                outputDevices.setFormats(device: device, format: item.format)
+                                outputDevices.updateSampleRate(item.sampleRate, bitDepth: item.bitDepth)
+                            }
+                        } label: {
+                            HStack {
+                                Text(String(format: "%.1f kHz · %d bit", item.sampleRate / 1000, item.bitDepth))
+                                if item.sampleRate == outputDevices.currentSampleRate && item.bitDepth == outputDevices.currentBitDepth {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
+                        }
+                    }
+                }
+            } label: {
+                Text("手動フォーマット変更 / Set Format Manually")
             }
             
             Menu {
-                Text("Audio Plugin Status: \(audioRoutingController.virtualDeviceStatus)")
+                Text("プラグイン状態 / Plugin Status: \(audioRoutingController.virtualDeviceStatus)")
                     .font(.caption)
                 
                 Divider()
                 
-                Text("Virtual Device Configuration")
+                Text("仮想デバイス設定 / Virtual Device Config")
                     .font(.caption)
                     .fontWeight(.semibold)
                 
-                Button("Re-initialize Plugin") {
+                Button("プラグインの再初期化 / Re-initialize Plugin") {
                     audioRoutingController.virtualDeviceStatus = "Plugin re-initializing..."
                 }
                 
-                Button("Show Audio MIDI Setup") {
-                    let appURL = URL(fileURLWithPath: "/Applications/Utilities/Audio MIDI Setup.app")
-                    NSWorkspace.shared.open(appURL)
+                Button("オーディオMIDI設定を開く / Show Audio MIDI Setup") {
+                    audioRoutingController.openAudioMIDISetup()
                 }
                 
             } label: {
-                Text("Virtual Device")
+                Text("仮想デバイス設定 / Virtual Device")
             }
             
             Menu {
-                Text("Version - \(currentVersion)")
-                Text("Build - \(currentBuild)")
+                Text("バージョン / Version - \(currentVersion)")
+                Text("ビルド / Build - \(currentBuild)")
+                
+                Divider()
+                
+                Button("アップデートを確認 / Check for Updates") {
+                    audioRoutingController.checkForUpdates()
+                }
+                
+                if !updateChecker.updateStatus.isEmpty {
+                    Text(updateChecker.updateStatus)
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                }
             } label: {
-                Text("About")
+                Text("アプリについて / About")
             }
             
             Menu {
-                Button("Select Script...") {
+                Button("スクリプトを選択... / Select Script...") {
                     let panel = NSOpenPanel()
                     panel.canChooseFiles = true
                     panel.canChooseDirectories = false
                     panel.allowsMultipleSelection = false
-                    panel.message = "Select a script that should be invoked when sample rate changes."
+                    panel.message = "サンプルレート変更時に呼び出すスクリプトを選択してください / Select a script to run on sample rate change."
                     
                     panel.begin { response in
                         let path = panel.url?.path
@@ -202,20 +306,20 @@ struct MenuView: View {
                     }
                 }
                 
-                Button("Clear Selection") {
+                Button("選択をクリア / Clear Selection") {
                     defaults.shellScriptPath = nil
                 }
                 
-                Text(defaults.shellScriptPath ?? "No selection")
+                Text(defaults.shellScriptPath ?? "未選択 / No selection")
                 
             } label: {
-                Text("Scripting")
+                Text("スクリプティング / Scripting")
             }
             
             Button {
                 NSApp.terminate(self)
             } label: {
-                Text("Quit LosslessSwitcher")
+                Text("LosslessSwitcherを終了 / Quit")
             }
         }
     }

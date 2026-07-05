@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.EN">
+<!-- Info.plist for LosslessSwitcherAudioPlugin -->
+<!-- LosslessSwitcherAudioPlugin 用の Info.plist -->
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>BNDL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleSupportedPlatforms</key>
+    <array>
+        <string>MacOSX</string>
+    </array>
+    <key>CFPlugInFactories</key>
+    <dict>
+        <key>E1E2C063-4402-4D90-95A6-FA3EAF1502AF</key>
+        <string>AudioServerPlugInDriverEntry</string>
+    </dict>
+    <key>CFPlugInTypes</key>
+    <dict>
+        <key>443EAA8C-CE6E-4FFC-8CA8-4940FD872A43</key>
+        <array>
+            <string>E1E2C063-4402-4D90-95A6-FA3EAF1502AF</string>
+        </array>
+    </dict>
+</dict>
+</plist>

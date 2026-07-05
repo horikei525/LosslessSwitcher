@@ -53,11 +53,12 @@ typedef void (*SampleRateChangeCallback)(pid_t clientPID,
 // デバイスオブジェクト構造
 typedef struct {
     AudioServerPlugInDriverRef driverRef;
+    AudioServerPlugInHostRef hostRef;
     AudioObjectID deviceID;
     AudioObjectID inputStreamID;
     AudioObjectID outputStreamID;
     
-    dispatch_queue_t accessQueue;
+    // access control is handled globally via os_unfair_lock
     
     // Current stream info / 現在のストリーム情報
     AudioStreamBasicDescription currentFormat;
@@ -76,50 +77,8 @@ typedef struct {
 
 extern "C" {
 
-// Called when the plugin is loaded
-// プラグインロード時に呼ばれる
-OSStatus LosslessSwitcherPlugin_Initialize(AudioServerPlugInDriverRef inDriver);
+void* AudioServerPlugInDriverEntry(CFAllocatorRef inAllocator, CFUUIDRef inRequestedTypeUUID);
 
-// Called when the plugin is unloaded
-// プラグインアンロード時に呼ばれる
-OSStatus LosslessSwitcherPlugin_Finalize(AudioServerPlugInDriverRef inDriver);
-
-// Property getter/setter for CoreAudio
-// CoreAudio のプロパティ取得/設定
-
-OSStatus LosslessSwitcherPlugin_GetPropertyData(
-    AudioServerPlugInDriverRef inDriver,
-    AudioObjectID inObjectID,
-    pid_t inClientPID,
-    const AudioServerPlugInAddress* inAddress,
-    UInt32 inQualifierDataSize,
-    const void* inQualifierData,
-    UInt32 inDataSize,
-    UInt32* outDataSize,
-    void* outData);
-
-OSStatus LosslessSwitcherPlugin_SetPropertyData(
-    AudioServerPlugInDriverRef inDriver,
-    AudioObjectID inObjectID,
-    pid_t inClientPID,
-    const AudioServerPlugInAddress* inAddress,
-    UInt32 inQualifierDataSize,
-    const void* inQualifierData,
-    UInt32 inDataSize,
-    const void* inData);
-
-// IO operations
-// I/O 操作
-
-OSStatus LosslessSwitcherPlugin_ReadRawAudioStream(
-    AudioServerPlugInDriverRef inDriver,
-    const AudioServerPlugInAddress* inAddress,
-    const AudioStreamBasicDescription* inFormat,
-    const AudioBufferList* outBufferList,
-    AudioServerPlugInIOCycleContext* ioContext);
-
-// Register callback for Swift to receive notifications
-// Swift がコールバック通知を受け取れるようにコールバック登録
 void LosslessSwitcherPlugin_RegisterSampleRateCallback(
     SampleRateChangeCallback callback,
     void* userData);

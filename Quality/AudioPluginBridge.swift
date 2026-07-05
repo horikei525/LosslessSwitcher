@@ -10,6 +10,7 @@
 import Foundation
 import CoreAudioTypes
 import CoreAudio
+import AppKit
 
 // Bridging header declaration for C++ interop
 // C++ 相互運用性のためのブリッジングヘッダー宣言
@@ -37,8 +38,7 @@ class AudioPluginBridge: ObservableObject {
         let timestamp: Date
     }
     
-    private override init() {
-        super.init()
+    private init() {
         initializePlugin()
     }
     
@@ -125,12 +125,16 @@ fileprivate func audioPluginSampleRateCallback(
     newSampleRate: Float64,
     bitDepth: UInt32
 ) {
-    let bundleIDStr = bundleID.map { String(cString: $0) } ?? "unknown"
+    // Resolve the real bundle ID using NSRunningApplication on macOS
+    // NSRunningApplication を使用して実際のバンドルIDを解決します
+    let resolvedBundleID = NSRunningApplication(processIdentifier: clientPID)?.bundleIdentifier
+        ?? bundleID.map { String(cString: $0) }
+        ?? "unknown"
     
     Task { @MainActor in
-        await AudioPluginBridge.shared.onSampleRateChanged(
+        AudioPluginBridge.shared.onSampleRateChanged(
             processID: clientPID,
-            bundleID: bundleIDStr,
+            bundleID: resolvedBundleID,
             newSampleRate: newSampleRate,
             bitDepth: bitDepth
         )

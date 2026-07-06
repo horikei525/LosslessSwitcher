@@ -10,9 +10,10 @@ set -e
 echo "=== LosslessSwitcher Audio Plugin Installation ==="
 echo "=== LosslessSwitcher オーディオプラグインのインストール ==="
 
-# 1. Build the Audio Plugin using xcodebuild
-# 1. xcodebuild を使用してオーディオプラグインをビルドします
-echo "Building the Audio Plugin target... / オーディオプラグインのビルド中..."
+# 1. Build the Audio Plugin and App using xcodebuild
+# 1. xcodebuild を使用してオーディオプラグインとアプリをビルドします
+echo "Building targets... / アプリとオーディオプラグインをビルド中..."
+xcodebuild -project Quality.xcodeproj -scheme LosslessSwitcher -configuration Release -derivedDataPath build
 xcodebuild -project Quality.xcodeproj -scheme LosslessSwitcherAudioPlugin -configuration Release -derivedDataPath build
 
 # 2. Check if the build product exists
@@ -22,6 +23,18 @@ if [ ! -d "$PLUGIN_PATH" ]; then
     echo "Error: Build output not found at $PLUGIN_PATH"
     echo "エラー: ビルド出力が $PLUGIN_PATH に見つかりませんでした。"
     exit 1
+fi
+
+# 2b. Copy App Icon into the plugin's resources
+# 2b. アプリのアイコンをプラグインのリソースにコピーします
+echo "Copying App Icon to plugin resources... / アプリのアイコンをプラグインリソースにコピー中..."
+mkdir -p "$PLUGIN_PATH/Contents/Resources"
+APP_ICON_PATH="build/Build/Products/Release/LosslessSwitcher.app/Contents/Resources/AppIcon.icns"
+if [ -f "$APP_ICON_PATH" ]; then
+    cp "$APP_ICON_PATH" "$PLUGIN_PATH/Contents/Resources/"
+else
+    echo "Warning: AppIcon.icns not found at $APP_ICON_PATH, fallback to default icon"
+    echo "警告: AppIcon.icns が $APP_ICON_PATH に見つかりません。デフォルトのアイコンにフォールバックします。"
 fi
 
 # 3. Create the global HAL plug-ins directory if it doesn't exist

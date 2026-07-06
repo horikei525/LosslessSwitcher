@@ -1,0 +1,12 @@
+{
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/AtomicInteger.swift" : {
+    "abi-baseline-json" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics.abi.json",
+    "const-values" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary.swiftconstvalues",
+    "dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary.d",
+    "diagnostics" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary.dia",
+    "objc-header" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-Swift.h",
+    "swiftdoc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics.swiftdoc",
+    "swiftmodule" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics.swiftmodule",
+    "swiftsourceinfo" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics.swiftsourceinfo"
+  }
+}

@@ -1,0 +1,4 @@
+module _AtomicsShims {
+umbrella header "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/_AtomicsShims/include/_AtomicsShims.h"
+export *
+}

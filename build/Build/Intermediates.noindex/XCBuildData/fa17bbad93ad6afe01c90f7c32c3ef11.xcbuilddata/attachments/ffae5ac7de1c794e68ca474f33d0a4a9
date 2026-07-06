@@ -1,0 +1,4 @@
+module SimplyCoreAudio {
+header "SimplyCoreAudio-Swift.h"
+export *
+}

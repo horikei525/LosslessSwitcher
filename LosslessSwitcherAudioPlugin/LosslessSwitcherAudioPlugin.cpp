@@ -13,6 +13,7 @@
 #include <CoreAudio/AudioHardware.h>
 #include <libproc.h>
 #include <os/log.h>
+#include <mach/mach_time.h>
 
 #pragma mark - Global State
 
@@ -46,10 +47,39 @@ static void NotifySampleRateChange(pid_t clientPID,
                                    const char* bundleID,
                                    Float64 newSampleRate,
                                    UInt32 bitDepth) {
+    // Notify in-process callbacks if any
     if (g_sampleRateCallback) {
         dispatch_async(dispatch_get_main_queue(), ^{
             g_sampleRateCallback(clientPID, bundleID, newSampleRate, bitDepth);
         });
+    }
+    
+    // Broadcast via Distributed Notification Center to reach the user companion app
+    CFMutableDictionaryRef userInfo = CFDictionaryCreateMutable(kCFAllocatorDefault, 4, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    if (userInfo) {
+        CFNumberRef pidNum = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &clientPID);
+        CFStringRef bundleStr = CFStringCreateWithCString(kCFAllocatorDefault, bundleID ? bundleID : "unknown", kCFStringEncodingUTF8);
+        CFNumberRef rateNum = CFNumberCreate(kCFAllocatorDefault, kCFNumberFloat64Type, &newSampleRate);
+        CFNumberRef depthNum = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &bitDepth);
+        
+        if (pidNum) CFDictionarySetValue(userInfo, CFSTR("pid"), pidNum);
+        if (bundleStr) CFDictionarySetValue(userInfo, CFSTR("bundleID"), bundleStr);
+        if (rateNum) CFDictionarySetValue(userInfo, CFSTR("sampleRate"), rateNum);
+        if (depthNum) CFDictionarySetValue(userInfo, CFSTR("bitDepth"), depthNum);
+        
+        CFNotificationCenterPostNotification(
+            CFNotificationCenterGetDistributedCenter(),
+            CFSTR("com.vincent-neo.LosslessSwitcher.SampleRateChanged"),
+            nullptr, // object
+            userInfo,
+            true // deliverImmediately
+        );
+        
+        if (pidNum) CFRelease(pidNum);
+        if (bundleStr) CFRelease(bundleStr);
+        if (rateNum) CFRelease(rateNum);
+        if (depthNum) CFRelease(depthNum);
+        CFRelease(userInfo);
     }
     
     os_log(OS_LOG_DEFAULT, "[LosslessSwitcherPlugin] Sample Rate Changed: PID=%d, Rate=%.1f Hz, BitDepth=%u bits",
@@ -338,6 +368,26 @@ OSStatus LosslessSwitcherPlugin_GetPropertyData(
                     result = noErr;
                 }
                 break;
+            case kAudioDevicePropertyIsHidden:
+                if (inDataSize >= sizeof(UInt32)) {
+                    *outDataSize = sizeof(UInt32);
+                    *(UInt32*)outData = 0;
+                    result = noErr;
+                }
+                break;
+            case kAudioDevicePropertyIcon:
+                if (inDataSize >= sizeof(CFURLRef)) {
+                    *outDataSize = sizeof(CFURLRef);
+                    CFBundleRef bundle = CFBundleGetBundleWithIdentifier(CFSTR("com.vincent-neo.LosslessSwitcherAudioPlugin"));
+                    if (bundle) {
+                        CFURLRef iconURL = CFBundleCopyResourceURL(bundle, CFSTR("AppIcon"), CFSTR("icns"), nullptr);
+                        if (iconURL) {
+                            *(CFURLRef*)outData = iconURL;
+                            result = noErr;
+                        }
+                    }
+                }
+                break;
             case kAudioDevicePropertyStreamFormat:
                 if (inDataSize >= sizeof(AudioStreamBasicDescription)) {
                     *outDataSize = sizeof(AudioStreamBasicDescription);
@@ -391,23 +441,36 @@ OSStatus LosslessSwitcherPlugin_GetPropertyData(
                 break;
             case kAudioStreamPropertyAvailableVirtualFormats:
             case kAudioStreamPropertyAvailablePhysicalFormats: {
-                UInt32 expectedSize = 6 * sizeof(AudioStreamRangedDescription);
+                UInt32 expectedSize = 24 * sizeof(AudioStreamRangedDescription);
                 if (inDataSize >= expectedSize) {
                     *outDataSize = expectedSize;
                     AudioStreamRangedDescription* formats = (AudioStreamRangedDescription*)outData;
                     Float64 rates[] = { 44100.0, 48000.0, 88200.0, 96000.0, 176400.0, 192000.0 };
-                    for (int i = 0; i < 6; ++i) {
-                        formats[i].mFormat.mSampleRate = rates[i];
-                        formats[i].mFormat.mFormatID = kAudioFormatLinearPCM;
-                        formats[i].mFormat.mFormatFlags = kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked;
-                        formats[i].mFormat.mBytesPerPacket = 8;
-                        formats[i].mFormat.mFramesPerPacket = 1;
-                        formats[i].mFormat.mBytesPerFrame = 8;
-                        formats[i].mFormat.mChannelsPerFrame = 2;
-                        formats[i].mFormat.mBitsPerChannel = 32;
-                        
-                        formats[i].mSampleRateRange.mMinimum = rates[i];
-                        formats[i].mSampleRateRange.mMaximum = rates[i];
+                    UInt32 bits[] = { 32, 24, 16, 32 };
+                    UInt32 flags[] = {
+                        kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked,
+                        kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked,
+                        kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked,
+                        kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked
+                    };
+                    UInt32 bytesPerFrame[] = { 8, 6, 4, 8 };
+                    
+                    int idx = 0;
+                    for (int r = 0; r < 6; ++r) {
+                        for (int f = 0; f < 4; ++f) {
+                            formats[idx].mFormat.mSampleRate = rates[r];
+                            formats[idx].mFormat.mFormatID = kAudioFormatLinearPCM;
+                            formats[idx].mFormat.mFormatFlags = flags[f];
+                            formats[idx].mFormat.mBytesPerPacket = bytesPerFrame[f];
+                            formats[idx].mFormat.mFramesPerPacket = 1;
+                            formats[idx].mFormat.mBytesPerFrame = bytesPerFrame[f];
+                            formats[idx].mFormat.mChannelsPerFrame = 2;
+                            formats[idx].mFormat.mBitsPerChannel = bits[f];
+                            
+                            formats[idx].mSampleRateRange.mMinimum = rates[r];
+                            formats[idx].mSampleRateRange.mMaximum = rates[r];
+                            idx++;
+                        }
                     }
                     result = noErr;
                 }
@@ -511,6 +574,52 @@ OSStatus LosslessSwitcherPlugin_SetPropertyData(
                 break;
             }
             
+            default:
+                break;
+        }
+    } else if (inObjectID == g_device.inputStreamID || inObjectID == g_device.outputStreamID) {
+        switch (inAddress->mSelector) {
+            case kAudioStreamPropertyPhysicalFormat:
+            case kAudioStreamPropertyVirtualFormat: {
+                if (inDataSize >= sizeof(AudioStreamBasicDescription)) {
+                    AudioStreamBasicDescription newFormat = *(AudioStreamBasicDescription*)inData;
+                    
+                    // Verify if the requested format is supported
+                    // サポートされているフォーマットか検証
+                    bool formatSupported = false;
+                    Float64 rates[] = { 44100.0, 48000.0, 88200.0, 96000.0, 176400.0, 192000.0 };
+                    for (int r = 0; r < 6; ++r) {
+                        if (abs(newFormat.mSampleRate - rates[r]) < 0.1) {
+                            formatSupported = true;
+                            break;
+                        }
+                    }
+                    
+                    if (formatSupported) {
+                        g_device.currentFormat = newFormat;
+                        
+                        // Notify Host that properties changed
+                        if (g_device.hostRef) {
+                            AudioObjectPropertyAddress streamAddress = { kAudioStreamPropertyVirtualFormat, kAudioObjectPropertyScopeGlobal, 0 };
+                            g_device.hostRef->PropertiesChanged(g_device.hostRef, g_device.inputStreamID, 1, &streamAddress);
+                            g_device.hostRef->PropertiesChanged(g_device.hostRef, g_device.outputStreamID, 1, &streamAddress);
+                            
+                            AudioObjectPropertyAddress deviceAddress = { kAudioDevicePropertyNominalSampleRate, kAudioObjectPropertyScopeGlobal, 0 };
+                            g_device.hostRef->PropertiesChanged(g_device.hostRef, g_device.deviceID, 1, &deviceAddress);
+                        }
+                        
+                        // Notify Swift app of the format change
+                        char bundleID[256] = {0};
+                        GetBundleIDFromPID(inClientPID, bundleID, sizeof(bundleID));
+                        NotifySampleRateChange(inClientPID, bundleID, newFormat.mSampleRate, newFormat.mBitsPerChannel);
+                        
+                        result = noErr;
+                    } else {
+                        result = kAudioDeviceUnsupportedFormatError;
+                    }
+                }
+                break;
+            }
             default:
                 break;
         }
@@ -686,7 +795,12 @@ static OSStatus LosslessSwitcherPlugin_GetPropertyDataSize(
                 result = noErr;
                 break;
             case kAudioDevicePropertyZeroTimeStampPeriod:
+            case kAudioDevicePropertyIsHidden:
                 *outDataSize = sizeof(UInt32);
+                result = noErr;
+                break;
+            case kAudioDevicePropertyIcon:
+                *outDataSize = sizeof(CFURLRef);
                 result = noErr;
                 break;
             case kAudioDevicePropertyStreamFormat:
@@ -723,7 +837,7 @@ static OSStatus LosslessSwitcherPlugin_GetPropertyDataSize(
                 break;
             case kAudioStreamPropertyAvailableVirtualFormats:
             case kAudioStreamPropertyAvailablePhysicalFormats:
-                *outDataSize = 6 * sizeof(AudioStreamRangedDescription);
+                *outDataSize = 24 * sizeof(AudioStreamRangedDescription);
                 result = noErr;
                 break;
             case kAudioObjectPropertyOwnedObjects:
@@ -777,6 +891,8 @@ static Boolean LosslessSwitcherPlugin_HasProperty(
                 inAddress->mSelector == kAudioDevicePropertyBufferFrameSize ||
                 inAddress->mSelector == kAudioObjectPropertyControlList ||
                 inAddress->mSelector == kAudioDevicePropertyZeroTimeStampPeriod ||
+                inAddress->mSelector == kAudioDevicePropertyIsHidden ||
+                inAddress->mSelector == kAudioDevicePropertyIcon ||
                 inAddress->mSelector == kAudioDevicePropertyStreamFormat ||
                 inAddress->mSelector == kAudioObjectPropertyOwnedObjects ||
                 inAddress->mSelector == kAudioDevicePropertyDeviceIsAlive ||
@@ -822,27 +938,131 @@ static OSStatus LosslessSwitcherPlugin_IsPropertySettable(
         }
     }
     
+    if (inObjectID == g_device.inputStreamID || inObjectID == g_device.outputStreamID) {
+        if (inAddress->mSelector == kAudioStreamPropertyPhysicalFormat ||
+            inAddress->mSelector == kAudioStreamPropertyVirtualFormat) {
+            *outIsSettable = true;
+            return noErr;
+        }
+    }
+    
     *outIsSettable = false;
+    return noErr;
+}
+
+#pragma mark - Client Operations
+
+static OSStatus LosslessSwitcherPlugin_AddDeviceClient(
+    AudioServerPlugInDriverRef inDriver,
+    AudioObjectID inDeviceID,
+    const AudioServerPlugInClientInfo* inClientInfo) {
+    
+    os_unfair_lock_lock(&g_lock);
+    os_log(OS_LOG_DEFAULT, "[LosslessSwitcherPlugin] AddDeviceClient: deviceID=%u, clientPID=%d, bundle=%s",
+           inDeviceID, inClientInfo->mProcessID,
+           inClientInfo->mBundleID ? CFStringGetCStringPtr(inClientInfo->mBundleID, kCFStringEncodingUTF8) : "None");
+    os_unfair_lock_unlock(&g_lock);
+    return noErr;
+}
+
+static OSStatus LosslessSwitcherPlugin_RemoveDeviceClient(
+    AudioServerPlugInDriverRef inDriver,
+    AudioObjectID inDeviceID,
+    const AudioServerPlugInClientInfo* inClientInfo) {
+    
+    os_unfair_lock_lock(&g_lock);
+    os_log(OS_LOG_DEFAULT, "[LosslessSwitcherPlugin] RemoveDeviceClient: deviceID=%u, clientPID=%d", inDeviceID, inClientInfo->mProcessID);
+    os_unfair_lock_unlock(&g_lock);
     return noErr;
 }
 
 #pragma mark - IO Operations
 
-OSStatus LosslessSwitcherPlugin_ReadRawAudioStream(
+static OSStatus LosslessSwitcherPlugin_StartIO(
     AudioServerPlugInDriverRef inDriver,
-    const AudioObjectPropertyAddress* inAddress,
-    const AudioStreamBasicDescription* inFormat,
-    const AudioBufferList* outBufferList,
-    const AudioServerPlugInIOCycleInfo* ioContext) {
+    AudioObjectID inDeviceID,
+    UInt32 inClientID) {
     
-    if (!outBufferList || outBufferList->mNumberBuffers == 0) {
-        return noErr;
+    os_unfair_lock_lock(&g_lock);
+    os_log(OS_LOG_DEFAULT, "[LosslessSwitcherPlugin] StartIO: deviceID=%u, clientID=%u", inDeviceID, inClientID);
+    os_unfair_lock_unlock(&g_lock);
+    return noErr;
+}
+
+static OSStatus LosslessSwitcherPlugin_StopIO(
+    AudioServerPlugInDriverRef inDriver,
+    AudioObjectID inDeviceID,
+    UInt32 inClientID) {
+    
+    os_unfair_lock_lock(&g_lock);
+    os_log(OS_LOG_DEFAULT, "[LosslessSwitcherPlugin] StopIO: deviceID=%u, clientID=%u", inDeviceID, inClientID);
+    os_unfair_lock_unlock(&g_lock);
+    return noErr;
+}
+
+static OSStatus LosslessSwitcherPlugin_GetZeroTimeStamp(
+    AudioServerPlugInDriverRef inDriver,
+    AudioObjectID inDeviceID,
+    UInt32 inClientID,
+    Float64* outSampleTime,
+    UInt64* outHostTime,
+    UInt64* outSeed) {
+    
+    if (outSampleTime) *outSampleTime = 0.0;
+    if (outHostTime) *outHostTime = mach_absolute_time();
+    if (outSeed) *outSeed = 1;
+    return noErr;
+}
+
+static OSStatus LosslessSwitcherPlugin_WillDoIOOperation(
+    AudioServerPlugInDriverRef inDriver,
+    AudioObjectID inDeviceID,
+    UInt32 inClientID,
+    UInt32 inOperationID,
+    Boolean* outWillDo,
+    Boolean* outWillDoInPlace) {
+    
+    if (outWillDo) *outWillDo = true;
+    if (outWillDoInPlace) *outWillDoInPlace = true;
+    return noErr;
+}
+
+static OSStatus LosslessSwitcherPlugin_BeginIOOperation(
+    AudioServerPlugInDriverRef inDriver,
+    AudioObjectID inDeviceID,
+    UInt32 inClientID,
+    UInt32 inOperationID,
+    UInt32 inIOBufferFrameSize,
+    const AudioServerPlugInIOCycleInfo* inIOCycleInfo) {
+    
+    return noErr;
+}
+
+static OSStatus LosslessSwitcherPlugin_DoIOOperation(
+    AudioServerPlugInDriverRef inDriver,
+    AudioObjectID inDeviceID,
+    AudioObjectID inStreamObjectID,
+    UInt32 inClientID,
+    UInt32 inOperationID,
+    UInt32 inIOBufferFrameSize,
+    const AudioServerPlugInIOCycleInfo* inIOCycleInfo,
+    void* ioMainBuffer,
+    void* ioSecondaryBuffer) {
+    
+    if (inStreamObjectID == g_device.inputStreamID && ioMainBuffer && inIOBufferFrameSize > 0) {
+        memset(ioMainBuffer, 0, inIOBufferFrameSize * 8); // 8 bytes per frame (Stereo Float32)
     }
-    for (UInt32 i = 0; i < outBufferList->mNumberBuffers; ++i) {
-        if (outBufferList->mBuffers[i].mData) {
-            memset(outBufferList->mBuffers[i].mData, 0, outBufferList->mBuffers[i].mDataByteSize);
-        }
-    }
+    return noErr;
+}
+
+static OSStatus LosslessSwitcherPlugin_EndIOOperation(
+    AudioServerPlugInDriverRef inDriver,
+    AudioObjectID inDeviceID,
+    UInt32 inClientID,
+    UInt32 inOperationID,
+    UInt32 inIOBufferFrameSize,
+    const AudioServerPlugInIOCycleInfo* inIOCycleInfo) {
+    
     return noErr;
 }
 
@@ -862,27 +1082,29 @@ void LosslessSwitcherPlugin_RegisterSampleRateCallback(
 #pragma mark - Interface Table & Entry Point
 
 static AudioServerPlugInDriverInterface gAudioServerPlugInDriverInterface = {
-    nullptr,
+    nullptr,                                // _reserved
     LosslessSwitcherPlugin_QueryInterface,
     LosslessSwitcherPlugin_AddRef,
     LosslessSwitcherPlugin_Release,
     LosslessSwitcherPlugin_InitializeInterface,
-    nullptr, // CreateDevice
-    nullptr, // DestroyDevice
-    nullptr, // AddDevice
-    nullptr, // RemoveDevice
-    nullptr, // StartIO
-    nullptr, // StopIO
+    nullptr,                                // CreateDevice
+    nullptr,                                // DestroyDevice
+    LosslessSwitcherPlugin_AddDeviceClient,
+    LosslessSwitcherPlugin_RemoveDeviceClient,
+    nullptr,                                // PerformDeviceConfigurationChange
+    nullptr,                                // AbortDeviceConfigurationChange
     LosslessSwitcherPlugin_HasProperty,
     LosslessSwitcherPlugin_IsPropertySettable,
     LosslessSwitcherPlugin_GetPropertyDataSize,
     LosslessSwitcherPlugin_GetPropertyData,
     LosslessSwitcherPlugin_SetPropertyData,
-    nullptr, // GetZeroTimeStamp
-    nullptr, // WillDoIOOperation
-    nullptr, // BeginIOOperation
-    nullptr, // DoIOOperation
-    nullptr  // EndIOOperation
+    LosslessSwitcherPlugin_StartIO,
+    LosslessSwitcherPlugin_StopIO,
+    LosslessSwitcherPlugin_GetZeroTimeStamp,
+    LosslessSwitcherPlugin_WillDoIOOperation,
+    LosslessSwitcherPlugin_BeginIOOperation,
+    LosslessSwitcherPlugin_DoIOOperation,
+    LosslessSwitcherPlugin_EndIOOperation
 };
 
 static AudioServerPlugInDriverInterface* gAudioServerPlugInDriverInterfacePtr = &gAudioServerPlugInDriverInterface;

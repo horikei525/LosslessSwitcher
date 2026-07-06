@@ -1,0 +1,4 @@
+module MediaRemoteAdapter {
+header "MediaRemoteAdapter-Swift.h"
+export *
+}

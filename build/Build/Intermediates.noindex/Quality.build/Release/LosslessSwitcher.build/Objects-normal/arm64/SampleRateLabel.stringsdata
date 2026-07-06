@@ -1,0 +1,16 @@
+{
+  "source": "/Users/horikei/Documents/LosslessSwitcher/Quality/SampleRateLabel.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Unknown",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 24
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,71 @@
+{
+  "" : {
+    "const-values" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary.swiftconstvalues",
+    "dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary.d",
+    "diagnostics" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary.dia",
+    "emit-module-dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary-emit-module.dia",
+    "pch" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary.swiftdeps"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/AtomicInteger.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicInteger.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicInteger.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicInteger.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/AtomicMemoryOrderings.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicMemoryOrderings.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicMemoryOrderings.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicMemoryOrderings.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/AtomicOptional.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicOptional.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicOptional.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicOptional.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/AtomicRawRepresentable.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicRawRepresentable.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicRawRepresentable.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicRawRepresentable.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/AtomicStrongReference.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicStrongReference.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicStrongReference.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicStrongReference.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/AtomicValue.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicValue.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicValue.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicValue.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/DoubleWord.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/DoubleWord.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/DoubleWord.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/DoubleWord.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/autogenerated/AtomicBool.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicBool.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicBool.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicBool.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/autogenerated/AtomicLazyReference.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicLazyReference.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicLazyReference.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/AtomicLazyReference.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/autogenerated/HighLevelTypes.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/HighLevelTypes.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/HighLevelTypes.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/HighLevelTypes.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/autogenerated/IntegerConformances.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/IntegerConformances.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/IntegerConformances.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/IntegerConformances.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/swift-atomics/Sources/Atomics/autogenerated/PointerConformances.swift" : {
+    "index-unit-output-path" : "/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/PointerConformances.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/PointerConformances.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/PointerConformances.o"
+  }
+}

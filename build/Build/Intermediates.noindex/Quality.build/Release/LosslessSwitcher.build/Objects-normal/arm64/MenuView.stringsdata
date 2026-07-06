@@ -1,0 +1,248 @@
+{
+  "source": "/Users/horikei/Documents/LosslessSwitcher/Quality/MenuView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "仮想デバイスステータス / Virtual Device Status",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 150
+        }
+      },
+      {
+        "comment": "",
+        "key": "ステータスバー：サンプルレートを表示 / Show Sample Rate",
+        "location": {
+          "startingColumn": 61,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "ステータスバー：アイコンを表示 / Show Icon",
+        "location": {
+          "startingColumn": 139,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "ビット深度の自動検出 / Bit Depth Switching",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 88
+        }
+      },
+      {
+        "comment": "",
+        "key": "最も近い倍数のサンプルレートを優先 / Prefer Closest Multiple",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 99
+        }
+      },
+      {
+        "comment": "",
+        "key": "超低遅延モード (ゲーミング) / Low Latency Mode",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 110
+        }
+      },
+      {
+        "comment": "",
+        "key": "通知音をミュート / Mute Notification Sounds",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 121
+        }
+      },
+      {
+        "comment": "",
+        "key": "フォーマット競合時に通知 / Notify on Audio Conflict",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 132
+        }
+      },
+      {
+        "comment": "",
+        "key": "自動ルーティングを再開 / Resume Auto Routing",
+        "location": {
+          "startingColumn": 73,
+          "startingLine": 143
+        }
+      },
+      {
+        "comment": "",
+        "key": "自動ルーティングを停止 / Pause Auto Routing",
+        "location": {
+          "startingColumn": 133,
+          "startingLine": 143
+        }
+      },
+      {
+        "comment": "",
+        "key": "優先度ランキング / Active Sources & Priorities",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 163
+        }
+      },
+      {
+        "comment": "",
+        "key": "アクティブな音源がありません / No active sources",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 166
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ · %@",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 175
+        }
+      },
+      {
+        "comment": "",
+        "key": "デフォルトのデバイス / Default Device",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 208
+        }
+      },
+      {
+        "comment": "",
+        "key": "出力デバイスの選択 / Selected Device",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 223
+        }
+      },
+      {
+        "comment": "",
+        "key": "変更可能なフォーマットがありません / No formats available",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 230
+        }
+      },
+      {
+        "comment": "",
+        "key": "手動フォーマット変更 / Set Format Manually",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 249
+        }
+      },
+      {
+        "comment": "",
+        "key": "プラグイン状態 / Plugin Status: %@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 253
+        }
+      },
+      {
+        "comment": "",
+        "key": "仮想デバイス設定 / Virtual Device Config",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 258
+        }
+      },
+      {
+        "comment": "",
+        "key": "プラグインの再初期化 / Re-initialize Plugin",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 262
+        }
+      },
+      {
+        "comment": "",
+        "key": "オーディオMIDI設定を開く / Show Audio MIDI Setup",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 266
+        }
+      },
+      {
+        "comment": "",
+        "key": "仮想デバイス設定 / Virtual Device",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 271
+        }
+      },
+      {
+        "comment": "",
+        "key": "バージョン / Version - %@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 275
+        }
+      },
+      {
+        "comment": "",
+        "key": "ビルド / Build - %@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 276
+        }
+      },
+      {
+        "comment": "",
+        "key": "アップデートを確認 / Check for Updates",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 280
+        }
+      },
+      {
+        "comment": "",
+        "key": "アプリについて / About",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 290
+        }
+      },
+      {
+        "comment": "",
+        "key": "スクリプトを選択... / Select Script...",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 294
+        }
+      },
+      {
+        "comment": "",
+        "key": "選択をクリア / Clear Selection",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 309
+        }
+      },
+      {
+        "comment": "",
+        "key": "スクリプティング / Scripting",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 316
+        }
+      },
+      {
+        "comment": "",
+        "key": "LosslessSwitcherを終了 / Quit",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 322
+        }
+      }
+    ]
+  },
+  "version": 1
+}

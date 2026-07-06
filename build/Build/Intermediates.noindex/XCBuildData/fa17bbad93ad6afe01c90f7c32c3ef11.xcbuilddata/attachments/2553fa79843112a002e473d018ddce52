@@ -1,0 +1,4 @@
+module CIMediaRemote {
+umbrella "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/mediaremote-adapter/Sources/CIMediaRemote/include"
+export *
+}

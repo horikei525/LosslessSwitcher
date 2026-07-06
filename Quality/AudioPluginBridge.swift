@@ -17,7 +17,7 @@ import AppKit
 // (This would normally be in a bridging header file)
 
 @MainActor
-class AudioPluginBridge: ObservableObject {
+class AudioPluginBridge: NSObject, ObservableObject {
     @Published var lastDetectedSampleRate: Double = 44100.0
     @Published var lastDetectedBitDepth: UInt32 = 16
     @Published var lastDetectedProcessID: pid_t = 0
@@ -38,32 +38,43 @@ class AudioPluginBridge: ObservableObject {
         let timestamp: Date
     }
     
-    private init() {
+    private override init() {
+        super.init()
         initializePlugin()
     }
     
     /// Initialize the Audio Server Plugin
     /// Audio Server Plugin を初期化
     private func initializePlugin() {
-        // In a real implementation, this would load and initialize the plugin
-        // 実装では、プラグインをロードして初期化します
+        print("[AudioPluginBridge] Plugin initialization in progress...")
         
-        DispatchQueue.global().async {
-            // Simulate plugin loading for now
-            // 現在のところ、プラグインロードをシミュレート
-            print("[AudioPluginBridge] Plugin initialization in progress...")
-            
-            // Register callback with the C++ plugin
-            // C++ プラグインにコールバックを登録
-            // LosslessSwitcherPlugin_RegisterSampleRateCallback(
-            //     audioPluginSampleRateCallback,
-            //     Unmanaged.passUnretained(self).toOpaque()
-            // )
-            
-            DispatchQueue.main.async {
-                self.isPluginLoaded = true
-                print("[AudioPluginBridge] Plugin initialized successfully")
-            }
+        // Listen to distributed notifications from the helper process (coreaudiod)
+        DistributedNotificationCenter.default().addObserver(
+            self,
+            selector: #selector(handleSampleRateChangedNotification(_:)),
+            name: NSNotification.Name("com.vincent-neo.LosslessSwitcher.SampleRateChanged"),
+            object: nil
+        )
+        
+        self.isPluginLoaded = true
+        print("[AudioPluginBridge] Plugin initialized successfully (listening to distributed notifications)")
+    }
+    
+    @objc private func handleSampleRateChangedNotification(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else { return }
+        
+        let pid = (userInfo["pid"] as? NSNumber)?.int32Value ?? 0
+        let bundleID = (userInfo["bundleID"] as? String) ?? "unknown"
+        let sampleRate = (userInfo["sampleRate"] as? NSNumber)?.doubleValue ?? 44100.0
+        let bitDepth = (userInfo["bitDepth"] as? NSNumber)?.uint32Value ?? 16
+        
+        DispatchQueue.main.async {
+            self.onSampleRateChanged(
+                processID: pid,
+                bundleID: bundleID,
+                newSampleRate: sampleRate,
+                bitDepth: bitDepth
+            )
         }
     }
     

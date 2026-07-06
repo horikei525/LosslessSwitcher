@@ -2,28 +2,28 @@
 triple:          'arm64-apple-darwin'
 binary-path:     '/Users/horikei/Documents/LosslessSwitcher/build/Build/Products/Release/LosslessSwitcherAudioPlugin.driver/Contents/MacOS/LosslessSwitcherAudioPlugin'
 relocations:
-  - { offset: 0x26, size: 0x8, addend: 0x0, symName: __Z33LosslessSwitcherPlugin_InitializePP32AudioServerPlugInDriverInterfacePK30AudioServerPlugInHostInterface, symObjAddr: 0x0, symBinAddr: 0x830, symSize: 0xA0 }
-  - { offset: 0x3F, size: 0x8, addend: 0x0, symName: __ZL8g_device, symObjAddr: 0xA2A0, symBinAddr: 0x8140, symSize: 0x0 }
-  - { offset: 0xBAB, size: 0x8, addend: 0x0, symName: __ZL10g_initOnce, symObjAddr: 0xA430, symBinAddr: 0x82D0, symSize: 0x0 }
-  - { offset: 0xBEC, size: 0x8, addend: 0x0, symName: __ZL6g_lock, symObjAddr: 0xA438, symBinAddr: 0x82D8, symSize: 0x0 }
-  - { offset: 0xC26, size: 0x8, addend: 0x0, symName: __ZL20g_sampleRateCallback, symObjAddr: 0xA440, symBinAddr: 0x82E0, symSize: 0x0 }
-  - { offset: 0xC3F, size: 0x8, addend: 0x0, symName: __ZL18g_callbackUserData, symObjAddr: 0xA448, symBinAddr: 0x82E8, symSize: 0x0 }
-  - { offset: 0xC59, size: 0x8, addend: 0x0, symName: __ZL36gAudioServerPlugInDriverInterfacePtr, symObjAddr: 0x1140, symBinAddr: 0x8078, symSize: 0x0 }
-  - { offset: 0xC73, size: 0x8, addend: 0x0, symName: __ZL33gAudioServerPlugInDriverInterface, symObjAddr: 0x1148, symBinAddr: 0x8080, symSize: 0x0 }
-  - { offset: 0xD96, size: 0x8, addend: 0x0, symName: __Z33LosslessSwitcherPlugin_InitializePP32AudioServerPlugInDriverInterfacePK30AudioServerPlugInHostInterface, symObjAddr: 0x0, symBinAddr: 0x830, symSize: 0xA0 }
-  - { offset: 0xE0E, size: 0x8, addend: 0x0, symName: ____Z33LosslessSwitcherPlugin_InitializePP32AudioServerPlugInDriverInterfacePK30AudioServerPlugInHostInterface_block_invoke, symObjAddr: 0xA0, symBinAddr: 0x8D0, symSize: 0x88 }
-  - { offset: 0x1057, size: 0x8, addend: 0x0, symName: __Z31LosslessSwitcherPlugin_FinalizePP32AudioServerPlugInDriverInterface, symObjAddr: 0x128, symBinAddr: 0x958, symSize: 0x34 }
-  - { offset: 0x1084, size: 0x8, addend: 0x0, symName: __Z38LosslessSwitcherPlugin_GetPropertyDataPP32AudioServerPlugInDriverInterfacejiPK26AudioObjectPropertyAddressjPKvjPjPv, symObjAddr: 0x15C, symBinAddr: 0x98C, symSize: 0x474 }
-  - { offset: 0x13ED, size: 0x8, addend: 0x0, symName: __Z38LosslessSwitcherPlugin_SetPropertyDataPP32AudioServerPlugInDriverInterfacejiPK26AudioObjectPropertyAddressjPKvjS6_, symObjAddr: 0x5D0, symBinAddr: 0xE00, symSize: 0x274 }
-  - { offset: 0x16AA, size: 0x8, addend: 0x0, symName: __Z41LosslessSwitcherPlugin_ReadRawAudioStreamPP32AudioServerPlugInDriverInterfacePK26AudioObjectPropertyAddressPK27AudioStreamBasicDescriptionPK15AudioBufferListPK28AudioServerPlugInIOCycleInfo, symObjAddr: 0x844, symBinAddr: 0x1074, symSize: 0x60 }
-  - { offset: 0x1737, size: 0x8, addend: 0x0, symName: _LosslessSwitcherPlugin_RegisterSampleRateCallback, symObjAddr: 0x8A4, symBinAddr: 0x10D4, symSize: 0x6C }
-  - { offset: 0x178F, size: 0x8, addend: 0x0, symName: _AudioServerPlugInDriverEntry, symObjAddr: 0x910, symBinAddr: 0x1140, symSize: 0x80 }
-  - { offset: 0x18C0, size: 0x8, addend: 0x0, symName: ____ZL22NotifySampleRateChangeiPKcdj_block_invoke, symObjAddr: 0x990, symBinAddr: 0x11C0, symSize: 0x1C }
-  - { offset: 0x1930, size: 0x8, addend: 0x0, symName: __ZL37LosslessSwitcherPlugin_QueryInterfacePv11CFUUIDBytesPS_, symObjAddr: 0x9AC, symBinAddr: 0x11DC, symSize: 0x104 }
-  - { offset: 0x1A81, size: 0x8, addend: 0x0, symName: __ZL29LosslessSwitcherPlugin_AddRefPv, symObjAddr: 0xAB0, symBinAddr: 0x12E0, symSize: 0x8 }
-  - { offset: 0x1AAC, size: 0x8, addend: 0x0, symName: __ZL30LosslessSwitcherPlugin_ReleasePv, symObjAddr: 0xAB8, symBinAddr: 0x12E8, symSize: 0x8 }
-  - { offset: 0x1AD7, size: 0x8, addend: 0x0, symName: __ZL42LosslessSwitcherPlugin_InitializeInterfacePP32AudioServerPlugInDriverInterfacePK30AudioServerPlugInHostInterface, symObjAddr: 0xAC0, symBinAddr: 0x12F0, symSize: 0x18 }
-  - { offset: 0x1B32, size: 0x8, addend: 0x0, symName: __ZL34LosslessSwitcherPlugin_HasPropertyPP32AudioServerPlugInDriverInterfacejiPK26AudioObjectPropertyAddress, symObjAddr: 0xAD8, symBinAddr: 0x1308, symSize: 0x190 }
-  - { offset: 0x1B85, size: 0x8, addend: 0x0, symName: __ZL41LosslessSwitcherPlugin_IsPropertySettablePP32AudioServerPlugInDriverInterfacejiPK26AudioObjectPropertyAddressPh, symObjAddr: 0xC68, symBinAddr: 0x1498, symSize: 0x4C }
-  - { offset: 0x1BE6, size: 0x8, addend: 0x0, symName: __ZL42LosslessSwitcherPlugin_GetPropertyDataSizePP32AudioServerPlugInDriverInterfacejiPK26AudioObjectPropertyAddressjPKvPj, symObjAddr: 0xCB4, symBinAddr: 0x14E4, symSize: 0x1E0 }
+  - { offset: 0x26, size: 0x8, addend: 0x0, symName: __Z33LosslessSwitcherPlugin_InitializePP32AudioServerPlugInDriverInterfacePK30AudioServerPlugInHostInterface, symObjAddr: 0x0, symBinAddr: 0x880, symSize: 0xC0 }
+  - { offset: 0x3F, size: 0x8, addend: 0x0, symName: __ZL8g_device, symObjAddr: 0xC9B0, symBinAddr: 0x8150, symSize: 0x0 }
+  - { offset: 0xB9F, size: 0x8, addend: 0x0, symName: __Z33LosslessSwitcherPlugin_InitializePP32AudioServerPlugInDriverInterfacePK30AudioServerPlugInHostInterface, symObjAddr: 0x0, symBinAddr: 0x880, symSize: 0xC0 }
+  - { offset: 0xCB1, size: 0x8, addend: 0x0, symName: ____Z33LosslessSwitcherPlugin_InitializePP32AudioServerPlugInDriverInterfacePK30AudioServerPlugInHostInterface_block_invoke, symObjAddr: 0xC0, symBinAddr: 0x940, symSize: 0xE4 }
+  - { offset: 0xDAC, size: 0x8, addend: 0x0, symName: __Z31LosslessSwitcherPlugin_FinalizePP32AudioServerPlugInDriverInterface, symObjAddr: 0x1A4, symBinAddr: 0xA24, symSize: 0x5C }
+  - { offset: 0xE83, size: 0x8, addend: 0x0, symName: __Z38LosslessSwitcherPlugin_GetPropertyDataPP32AudioServerPlugInDriverInterfacejiPK26AudioObjectPropertyAddressjPKvjPjPv, symObjAddr: 0x200, symBinAddr: 0xA80, symSize: 0x940 }
+  - { offset: 0x1228, size: 0x8, addend: 0x0, symName: _LosslessSwitcherPlugin_RegisterSampleRateCallback, symObjAddr: 0xE58, symBinAddr: 0x16D8, symSize: 0x90 }
+  - { offset: 0x1334, size: 0x8, addend: 0x0, symName: __ZL10g_initOnce, symObjAddr: 0xCB40, symBinAddr: 0x82E0, symSize: 0x0 }
+  - { offset: 0x1375, size: 0x8, addend: 0x0, symName: __ZL6g_lock, symObjAddr: 0xCB48, symBinAddr: 0x82E8, symSize: 0x0 }
+  - { offset: 0x13AF, size: 0x8, addend: 0x0, symName: __ZL20g_sampleRateCallback, symObjAddr: 0xCB50, symBinAddr: 0x82F0, symSize: 0x0 }
+  - { offset: 0x13C8, size: 0x8, addend: 0x0, symName: __ZL18g_callbackUserData, symObjAddr: 0xCB58, symBinAddr: 0x82F8, symSize: 0x0 }
+  - { offset: 0x13E2, size: 0x8, addend: 0x0, symName: __ZL36gAudioServerPlugInDriverInterfacePtr, symObjAddr: 0x1DE8, symBinAddr: 0x8080, symSize: 0x0 }
+  - { offset: 0x13FC, size: 0x8, addend: 0x0, symName: __ZL33gAudioServerPlugInDriverInterface, symObjAddr: 0x1DF0, symBinAddr: 0x8088, symSize: 0x0 }
+  - { offset: 0x1409, size: 0x8, addend: 0x0, symName: __ZL42LosslessSwitcherPlugin_GetPropertyDataSizePP32AudioServerPlugInDriverInterfacejiPK26AudioObjectPropertyAddressjPKvPj, symObjAddr: 0x1444, symBinAddr: 0x1CC4, symSize: 0x538 }
+  - { offset: 0x1BD7, size: 0x8, addend: 0x0, symName: __Z38LosslessSwitcherPlugin_SetPropertyDataPP32AudioServerPlugInDriverInterfacejiPK26AudioObjectPropertyAddressjPKvjS6_, symObjAddr: 0xB40, symBinAddr: 0x13C0, symSize: 0x2B8 }
+  - { offset: 0x1F2D, size: 0x8, addend: 0x0, symName: __Z41LosslessSwitcherPlugin_ReadRawAudioStreamPP32AudioServerPlugInDriverInterfacePK26AudioObjectPropertyAddressPK27AudioStreamBasicDescriptionPK15AudioBufferListPK28AudioServerPlugInIOCycleInfo, symObjAddr: 0xDF8, symBinAddr: 0x1678, symSize: 0x60 }
+  - { offset: 0x1FBA, size: 0x8, addend: 0x0, symName: _AudioServerPlugInDriverEntry, symObjAddr: 0xEE8, symBinAddr: 0x1768, symSize: 0x80 }
+  - { offset: 0x20DC, size: 0x8, addend: 0x0, symName: ____ZL22NotifySampleRateChangeiPKcdj_block_invoke, symObjAddr: 0xF68, symBinAddr: 0x17E8, symSize: 0x1C }
+  - { offset: 0x214C, size: 0x8, addend: 0x0, symName: __ZL37LosslessSwitcherPlugin_QueryInterfacePv11CFUUIDBytesPS_, symObjAddr: 0xF84, symBinAddr: 0x1804, symSize: 0x104 }
+  - { offset: 0x2290, size: 0x8, addend: 0x0, symName: __ZL29LosslessSwitcherPlugin_AddRefPv, symObjAddr: 0x1088, symBinAddr: 0x1908, symSize: 0x8 }
+  - { offset: 0x22BB, size: 0x8, addend: 0x0, symName: __ZL30LosslessSwitcherPlugin_ReleasePv, symObjAddr: 0x1090, symBinAddr: 0x1910, symSize: 0x8 }
+  - { offset: 0x22E6, size: 0x8, addend: 0x0, symName: __ZL42LosslessSwitcherPlugin_InitializeInterfacePP32AudioServerPlugInDriverInterfacePK30AudioServerPlugInHostInterface, symObjAddr: 0x1098, symBinAddr: 0x1918, symSize: 0x18 }
+  - { offset: 0x2341, size: 0x8, addend: 0x0, symName: __ZL34LosslessSwitcherPlugin_HasPropertyPP32AudioServerPlugInDriverInterfacejiPK26AudioObjectPropertyAddress, symObjAddr: 0x10B0, symBinAddr: 0x1930, symSize: 0x348 }
+  - { offset: 0x2394, size: 0x8, addend: 0x0, symName: __ZL41LosslessSwitcherPlugin_IsPropertySettablePP32AudioServerPlugInDriverInterfacejiPK26AudioObjectPropertyAddressPh, symObjAddr: 0x13F8, symBinAddr: 0x1C78, symSize: 0x4C }
 ...

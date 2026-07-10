@@ -1,0 +1,114 @@
+AddInstanceForFactory: No factory registered for id <CFUUID 0xb0ed25960> F8BB1C28-BAE8-11D6-9C31-00039315CD46
+[VirtualAudioProxy] starting proxy layer
+[VirtualAudioProxy] Requesting microphone permission...
+[AudioPluginBridge] Plugin initialization in progress...
+[AudioPluginBridge] Plugin initialized successfully (listening to distributed notifications)
+[VirtualAudioProxy] Microphone permission request complete, granted: false
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 96.0 Hz
+cannot open file at line 51044 of [f0ca7bba1c]
+os_unix.c:51044: (2) open(/private/var/db/DetachedSignatures) - No such file or directory
+Reporter disconnected. { function=sendMessage, reporterID=21311627722754 }
+throwing -10877
+throwing -10877
+throwing -10877
+throwing -10877
+           AVAEUtility.mm:176   Format mismatch: input hw <AVAudioFormat 0xb0ed76a30:  2 ch,  96000 Hz, Float32, deinterleaved>, client format <AVAudioFormat 0xb0ed768a0:  2 ch,     96 Hz, Float32, deinterleaved>
+    AVAudioEngineGraph.mm:2350  Failed to connect nodes due to config change pending!
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 96.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851 (Target ID: 107)
+throwing -10877
+throwing -10877
+           AVAEUtility.mm:176   Format mismatch: input hw <AVAudioFormat 0xb0ed76a30:  2 ch,  96000 Hz, Float32, deinterleaved>, client format <AVAudioFormat 0xb0ed768a0:  2 ch,     96 Hz, Float32, deinterleaved>
+    AVAudioEngineGraph.mm:2350  Failed to connect nodes due to config change pending!
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 96.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851 (Target ID: 107)
+throwing -10877
+throwing -10877
+           AVAEUtility.mm:176   Format mismatch: input hw <AVAudioFormat 0xb0ed76a30:  2 ch,  96000 Hz, Float32, deinterleaved>, client format <AVAudioFormat 0xb0ed768a0:  2 ch,     96 Hz, Float32, deinterleaved>
+    AVAudioEngineGraph.mm:2350  Failed to connect nodes due to config change pending!
+track Umitsuki-ClariS-Umitsuki - Single Umitsuki
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 96.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851 (Target ID: 107)
+throwing -10877
+throwing -10877
+           AVAEUtility.mm:176   Format mismatch: input hw <AVAudioFormat 0xb0ed76a30:  2 ch,  96000 Hz, Float32, deinterleaved>, client format <AVAudioFormat 0xb0e4cc0a0:  2 ch,     96 Hz, Float32, deinterleaved>
+*** Terminating app due to uncaught exception 'com.apple.coreaudio.avfaudio', reason: 'Input HW format and tap format not matching'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x000000018f4a51c0 __exceptionPreprocess + 176
+	1   libobjc.A.dylib                     0x000000018ef2e91c objc_exception_throw + 88
+	2   AVFAudio                            0x0000000234f2f25c _ZN17AVAudioIONodeImpl15SetOutputFormatEmP13AVAudioFormat + 1732
+	3   AVFAudio                            0x0000000234f15c78 _ZN18AVAudioEngineGraph8_ConnectEP19AVAudioNodeImplBaseS1_jjP13AVAudioFormat + 4600
+	4   AVFAudio                            0x0000000234f3e0f4 _ZN17AVAudioEngineImpl7ConnectEP11AVAudioNodeS1_mmP13AVAudioFormat + 1604
+	5   AVFAudio                            0x0000000234f42240 -[AVAudioEngine connect:to:format:] + 124
+	6   LosslessSwitcher.debug.dylib        0x00000001016c6bf4 $s16LosslessSwitcher17VirtualAudioProxyC18restartPassThrough10sampleRateySd_tF + 4544
+	7   LosslessSwitcher.debug.dylib        0x00000001016c59fc $s16LosslessSwitcher17VirtualAudioProxyC14triggerRestart33_092A7D6F009714BDED22CACAB4FBC059LLyyF + 168
+	8   LosslessSwitcher.debug.dylib        0x00000001016c4b90 $s16LosslessSwitcher17VirtualAudioProxyC13outputDevicesAcA06OutputG0C_tcfcySdSgcfU0_yyScMYccfU_ + 144
+	9   LosslessSwitcher.debug.dylib        0x000000010166f810 $sIeg_IeyB_TR + 48
+	10  libdispatch.dylib                   0x0000000100c784d4 _dispatch_call_block_and_release + 32
+	11  libdispatch.dylib                   0x0000000100c94ee0 _dispatch_client_callout + 16
+	12  libdispatch.dylib                   0x0000000100cb94a0 _dispatch_main_queue_drain.cold.6 + 940
+	13  libdispatch.dylib                   0x0000000100c899fc _dispatch_main_queue_drain + 176
+	14  libdispatch.dylib                   0x0000000100c8993c _dispatch_main_queue_callback_4CF + 44
+	15  CoreFoundation                      0x000000018f473724 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__ + 16
+	16  CoreFoundation                      0x000000018f435cb8 __CFRunLoopRun + 1944
+	17  CoreFoundation                      0x000000018f5081c4 _CFRunLoopRunSpecificWithOptions + 532
+	18  HIToolbox                           0x000000019c21b560 RunCurrentEventLoopInMode + 320
+	19  HIToolbox                           0x000000019c21e8bc ReceiveNextEventCommon + 488
+	20  HIToolbox                           0x000000019c3a814c _BlockUntilNextEventMatchingListInMode + 48
+	21  AppKit                              0x0000000193f1035c _DPSBlockUntilNextEventMatchingListInMode + 228
+	22  AppKit                              0x0000000193864084 _DPSNextEvent + 576
+	23  AppKit                              0x00000001943f98b0 -[NSApplication(NSEventRouting) _nextEventMatchingEventMask:untilDate:inMode:dequeue:] + 688
+	24  AppKit                              0x00000001943f95bc -[NSApplication(NSEventRouting) nextEventMatchingMask:untilDate:inMode:dequeue:] + 72
+	25  AppKit                              0x000000019385713c -[NSApplication run] + 368
+	26  AppKit                              0x000000019382f7b0 NSApplicationMain + 880
+	27  SwiftUI                             0x00000001c41e147c $s7SwiftUI6runAppys5NeverOSo21NSApplicationDelegate_So11NSResponderCXcFTf4e_nAA07TestingdG0C_Tg5Tm + 140
+	28  SwiftUI                             0x00000001c45974a4 $s7SwiftUI6runAppys5NeverOxAA0D0RzlF + 104
+	29  SwiftUI                             0x00000001c4863344 $s7SwiftUI3AppPAAE4mainyyFZ + 224
+	30  LosslessSwitcher.debug.dylib        0x00000001016acb48 $s16LosslessSwitcher10QualityAppV5$mainyyFZ + 40
+	31  LosslessSwitcher.debug.dylib        0x00000001016acfa0 __debug_main_executable_dylib_entry_point + 12
+	32  dyld                                0x000000018efbbe00 start + 6992
+)
+An uncaught exception was raised
+Input HW format and tap format not matching
+(
+	0   CoreFoundation                      0x000000018f4a51c0 __exceptionPreprocess + 176
+	1   libobjc.A.dylib                     0x000000018ef2e91c objc_exception_throw + 88
+	2   AVFAudio                            0x0000000234f2f25c _ZN17AVAudioIONodeImpl15SetOutputFormatEmP13AVAudioFormat + 1732
+	3   AVFAudio                            0x0000000234f15c78 _ZN18AVAudioEngineGraph8_ConnectEP19AVAudioNodeImplBaseS1_jjP13AVAudioFormat + 4600
+	4   AVFAudio                            0x0000000234f3e0f4 _ZN17AVAudioEngineImpl7ConnectEP11AVAudioNodeS1_mmP13AVAudioFormat + 1604
+	5   AVFAudio                            0x0000000234f42240 -[AVAudioEngine connect:to:format:] + 124
+	6   LosslessSwitcher.debug.dylib        0x00000001016c6bf4 $s16LosslessSwitcher17VirtualAudioProxyC18restartPassThrough10sampleRateySd_tF + 4544
+	7   LosslessSwitcher.debug.dylib        0x00000001016c59fc $s16LosslessSwitcher17VirtualAudioProxyC14triggerRestart33_092A7D6F009714BDED22CACAB4FBC059LLyyF + 168
+	8   LosslessSwitcher.debug.dylib        0x00000001016c4b90 $s16LosslessSwitcher17VirtualAudioProxyC13outputDevicesAcA06OutputG0C_tcfcySdSgcfU0_yyScMYccfU_ + 144
+	9   LosslessSwitcher.debug.dylib        0x000000010166f810 $sIeg_IeyB_TR + 48
+	10  libdispatch.dylib                   0x0000000100c784d4 _dispatch_call_block_and_release + 32
+	11  libdispatch.dylib                   0x0000000100c94ee0 _dispatch_client_callout + 16
+	12  libdispatch.dylib                   0x0000000100cb94a0 _dispatch_main_queue_drain.cold.6 + 940
+	13  libdispatch.dylib                   0x0000000100c899fc _dispatch_main_queue_drain + 176
+	14  libdispatch.dylib                   0x0000000100c8993c _dispatch_main_queue_callback_4CF + 44
+	15  CoreFoundation                      0x000000018f473724 __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__ + 16
+	16  CoreFoundation                      0x000000018f435cb8 __CFRunLoopRun + 1944
+	17  CoreFoundation                      0x000000018f5081c4 _CFRunLoopRunSpecificWithOptions + 532
+	18  HIToolbox                           0x000000019c21b560 RunCurrentEventLoopInMode + 320
+	19  HIToolbox                           0x000000019c21e8bc ReceiveNextEventCommon + 488
+	20  HIToolbox                           0x000000019c3a814c _BlockUntilNextEventMatchingListInMode + 48
+	21  AppKit                              0x0000000193f1035c _DPSBlockUntilNextEventMatchingListInMode + 228
+	22  AppKit                              0x0000000193864084 _DPSNextEvent + 576
+	23  AppKit                              0x00000001943f98b0 -[NSApplication(NSEventRouting) _nextEventMatchingEventMask:untilDate:inMode:dequeue:] + 688
+	24  AppKit                              0x00000001943f95bc -[NSApplication(NSEventRouting) nextEventMatchingMask:untilDate:inMode:dequeue:] + 72
+	25  AppKit                              0x000000019385713c -[NSApplication run] + 368
+	26  AppKit                              0x000000019382f7b0 NSApplicationMain + 880
+	27  SwiftUI                             0x00000001c41e147c $s7SwiftUI6runAppys5NeverOSo21NSApplicationDelegate_So11NSResponderCXcFTf4e_nAA07TestingdG0C_Tg5Tm + 140
+	28  SwiftUI                             0x00000001c45974a4 $s7SwiftUI6runAppys5NeverOxAA0D0RzlF + 104
+	29  SwiftUI                             0x00000001c4863344 $s7SwiftUI3AppPAAE4mainyyFZ + 224
+	30  LosslessSwitcher.debug.dylib        0x00000001016acb48 $s16LosslessSwitcher10QualityAppV5$mainyyFZ + 40
+	31  LosslessSwitcher.debug.dylib        0x00000001016acfa0 __debug_main_executable_dylib_entry_point + 12
+	32  dyld                                0x000000018efbbe00 start + 6992
+)
+FAULT: com.apple.coreaudio.avfaudio: Input HW format and tap format not matching; {
+    OSStatus = "-10868";
+}
+libc++abi: terminating due to uncaught exception of type NSException
+*** Terminating app due to uncaught exception 'com.apple.coreaudio.avfaudio', reason: 'Input HW format and tap format not matching'
+terminating due to uncaught exception of type NSException

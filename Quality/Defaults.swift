@@ -19,6 +19,7 @@ class Defaults: ObservableObject {
     private let kUserPreferAutoUpdateCheck = "PreferAutoUpdateCheck"
     private let kUserPrioritizedAppList = "com.vincent-neo.LosslessSwitcher-Key-UserPrioritizedAppList"
     private let kEnableConflictNotifications = "com.vincent-neo.LosslessSwitcher-Key-EnableConflictNotifications"
+    private let kBlockAlertsOnVirtualDevice = "com.vincent-neo.LosslessSwitcher-Key-BlockAlertsOnVirtualDevice"
     
     private init() {
         UserDefaults.standard.register(defaults: [
@@ -29,7 +30,8 @@ class Defaults: ObservableObject {
             kUserPreferMuteNotifications : false,
             kUserPreferAutoUpdateCheck : true,
             kUserPrioritizedAppList : ["com.apple.Music", "com.spotify.client", "company.thebrowser.Browser", "com.google.Chrome", "com.apple.Safari"],
-            kEnableConflictNotifications : true
+            kEnableConflictNotifications : true,
+            kBlockAlertsOnVirtualDevice : false
         ])
         
         self.shellScriptPath = UserDefaults.standard.string(forKey: kShellScriptPath)
@@ -41,6 +43,16 @@ class Defaults: ObservableObject {
         self.userPreferAutoUpdateCheck = UserDefaults.standard.bool(forKey: kUserPreferAutoUpdateCheck)
         self.userPrioritizedAppList = UserDefaults.standard.stringArray(forKey: kUserPrioritizedAppList) ?? []
         self.enableConflictNotifications = UserDefaults.standard.bool(forKey: kEnableConflictNotifications)
+        self.blockAlertsOnVirtualDevice = UserDefaults.standard.bool(forKey: kBlockAlertsOnVirtualDevice)
+        
+        // Post initial state to the plugin on startup
+        let userInfo = ["blockAlerts": self.blockAlertsOnVirtualDevice] as NSDictionary
+        DistributedNotificationCenter.default().postNotificationName(
+            NSNotification.Name("com.vincent-neo.LosslessSwitcher.BlockAlertsChanged"),
+            object: nil,
+            userInfo: userInfo as? [AnyHashable : Any],
+            deliverImmediately: true
+        )
     }
     
     @Published var userPreferIconStatusBarItem: Bool {
@@ -97,6 +109,19 @@ class Defaults: ObservableObject {
     @Published var enableConflictNotifications: Bool {
         willSet {
             UserDefaults.standard.set(newValue, forKey: kEnableConflictNotifications)
+        }
+    }
+    
+    @Published var blockAlertsOnVirtualDevice: Bool {
+        willSet {
+            UserDefaults.standard.set(newValue, forKey: kBlockAlertsOnVirtualDevice)
+            let userInfo = ["blockAlerts": newValue] as NSDictionary
+            DistributedNotificationCenter.default().postNotificationName(
+                NSNotification.Name("com.vincent-neo.LosslessSwitcher.BlockAlertsChanged"),
+                object: nil,
+                userInfo: userInfo as? [AnyHashable : Any],
+                deliverImmediately: true
+            )
         }
     }
     

@@ -1,0 +1,26 @@
+{
+  "" : {
+    "const-values" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/MediaRemoteAdapter-primary.swiftconstvalues",
+    "dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/MediaRemoteAdapter-primary.d",
+    "diagnostics" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/MediaRemoteAdapter-primary.dia",
+    "emit-module-dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/MediaRemoteAdapter-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/MediaRemoteAdapter-primary-emit-module.dia",
+    "pch" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/MediaRemoteAdapter-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/MediaRemoteAdapter-primary.swiftdeps"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "index-unit-output-path" : "/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/resource_bundle_accessor.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/resource_bundle_accessor.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/mediaremote-adapter/Sources/MediaRemoteAdapter/MediaController.swift" : {
+    "index-unit-output-path" : "/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/MediaController.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/MediaController.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/MediaController.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/mediaremote-adapter/Sources/MediaRemoteAdapter/TrackInfo.swift" : {
+    "index-unit-output-path" : "/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/TrackInfo.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/TrackInfo.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/MediaRemoteAdapter.build/Release/MediaRemoteAdapter.build/Objects-normal/x86_64/TrackInfo.o"
+  }
+}

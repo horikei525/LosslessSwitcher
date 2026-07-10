@@ -172,10 +172,18 @@
       },
       {
         "comment": "",
+        "key": "通知音デバイスへの設定を防止 / Block Alert Device Registration",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 270
+        }
+      },
+      {
+        "comment": "",
         "key": "仮想デバイス設定 / Virtual Device",
         "location": {
           "startingColumn": 22,
-          "startingLine": 271
+          "startingLine": 273
         }
       },
       {
@@ -183,7 +191,7 @@
         "key": "バージョン / Version - %@",
         "location": {
           "startingColumn": 22,
-          "startingLine": 275
+          "startingLine": 277
         }
       },
       {
@@ -191,7 +199,7 @@
         "key": "ビルド / Build - %@",
         "location": {
           "startingColumn": 22,
-          "startingLine": 276
+          "startingLine": 278
         }
       },
       {
@@ -199,7 +207,7 @@
         "key": "アップデートを確認 / Check for Updates",
         "location": {
           "startingColumn": 24,
-          "startingLine": 280
+          "startingLine": 282
         }
       },
       {
@@ -207,7 +215,7 @@
         "key": "アプリについて / About",
         "location": {
           "startingColumn": 22,
-          "startingLine": 290
+          "startingLine": 292
         }
       },
       {
@@ -215,7 +223,7 @@
         "key": "スクリプトを選択... / Select Script...",
         "location": {
           "startingColumn": 24,
-          "startingLine": 294
+          "startingLine": 296
         }
       },
       {
@@ -223,7 +231,7 @@
         "key": "選択をクリア / Clear Selection",
         "location": {
           "startingColumn": 24,
-          "startingLine": 309
+          "startingLine": 311
         }
       },
       {
@@ -231,7 +239,7 @@
         "key": "スクリプティング / Scripting",
         "location": {
           "startingColumn": 22,
-          "startingLine": 316
+          "startingLine": 318
         }
       },
       {
@@ -239,7 +247,7 @@
         "key": "LosslessSwitcherを終了 / Quit",
         "location": {
           "startingColumn": 22,
-          "startingLine": 322
+          "startingLine": 324
         }
       }
     ]

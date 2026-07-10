@@ -1,0 +1,105 @@
+AddInstanceForFactory: No factory registered for id <CFUUID 0xcad1940c0> F8BB1C28-BAE8-11D6-9C31-00039315CD46
+[VirtualAudioProxy] starting proxy layer
+[VirtualAudioProxy] Requesting microphone permission...
+[AudioPluginBridge] Plugin initialization in progress...
+[AudioPluginBridge] Plugin initialized successfully (listening to distributed notifications)
+[VirtualAudioProxy] Microphone permission request complete, granted: false
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 44.1 Hz
+cannot open file at line 51044 of [f0ca7bba1c]
+os_unix.c:51044: (2) open(/private/var/db/DetachedSignatures) - No such file or directory
+Reporter disconnected. { function=sendMessage, reporterID=19550691131393 }
+throwing -10877
+throwing -10877
+AudioHardware-mac-imp.cpp:657    AudioObjectGetPropertyDataSize: no object with given ID 0
+AudioHardware-mac-imp.cpp:773    AudioObjectGetPropertyData: no object with given ID 0
+[VirtualAudioProxy] Error setting output device: -10851
+throwing -10877
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 44.1 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 44.1 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+track ヒミツ恋ゴコロ-CHiCO with HoneyWorks-ヒミツ恋ゴコロ - EP ヒミツ恋ゴコロ
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 44.1 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 44.1 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+track ヒミツ恋ゴコロ-CHiCO with HoneyWorks-ヒミツ恋ゴコロ - EP ヒミツ恋ゴコロ
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+Unable to obtain a task name port right for pid 413: (os/kern) failure (0x5)
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+track ヒミツ恋ゴコロ-CHiCO with HoneyWorks-ヒミツ恋ゴコロ - EP ヒミツ恋ゴコロ
+track ヒミツ恋ゴコロ-CHiCO with HoneyWorks-ヒミツ恋ゴコロ - EP ヒミツ恋ゴコロ
+track ヒミツ恋ゴコロ-CHiCO with HoneyWorks-ヒミツ恋ゴコロ - EP ヒミツ恋ゴコロ
+track ヒミツ恋ゴコロ-CHiCO with HoneyWorks-ヒミツ恋ゴコロ - EP ヒミツ恋ゴコロ
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 06:37:47 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851
+[VirtualAudioProxy] Preparing AVAudioEngine pass-through from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Error setting output device: -10851

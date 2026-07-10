@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Sweep.build/Release/Sweep.build/Objects-normal/x86_64/Sweep-primary.swiftconstvalues",
+    "dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Sweep.build/Release/Sweep.build/Objects-normal/x86_64/Sweep-primary.d",
+    "diagnostics" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Sweep.build/Release/Sweep.build/Objects-normal/x86_64/Sweep-primary.dia",
+    "emit-module-dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Sweep.build/Release/Sweep.build/Objects-normal/x86_64/Sweep-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Sweep.build/Release/Sweep.build/Objects-normal/x86_64/Sweep-primary-emit-module.dia",
+    "pch" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Sweep.build/Release/Sweep.build/Objects-normal/x86_64/Sweep-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Sweep.build/Release/Sweep.build/Objects-normal/x86_64/Sweep-primary.swiftdeps"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/Sweep/Sources/Sweep/Sweep.swift" : {
+    "index-unit-output-path" : "/Sweep.build/Release/Sweep.build/Objects-normal/x86_64/Sweep.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Sweep.build/Release/Sweep.build/Objects-normal/x86_64/Sweep.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Sweep.build/Release/Sweep.build/Objects-normal/x86_64/Sweep.o"
+  }
+}

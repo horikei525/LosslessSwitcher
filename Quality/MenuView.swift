@@ -208,7 +208,7 @@ struct MenuView: View {
                     Text("デフォルトのデバイス / Default Device")
                 }
 
-                ForEach(outputDevices.outputDevices, id: \.uid) { device in
+                ForEach(outputDevices.outputDevices.filter({ $0.name != "LosslessSwitcher Virtual Device" }), id: \.uid) { device in
                     Button {
                         outputDevices.selectedOutputDevice = device
                         defaults.selectedDeviceUID = device.uid
@@ -266,6 +266,8 @@ struct MenuView: View {
                 Button("オーディオMIDI設定を開く / Show Audio MIDI Setup") {
                     audioRoutingController.openAudioMIDISetup()
                 }
+                
+                Toggle("通知音デバイスへの設定を防止 / Block Alert Device Registration", isOn: $defaults.blockAlertsOnVirtualDevice)
                 
             } label: {
                 Text("仮想デバイス設定 / Virtual Device")

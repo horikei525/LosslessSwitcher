@@ -1,0 +1,131 @@
+{
+  "" : {
+    "const-values" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/LosslessSwitcher-primary.swiftconstvalues",
+    "dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/LosslessSwitcher-primary.d",
+    "diagnostics" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/LosslessSwitcher-primary.dia",
+    "emit-module-dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/LosslessSwitcher-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/LosslessSwitcher-primary-emit-module.dia",
+    "pch" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/LosslessSwitcher-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/LosslessSwitcher-primary.swiftdeps"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/AppDelegate.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AppDelegate.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AppDelegate.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AppDelegate.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/AppVersion.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AppVersion.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AppVersion.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AppVersion.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/AudioPluginBridge.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioPluginBridge.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioPluginBridge.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioPluginBridge.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/AudioRingBuffer.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioRingBuffer.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioRingBuffer.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioRingBuffer.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/AudioRoutingController.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioRoutingController.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioRoutingController.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioRoutingController.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/AudioStreamBasicDescription+Equatable.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioStreamBasicDescription+Equatable.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioStreamBasicDescription+Equatable.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/AudioStreamBasicDescription+Equatable.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/BrowserTabDetector.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/BrowserTabDetector.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/BrowserTabDetector.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/BrowserTabDetector.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/CMPlayerStuff.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/CMPlayerStuff.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/CMPlayerStuff.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/CMPlayerStuff.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/Console.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/Console.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/Console.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/Console.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/ContentView.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/ContentView.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/ContentView.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/ContentView.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/CurrentUser.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/CurrentUser.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/CurrentUser.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/CurrentUser.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/Defaults.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/Defaults.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/Defaults.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/Defaults.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/DeviceMenuItem.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/DeviceMenuItem.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/DeviceMenuItem.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/DeviceMenuItem.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/MediaRemoteController.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MediaRemoteController.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MediaRemoteController.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MediaRemoteController.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/MediaTrack.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MediaTrack.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MediaTrack.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MediaTrack.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/MenuBarController.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MenuBarController.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MenuBarController.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MenuBarController.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/MenuView.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MenuView.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MenuView.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/MenuView.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/OutputDevices.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/OutputDevices.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/OutputDevices.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/OutputDevices.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/QualityApp.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/QualityApp.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/QualityApp.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/QualityApp.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/SampleRateLabel.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/SampleRateLabel.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/SampleRateLabel.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/SampleRateLabel.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/ScriptableApplicationCommand.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/ScriptableApplicationCommand.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/ScriptableApplicationCommand.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/ScriptableApplicationCommand.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/UpdateChecker.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/UpdateChecker.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/UpdateChecker.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/UpdateChecker.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/Quality/VirtualAudioProxy.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/VirtualAudioProxy.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/VirtualAudioProxy.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/VirtualAudioProxy.o"
+  },
+  "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/horikei/Documents/LosslessSwitcher/build/Build/Intermediates.noindex/Quality.build/Release/LosslessSwitcher.build/Objects-normal/x86_64/GeneratedAssetSymbols.o"
+  }
+}

@@ -6,7 +6,7 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>0F8263C3-B0C7-40EB-A259-641A81F148E8</key>
+		<key>45F3A682-EC61-4BDE-8DB9-99BC0983527E</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>0F8263C3-B0C7-40EB-A259-641A81F148E8.xcactivitylog</string>
+			<string>45F3A682-EC61-4BDE-8DB9-99BC0983527E.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -38,17 +38,17 @@
 			<key>schemeIdentifier-sharedScheme</key>
 			<integer>1</integer>
 			<key>signature</key>
-			<string>Cleaning project Quality with scheme LosslessSwitcher and configuration Release</string>
+			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
 			<key>timeStartedRecording</key>
-			<real>805025547.39645004</real>
+			<real>805359343.49214995</real>
 			<key>timeStoppedRecording</key>
-			<real>805025548.02643502</real>
+			<real>805359351.809394</real>
 			<key>title</key>
-			<string>Cleaning project Quality with scheme LosslessSwitcher and configuration Release</string>
+			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
 			<key>uniqueIdentifier</key>
-			<string>0F8263C3-B0C7-40EB-A259-641A81F148E8</string>
+			<string>45F3A682-EC61-4BDE-8DB9-99BC0983527E</string>
 		</dict>
-		<key>3748C50C-BF78-45C3-9351-3C1B9DFF3D80</key>
+		<key>BACA1938-5FDE-4506-A17A-F366CC529093</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -57,7 +57,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>3748C50C-BF78-45C3-9351-3C1B9DFF3D80.xcactivitylog</string>
+			<string>BACA1938-5FDE-4506-A17A-F366CC529093.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -80,17 +80,17 @@
 			<key>schemeIdentifier-sharedScheme</key>
 			<integer>1</integer>
 			<key>signature</key>
-			<string>Cleaning project Quality with scheme LosslessSwitcher and configuration Release</string>
+			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
 			<key>timeStartedRecording</key>
-			<real>805025271.60001397</real>
+			<real>805359665.56106603</real>
 			<key>timeStoppedRecording</key>
-			<real>805025272.19624197</real>
+			<real>805359673.75604606</real>
 			<key>title</key>
-			<string>Cleaning project Quality with scheme LosslessSwitcher and configuration Release</string>
+			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
 			<key>uniqueIdentifier</key>
-			<string>3748C50C-BF78-45C3-9351-3C1B9DFF3D80</string>
+			<string>BACA1938-5FDE-4506-A17A-F366CC529093</string>
 		</dict>
-		<key>42AF2A8D-35F5-4349-B420-5B99BC1678FA</key>
+		<key>C4769E8C-AA09-4F73-B2D8-B375C241E5FA</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -99,7 +99,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>42AF2A8D-35F5-4349-B420-5B99BC1678FA.xcactivitylog</string>
+			<string>C4769E8C-AA09-4F73-B2D8-B375C241E5FA.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -124,55 +124,13 @@
 			<key>signature</key>
 			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
 			<key>timeStartedRecording</key>
-			<real>805025259.18853796</real>
+			<real>805359770.93048203</real>
 			<key>timeStoppedRecording</key>
-			<real>805025260.57206905</real>
+			<real>805359777.76666498</real>
 			<key>title</key>
 			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
 			<key>uniqueIdentifier</key>
-			<string>42AF2A8D-35F5-4349-B420-5B99BC1678FA</string>
-		</dict>
-		<key>81D4522E-BAC0-472D-9866-51ACF64FD9E5</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>81D4522E-BAC0-472D-9866-51ACF64FD9E5.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-				<key>totalNumberOfAnalyzerIssues</key>
-				<integer>0</integer>
-				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
-				<key>totalNumberOfTestFailures</key>
-				<integer>0</integer>
-				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>Quality project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>LosslessSwitcher</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
-			<key>timeStartedRecording</key>
-			<real>805025232.49959397</real>
-			<key>timeStoppedRecording</key>
-			<real>805025243.23048699</real>
-			<key>title</key>
-			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
-			<key>uniqueIdentifier</key>
-			<string>81D4522E-BAC0-472D-9866-51ACF64FD9E5</string>
+			<string>C4769E8C-AA09-4F73-B2D8-B375C241E5FA</string>
 		</dict>
 	</dict>
 </dict>

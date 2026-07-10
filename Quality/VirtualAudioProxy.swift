@@ -18,7 +18,13 @@ import Combine
 class VirtualAudioProxy {
     private let outputDevices: OutputDevices
     private let coreAudio = SimplyCoreAudio()
-    private let engine = AVAudioEngine()
+    
+    // Use two engines to avoid the macOS limitation where a single AVAudioEngine cannot easily
+    // handle separate input and output hardware devices without aggregate setups.
+    private let inputEngine = AVAudioEngine()
+    private let outputEngine = AVAudioEngine()
+    private let playerNode = AVAudioPlayerNode()
+    
     private var isRunning = false
     private var activeInputID: AudioDeviceID?
     private var activeOutputID: AudioDeviceID?
@@ -51,8 +57,45 @@ class VirtualAudioProxy {
 
     func startProxy() {
         print("[VirtualAudioProxy] starting proxy layer")
+        
+        // Request microphone permission on startup to ensure loopback capture is allowed by the OS
+        // ループバック録音がOSによって許可されるように起動時にマイク権限を要求します
+        requestMicrophonePermission()
+        
         DispatchQueue.main.async {
             self.triggerRestart()
+        }
+    }
+
+    private func requestMicrophonePermission() {
+        if #available(macOS 14.0, *) {
+            switch AVAudioApplication.shared.recordPermission {
+            case .granted:
+                print("[VirtualAudioProxy] Microphone permission authorized via AVAudioApplication.")
+            case .undetermined:
+                print("[VirtualAudioProxy] Requesting microphone permission via AVAudioApplication...")
+                AVAudioApplication.requestRecordPermission { granted in
+                    print("[VirtualAudioProxy] Microphone permission request complete (AVAudioApplication), granted: \(granted)")
+                }
+            case .denied:
+                print("[VirtualAudioProxy] Warning: Microphone permission is denied via AVAudioApplication. Pass-through might output silence.")
+            @unknown default:
+                break
+            }
+        } else {
+            switch AVCaptureDevice.authorizationStatus(for: .audio) {
+            case .authorized:
+                print("[VirtualAudioProxy] Microphone permission authorized.")
+            case .notDetermined:
+                print("[VirtualAudioProxy] Requesting microphone permission...")
+                AVCaptureDevice.requestAccess(for: .audio) { granted in
+                    print("[VirtualAudioProxy] Microphone permission request complete, granted: \(granted)")
+                }
+            case .denied, .restricted:
+                print("[VirtualAudioProxy] Warning: Microphone permission is denied or restricted. Pass-through might output silence.")
+            @unknown default:
+                break
+            }
         }
     }
 
@@ -104,29 +147,14 @@ class VirtualAudioProxy {
 
         stop()
 
-        print("[VirtualAudioProxy] Starting AVAudioEngine pass-through from virtual device (\(virtualDevice.name)) to physical device (\(targetDevice.name)) at \(sampleRate) Hz")
+        print("[VirtualAudioProxy] Starting dual AVAudioEngine pass-through from \(virtualDevice.name) to \(targetDevice.name) at \(sampleRate) Hz")
 
-        let inputUnit = engine.inputNode.audioUnit!
-        let outputUnit = engine.outputNode.audioUnit!
+        let outputUnit = outputEngine.outputNode.audioUnit!
+        AudioUnitUninitialize(outputUnit)
 
-        // Set input device on the engine's input node
-        var inID = inputID
-        var status = AudioUnitSetProperty(
-            inputUnit,
-            AudioUnitPropertyID(kAudioOutputUnitProperty_CurrentDevice),
-            kAudioUnitScope_Global,
-            0,
-            &inID,
-            UInt32(MemoryLayout<AudioDeviceID>.size)
-        )
-        if status != noErr {
-            print("[VirtualAudioProxy] Error setting input device: \(status)")
-            return
-        }
-
-        // Set output device on the engine's output node
+        // 1. Set output device on outputEngine's output node
         var outID = outputID
-        status = AudioUnitSetProperty(
+        var status = AudioUnitSetProperty(
             outputUnit,
             kAudioOutputUnitProperty_CurrentDevice,
             kAudioUnitScope_Global,
@@ -135,37 +163,86 @@ class VirtualAudioProxy {
             UInt32(MemoryLayout<AudioDeviceID>.size)
         )
         if status != noErr {
-            print("[VirtualAudioProxy] Error setting output device: \(status)")
+            print("[VirtualAudioProxy] Error setting output device: \(status) (Target ID: \(outputID))")
             return
         }
 
-        // Connect nodes with standard stereo format at target sample rate
-        guard let format = AVAudioFormat(commonFormat: .pcmFormatFloat32,
-                                         sampleRate: sampleRate,
-                                         channels: 2,
-                                         interleaved: false) else {
-            print("[VirtualAudioProxy] Error creating audio format")
+        // 2. Set input device on inputEngine's input node
+        let inputUnit = inputEngine.inputNode.audioUnit!
+        AudioUnitUninitialize(inputUnit)
+        
+        var inID = inputID
+        status = AudioUnitSetProperty(
+            inputUnit,
+            AudioUnitPropertyID(kAudioOutputUnitProperty_CurrentDevice),
+            kAudioUnitScope_Global,
+            0,
+            &inID,
+            UInt32(MemoryLayout<AudioDeviceID>.size)
+        )
+        if status != noErr {
+            print("[VirtualAudioProxy] Error setting input device: \(status) (Target ID: \(inputID))")
             return
         }
 
-        engine.connect(engine.inputNode, to: engine.outputNode, format: format)
+        // Connect playerNode -> mainMixerNode -> outputNode on outputEngine.
+        outputEngine.attach(playerNode)
+        
+        let inputFormat = inputEngine.inputNode.inputFormat(forBus: 0)
+        let outputFormat = outputEngine.outputNode.inputFormat(forBus: 0)
 
-        do {
-            try engine.start()
-            isRunning = true
-            activeInputID = inputID
-            activeOutputID = outputID
-            activeSampleRate = sampleRate
-            print("[VirtualAudioProxy] AVAudioEngine pass-through started successfully")
-        } catch {
-            print("[VirtualAudioProxy] Failed to start AVAudioEngine: \(error)")
+        guard inputFormat.channelCount > 0, outputFormat.channelCount > 0 else {
+            print("[VirtualAudioProxy] Error: Invalid channel count on nodes (Input: \(inputFormat.channelCount), Output: \(outputFormat.channelCount))")
+            return
+        }
+
+        outputEngine.connect(playerNode, to: outputEngine.mainMixerNode, format: inputFormat)
+        outputEngine.connect(outputEngine.mainMixerNode, to: outputEngine.outputNode, format: outputFormat)
+
+        // Remove any existing tap first to avoid crash if a tap is already installed due to asynchronous scheduling
+        inputEngine.inputNode.removeTap(onBus: 0)
+
+        // Install tap on inputEngine's inputNode to capture loopback audio from virtual device
+        inputEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: inputFormat) { [weak self] buffer, time in
+            guard let self = self else { return }
+            if self.playerNode.isPlaying {
+                self.playerNode.scheduleBuffer(buffer)
+            }
+        }
+
+        // Delay starting the engines slightly to let CoreAudio adjust the hardware sample rate.
+        // ハードウェア側のサンプリングレート設定が安定するのを待つために少し遅延させてから開始します。
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            guard let self = self else { return }
+            do {
+                try self.outputEngine.start()
+                self.playerNode.play()
+                
+                try self.inputEngine.start()
+                
+                self.isRunning = true
+                self.activeInputID = inputID
+                self.activeOutputID = outputID
+                self.activeSampleRate = sampleRate
+                print("[VirtualAudioProxy] Dual AVAudioEngine pass-through started successfully")
+            } catch {
+                print("[VirtualAudioProxy] Failed to start engines, retrying... Error: \(error)")
+                self.stop()
+            }
         }
     }
 
     func stop() {
-        if isRunning {
-            engine.stop()
-            engine.reset()
+        if isRunning || playerNode.isPlaying {
+            playerNode.stop()
+            inputEngine.stop()
+            outputEngine.stop()
+            
+            inputEngine.inputNode.removeTap(onBus: 0)
+            
+            inputEngine.reset()
+            outputEngine.reset()
+            
             isRunning = false
             activeInputID = nil
             activeOutputID = nil

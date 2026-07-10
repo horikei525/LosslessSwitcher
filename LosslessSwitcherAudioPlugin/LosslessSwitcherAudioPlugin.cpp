@@ -24,6 +24,7 @@ static void* g_callbackUserData = nullptr;
 static dispatch_once_t g_initOnce = 0;
 #include <os/lock.h>
 static os_unfair_lock g_lock = OS_UNFAIR_LOCK_INIT;
+static bool g_canBeDefaultSystemDevice = true;
 
 #pragma mark - Helper Functions
 
@@ -88,6 +89,31 @@ static void NotifySampleRateChange(pid_t clientPID,
 
 #pragma mark - Plugin Initialization
 
+static void BlockAlertsChangedCallback(CFNotificationCenterRef center,
+                                       void* observer,
+                                       CFStringRef name,
+                                       const void* object,
+                                       CFDictionaryRef userInfo) {
+    Boolean blockAlerts = false;
+    if (userInfo) {
+        CFBooleanRef val = (CFBooleanRef)CFDictionaryGetValue(userInfo, CFSTR("blockAlerts"));
+        if (val) {
+            blockAlerts = CFBooleanGetValue(val);
+        }
+    }
+    
+    os_unfair_lock_lock(&g_lock);
+    g_canBeDefaultSystemDevice = !blockAlerts;
+    os_log(OS_LOG_DEFAULT, "[LosslessSwitcherPlugin] Block System Alerts notification received: %s", blockAlerts ? "YES" : "NO");
+    os_unfair_lock_unlock(&g_lock);
+    
+    // Notify CoreAudio Host that the property changed
+    if (g_device.hostRef && g_device.deviceID != 0) {
+        AudioObjectPropertyAddress address = { kAudioDevicePropertyDeviceCanBeDefaultSystemDevice, kAudioObjectPropertyScopeGlobal, 0 };
+        g_device.hostRef->PropertiesChanged(g_device.hostRef, g_device.deviceID, 1, &address);
+    }
+}
+
 OSStatus LosslessSwitcherPlugin_Initialize(AudioServerPlugInDriverRef inDriver, AudioServerPlugInHostRef inHost) {
     os_log(OS_LOG_DEFAULT, "[LosslessSwitcherPlugin] Initialize called");
     
@@ -108,6 +134,16 @@ OSStatus LosslessSwitcherPlugin_Initialize(AudioServerPlugInDriverRef inDriver, 
         g_device.currentFormat.mBytesPerFrame = 8;
         g_device.currentFormat.mChannelsPerFrame = 2;
         g_device.currentFormat.mBitsPerChannel = 32;
+        
+        // Register for Block Alerts setting changes from Swift companion app
+        CFNotificationCenterAddObserver(
+            CFNotificationCenterGetDistributedCenter(),
+            nullptr,
+            BlockAlertsChangedCallback,
+            CFSTR("com.vincent-neo.LosslessSwitcher.BlockAlertsChanged"),
+            nullptr,
+            CFNotificationSuspensionBehaviorDeliverImmediately
+        );
         
         os_log(OS_LOG_DEFAULT, "[LosslessSwitcherPlugin] Initialized with device ID: %u", g_device.deviceID);
     });
@@ -319,10 +355,16 @@ OSStatus LosslessSwitcherPlugin_GetPropertyData(
             }
             case kAudioDevicePropertyDeviceIsAlive:
             case kAudioDevicePropertyDeviceCanBeDefaultDevice:
-            case kAudioDevicePropertyDeviceCanBeDefaultSystemDevice:
                 if (inDataSize >= sizeof(UInt32)) {
                     *outDataSize = sizeof(UInt32);
                     *(UInt32*)outData = 1;
+                    result = noErr;
+                }
+                break;
+            case kAudioDevicePropertyDeviceCanBeDefaultSystemDevice:
+                if (inDataSize >= sizeof(UInt32)) {
+                    *outDataSize = sizeof(UInt32);
+                    *(UInt32*)outData = g_canBeDefaultSystemDevice ? 1 : 0;
                     result = noErr;
                 }
                 break;
@@ -1038,6 +1080,11 @@ static OSStatus LosslessSwitcherPlugin_BeginIOOperation(
     return noErr;
 }
 
+#define RING_BUFFER_SIZE_BYTES (524288) // 512 KB
+static uint8_t g_ringBuffer[RING_BUFFER_SIZE_BYTES] = {0};
+static uint32_t g_ringBufferWriteIndex = 16384; // Start with offset
+static uint32_t g_ringBufferReadIndex = 0;
+
 static OSStatus LosslessSwitcherPlugin_DoIOOperation(
     AudioServerPlugInDriverRef inDriver,
     AudioObjectID inDeviceID,
@@ -1049,9 +1096,46 @@ static OSStatus LosslessSwitcherPlugin_DoIOOperation(
     void* ioMainBuffer,
     void* ioSecondaryBuffer) {
     
-    if (inStreamObjectID == g_device.inputStreamID && ioMainBuffer && inIOBufferFrameSize > 0) {
-        memset(ioMainBuffer, 0, inIOBufferFrameSize * 8); // 8 bytes per frame (Stereo Float32)
+    os_unfair_lock_lock(&g_lock);
+    uint32_t bytesPerFrame = g_device.currentFormat.mBytesPerFrame;
+    if (bytesPerFrame == 0) bytesPerFrame = 8; // Fallback
+    
+    if (inStreamObjectID == g_device.outputStreamID && ioMainBuffer && inIOBufferFrameSize > 0) {
+        uint8_t* src = (uint8_t*)ioMainBuffer;
+        uint32_t bytesToWrite = inIOBufferFrameSize * bytesPerFrame;
+        uint32_t writeIdx = g_ringBufferWriteIndex;
+        
+        for (uint32_t i = 0; i < bytesToWrite; ++i) {
+            g_ringBuffer[writeIdx] = src[i];
+            writeIdx = (writeIdx + 1) % RING_BUFFER_SIZE_BYTES;
+        }
+        g_ringBufferWriteIndex = writeIdx;
     }
+    
+    else if (inStreamObjectID == g_device.inputStreamID && ioMainBuffer && inIOBufferFrameSize > 0) {
+        uint8_t* dst = (uint8_t*)ioMainBuffer;
+        uint32_t bytesToRead = inIOBufferFrameSize * bytesPerFrame;
+        uint32_t readIdx = g_ringBufferReadIndex;
+        uint32_t writeIdx = g_ringBufferWriteIndex;
+        
+        // Calculate distance in bytes
+        int32_t distance = (int32_t)writeIdx - (int32_t)readIdx;
+        if (distance < 0) distance += RING_BUFFER_SIZE_BYTES;
+        
+        // Maintain a safety offset (e.g. 1024 frames of bytesPerFrame)
+        uint32_t safetyOffset = 1024 * bytesPerFrame;
+        if ((uint32_t)distance < safetyOffset / 2 || (uint32_t)distance > safetyOffset * 4) {
+            readIdx = (writeIdx + RING_BUFFER_SIZE_BYTES - safetyOffset) % RING_BUFFER_SIZE_BYTES;
+        }
+        
+        for (uint32_t i = 0; i < bytesToRead; ++i) {
+            dst[i] = g_ringBuffer[readIdx];
+            readIdx = (readIdx + 1) % RING_BUFFER_SIZE_BYTES;
+        }
+        g_ringBufferReadIndex = readIdx;
+    }
+    
+    os_unfair_lock_unlock(&g_lock);
     return noErr;
 }
 

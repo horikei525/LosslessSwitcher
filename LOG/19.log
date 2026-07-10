@@ -1,0 +1,506 @@
+Last login: Fri Jul 10 16:47:32 on ttys004
+horikei@horikeinoMacBook-Air ~ % # 実行中のアプリを終了
+killall LosslessSwitcher
+
+# 最新アプリをコピー
+cp -R /tmp/LosslessSwitcher.app /Applications/
+
+# ログをターミナルで確認しながら実行
+/Applications/LosslessSwitcher.app/Contents/MacOS/LosslessSwitcher
+
+zsh: command not found: #
+No matching processes belonging to you were found
+zsh: command not found: #
+zsh: command not found: #
+[VirtualAudioProxy] starting proxy layer
+[VirtualAudioProxy] Microphone permission authorized via AVAudioApplication.
+[AudioPluginBridge] Plugin initialization in progress...
+[AudioPluginBridge] Plugin initialized successfully (listening to distributed notifications)
+[VirtualAudioProxy] Starting dual AVAudioEngine pass-through (AVAudioSourceNode Jitter Buffer) from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Starting dual AVAudioEngine pass-through (AVAudioSourceNode Jitter Buffer) from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Starting dual AVAudioEngine pass-through (AVAudioSourceNode Jitter Buffer) from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Starting dual AVAudioEngine pass-through (AVAudioSourceNode Jitter Buffer) from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Starting dual AVAudioEngine pass-through (AVAudioSourceNode Jitter Buffer) from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+[VirtualAudioProxy] Dual AVAudioEngine (AVAudioSourceNode) pass-through started successfully
+[VirtualAudioProxy] Dual AVAudioEngine (AVAudioSourceNode) pass-through started successfully
+[VirtualAudioProxy] Dual AVAudioEngine (AVAudioSourceNode) pass-through started successfully
+[VirtualAudioProxy] Dual AVAudioEngine (AVAudioSourceNode) pass-through started successfully
+[VirtualAudioProxy] Dual AVAudioEngine (AVAudioSourceNode) pass-through started successfully
+2026-07-10 16:49:59.645 LosslessSwitcher[13678:163896] [ProxyRender] available: 48000, threshold: 480000, isPlaying: 0
+2026-07-10 16:49:59.645 LosslessSwitcher[13678:163896] [ProxyRender] available: 48000, threshold: 480000, isPlaying: 0
+2026-07-10 16:49:59.646 LosslessSwitcher[13678:163896] [ProxyRender] available: 48000, threshold: 480000, isPlaying: 0
+2026-07-10 16:49:59.646 LosslessSwitcher[13678:163896] [ProxyRender] available: 48000, threshold: 480000, isPlaying: 0
+2026-07-10 16:49:59.646 LosslessSwitcher[13678:163896] [ProxyRender] available: 48000, threshold: 480000, isPlaying: 0
+[getAllStats] []
+[getAllStats] []
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+2026-07-10 16:50:00.712 LosslessSwitcher[13678:163896] [ProxyRender] available: 96000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:00.712 LosslessSwitcher[13678:163896] [ProxyRender] available: 96000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:00.712 LosslessSwitcher[13678:163896] [ProxyRender] available: 96000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:00.712 LosslessSwitcher[13678:163896] [ProxyRender] available: 96000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:00.712 LosslessSwitcher[13678:163896] [ProxyRender] available: 96000, threshold: 480000, isPlaying: 0
+[getAllStats] []
+[getAllStats] []
+2026-07-10 16:50:01.779 LosslessSwitcher[13678:163896] [ProxyRender] available: 148800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:01.779 LosslessSwitcher[13678:163896] [ProxyRender] available: 148800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:01.779 LosslessSwitcher[13678:163896] [ProxyRender] available: 148800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:01.779 LosslessSwitcher[13678:163896] [ProxyRender] available: 148800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:01.779 LosslessSwitcher[13678:163896] [ProxyRender] available: 148800, threshold: 480000, isPlaying: 0
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+2026-07-10 16:50:02.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 201600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:02.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 201600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:02.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 201600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:02.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 201600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:02.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 201600, threshold: 480000, isPlaying: 0
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+2026-07-10 16:50:03.912 LosslessSwitcher[13678:163896] [ProxyRender] available: 249600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:03.912 LosslessSwitcher[13678:163896] [ProxyRender] available: 249600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:03.912 LosslessSwitcher[13678:163896] [ProxyRender] available: 249600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:03.912 LosslessSwitcher[13678:163896] [ProxyRender] available: 249600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:03.912 LosslessSwitcher[13678:163896] [ProxyRender] available: 249600, threshold: 480000, isPlaying: 0
+[getAllStats] []
+[getAllStats] []
+2026-07-10 16:50:04.979 LosslessSwitcher[13678:163896] [ProxyRender] available: 302400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:04.979 LosslessSwitcher[13678:163896] [ProxyRender] available: 302400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:04.979 LosslessSwitcher[13678:163896] [ProxyRender] available: 302400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:04.979 LosslessSwitcher[13678:163896] [ProxyRender] available: 302400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:04.979 LosslessSwitcher[13678:163896] [ProxyRender] available: 302400, threshold: 480000, isPlaying: 0
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+[getAllStats] []
+2026-07-10 16:50:06.045 LosslessSwitcher[13678:163896] [ProxyRender] available: 355200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:06.045 LosslessSwitcher[13678:163896] [ProxyRender] available: 355200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:06.045 LosslessSwitcher[13678:163896] [ProxyRender] available: 355200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:06.045 LosslessSwitcher[13678:163896] [ProxyRender] available: 355200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:06.045 LosslessSwitcher[13678:163896] [ProxyRender] available: 355200, threshold: 480000, isPlaying: 0
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+2026-07-10 16:50:07.112 LosslessSwitcher[13678:163896] [ProxyRender] available: 403200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:07.112 LosslessSwitcher[13678:163896] [ProxyRender] available: 403200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:07.112 LosslessSwitcher[13678:163896] [ProxyRender] available: 403200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:07.112 LosslessSwitcher[13678:163896] [ProxyRender] available: 403200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:07.112 LosslessSwitcher[13678:163896] [ProxyRender] available: 403200, threshold: 480000, isPlaying: 0
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+[getAllStats] []
+2026-07-10 16:50:08.178 LosslessSwitcher[13678:163896] [ProxyRender] available: 456000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:08.179 LosslessSwitcher[13678:163896] [ProxyRender] available: 456000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:08.179 LosslessSwitcher[13678:163896] [ProxyRender] available: 456000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:08.179 LosslessSwitcher[13678:163896] [ProxyRender] available: 456000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:08.179 LosslessSwitcher[13678:163896] [ProxyRender] available: 456000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:09.245 LosslessSwitcher[13678:163896] [ProxyRender] available: 362880, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:09.245 LosslessSwitcher[13678:163896] [ProxyRender] available: 362368, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:09.245 LosslessSwitcher[13678:163896] [ProxyRender] available: 361856, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:09.245 LosslessSwitcher[13678:163896] [ProxyRender] available: 361344, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:09.245 LosslessSwitcher[13678:163896] [ProxyRender] available: 360832, threshold: 480000, isPlaying: 1
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+2026-07-10 16:50:10.312 LosslessSwitcher[13678:163896] [ProxyRender] available: 154880, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:10.312 LosslessSwitcher[13678:163896] [ProxyRender] available: 154368, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:10.312 LosslessSwitcher[13678:163896] [ProxyRender] available: 153856, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:10.312 LosslessSwitcher[13678:163896] [ProxyRender] available: 153344, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:10.312 LosslessSwitcher[13678:163896] [ProxyRender] available: 152832, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:11.379 LosslessSwitcher[13678:163896] [ProxyRender] available: 14656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:11.379 LosslessSwitcher[13678:163896] [ProxyRender] available: 14656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:11.379 LosslessSwitcher[13678:163896] [ProxyRender] available: 14656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:11.379 LosslessSwitcher[13678:163896] [ProxyRender] available: 14656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:11.379 LosslessSwitcher[13678:163896] [ProxyRender] available: 14656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:12.445 LosslessSwitcher[13678:163896] [ProxyRender] available: 67456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:12.445 LosslessSwitcher[13678:163896] [ProxyRender] available: 67456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:12.445 LosslessSwitcher[13678:163896] [ProxyRender] available: 67456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:12.445 LosslessSwitcher[13678:163896] [ProxyRender] available: 67456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:12.445 LosslessSwitcher[13678:163896] [ProxyRender] available: 67456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:13.512 LosslessSwitcher[13678:163896] [ProxyRender] available: 115456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:13.512 LosslessSwitcher[13678:163896] [ProxyRender] available: 115456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:13.512 LosslessSwitcher[13678:163896] [ProxyRender] available: 115456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:13.512 LosslessSwitcher[13678:163896] [ProxyRender] available: 115456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:13.512 LosslessSwitcher[13678:163896] [ProxyRender] available: 115456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:14.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 168256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:14.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 168256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:14.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 168256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:14.579 LosslessSwitcher[13678:163896] [ProxyRender] available: 168256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:14.579 LosslessSwitcher[13678:163896] [ProxyRender] available: 168256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:15.645 LosslessSwitcher[13678:163896] [ProxyRender] available: 221056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:15.645 LosslessSwitcher[13678:163896] [ProxyRender] available: 221056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:15.645 LosslessSwitcher[13678:163896] [ProxyRender] available: 221056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:15.645 LosslessSwitcher[13678:163896] [ProxyRender] available: 221056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:15.645 LosslessSwitcher[13678:163896] [ProxyRender] available: 221056, threshold: 480000, isPlaying: 0
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+2026-07-10 16:50:16.712 LosslessSwitcher[13678:163896] [ProxyRender] available: 269056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:16.712 LosslessSwitcher[13678:163896] [ProxyRender] available: 269056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:16.712 LosslessSwitcher[13678:163896] [ProxyRender] available: 269056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:16.712 LosslessSwitcher[13678:163896] [ProxyRender] available: 269056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:16.712 LosslessSwitcher[13678:163896] [ProxyRender] available: 269056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:17.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 321856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:17.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 321856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:17.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 321856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:17.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 321856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:17.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 321856, threshold: 480000, isPlaying: 0
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:15 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:15 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:15 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:15 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+2026-07-10 16:50:18.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 374656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:18.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 374656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:18.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 374656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:18.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 374656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:18.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 374656, threshold: 480000, isPlaying: 0
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:15 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:15 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:15 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:15 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+2026-07-10 16:50:19.912 LosslessSwitcher[13678:163896] [ProxyRender] available: 422656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:19.912 LosslessSwitcher[13678:163896] [ProxyRender] available: 422656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:19.912 LosslessSwitcher[13678:163896] [ProxyRender] available: 422656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:19.912 LosslessSwitcher[13678:163896] [ProxyRender] available: 422656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:19.912 LosslessSwitcher[13678:163896] [ProxyRender] available: 422656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:20.978 LosslessSwitcher[13678:163896] [ProxyRender] available: 475456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:20.978 LosslessSwitcher[13678:163896] [ProxyRender] available: 475456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:20.978 LosslessSwitcher[13678:163896] [ProxyRender] available: 475456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:20.978 LosslessSwitcher[13678:163896] [ProxyRender] available: 475456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:20.978 LosslessSwitcher[13678:163896] [ProxyRender] available: 475456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:22.045 LosslessSwitcher[13678:163896] [ProxyRender] available: 285056, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:22.045 LosslessSwitcher[13678:163896] [ProxyRender] available: 284544, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:22.045 LosslessSwitcher[13678:163896] [ProxyRender] available: 284032, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:22.045 LosslessSwitcher[13678:163896] [ProxyRender] available: 283520, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:22.045 LosslessSwitcher[13678:163896] [ProxyRender] available: 283008, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:23.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 77056, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:23.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 76544, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:23.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 76032, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:23.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 75520, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:23.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 75008, threshold: 480000, isPlaying: 1
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+2026-07-10 16:50:24.178 LosslessSwitcher[13678:163896] [ProxyRender] available: 33600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:24.178 LosslessSwitcher[13678:163896] [ProxyRender] available: 33600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:24.178 LosslessSwitcher[13678:163896] [ProxyRender] available: 33600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:24.178 LosslessSwitcher[13678:163896] [ProxyRender] available: 33600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:24.178 LosslessSwitcher[13678:163896] [ProxyRender] available: 33600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:25.245 LosslessSwitcher[13678:163896] [ProxyRender] available: 86400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:25.245 LosslessSwitcher[13678:163896] [ProxyRender] available: 86400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:25.245 LosslessSwitcher[13678:163896] [ProxyRender] available: 86400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:25.245 LosslessSwitcher[13678:163896] [ProxyRender] available: 86400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:25.245 LosslessSwitcher[13678:163896] [ProxyRender] available: 86400, threshold: 480000, isPlaying: 0
+[getAllStats] []
+[getAllStats] []
+2026-07-10 16:50:26.311 LosslessSwitcher[13678:163896] [ProxyRender] available: 134400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:26.311 LosslessSwitcher[13678:163896] [ProxyRender] available: 134400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:26.312 LosslessSwitcher[13678:163896] [ProxyRender] available: 134400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:26.312 LosslessSwitcher[13678:163896] [ProxyRender] available: 134400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:26.312 LosslessSwitcher[13678:163896] [ProxyRender] available: 134400, threshold: 480000, isPlaying: 0
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+2026-07-10 16:50:27.378 LosslessSwitcher[13678:163896] [ProxyRender] available: 187200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:27.378 LosslessSwitcher[13678:163896] [ProxyRender] available: 187200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:27.378 LosslessSwitcher[13678:163896] [ProxyRender] available: 187200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:27.378 LosslessSwitcher[13678:163896] [ProxyRender] available: 187200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:27.378 LosslessSwitcher[13678:163896] [ProxyRender] available: 187200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:28.444 LosslessSwitcher[13678:163896] [ProxyRender] available: 240000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:28.445 LosslessSwitcher[13678:163896] [ProxyRender] available: 240000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:28.445 LosslessSwitcher[13678:163896] [ProxyRender] available: 240000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:28.445 LosslessSwitcher[13678:163896] [ProxyRender] available: 240000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:28.445 LosslessSwitcher[13678:163896] [ProxyRender] available: 240000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:29.511 LosslessSwitcher[13678:163896] [ProxyRender] available: 288000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:29.511 LosslessSwitcher[13678:163896] [ProxyRender] available: 288000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:29.511 LosslessSwitcher[13678:163896] [ProxyRender] available: 288000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:29.511 LosslessSwitcher[13678:163896] [ProxyRender] available: 288000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:29.511 LosslessSwitcher[13678:163896] [ProxyRender] available: 288000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:30.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 340800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:30.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 340800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:30.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 340800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:30.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 340800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:30.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 340800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:31.644 LosslessSwitcher[13678:163896] [ProxyRender] available: 393600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:31.645 LosslessSwitcher[13678:163896] [ProxyRender] available: 393600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:31.645 LosslessSwitcher[13678:163896] [ProxyRender] available: 393600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:31.645 LosslessSwitcher[13678:163896] [ProxyRender] available: 393600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:31.645 LosslessSwitcher[13678:163896] [ProxyRender] available: 393600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:32.711 LosslessSwitcher[13678:163896] [ProxyRender] available: 441600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:32.711 LosslessSwitcher[13678:163896] [ProxyRender] available: 441600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:32.711 LosslessSwitcher[13678:163896] [ProxyRender] available: 441600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:32.711 LosslessSwitcher[13678:163896] [ProxyRender] available: 441600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:32.711 LosslessSwitcher[13678:163896] [ProxyRender] available: 441600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:33.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 412480, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:33.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 411968, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:33.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 411456, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:33.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 410944, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:33.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 410432, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:34.844 LosslessSwitcher[13678:163896] [ProxyRender] available: 209280, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:34.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 208768, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:34.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 208256, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:34.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 207744, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:34.845 LosslessSwitcher[13678:163896] [ProxyRender] available: 207232, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:35.911 LosslessSwitcher[13678:163896] [ProxyRender] available: 1280, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:35.911 LosslessSwitcher[13678:163896] [ProxyRender] available: 768, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:35.911 LosslessSwitcher[13678:163896] [ProxyRender] available: 256, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:35.911 LosslessSwitcher[13678:163896] [ProxyRender] available: 256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:35.911 LosslessSwitcher[13678:163896] [ProxyRender] available: 256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:36.978 LosslessSwitcher[13678:163896] [ProxyRender] available: 53056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:36.978 LosslessSwitcher[13678:163896] [ProxyRender] available: 53056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:36.978 LosslessSwitcher[13678:163896] [ProxyRender] available: 53056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:36.978 LosslessSwitcher[13678:163896] [ProxyRender] available: 53056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:36.978 LosslessSwitcher[13678:163896] [ProxyRender] available: 53056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:38.044 LosslessSwitcher[13678:163896] [ProxyRender] available: 105856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:38.044 LosslessSwitcher[13678:163896] [ProxyRender] available: 105856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:38.044 LosslessSwitcher[13678:163896] [ProxyRender] available: 105856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:38.044 LosslessSwitcher[13678:163896] [ProxyRender] available: 105856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:38.044 LosslessSwitcher[13678:163896] [ProxyRender] available: 105856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:39.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 153856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:39.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 153856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:39.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 153856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:39.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 153856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:39.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 153856, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:40.178 LosslessSwitcher[13678:163896] [ProxyRender] available: 206656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:40.178 LosslessSwitcher[13678:163896] [ProxyRender] available: 206656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:40.178 LosslessSwitcher[13678:163896] [ProxyRender] available: 206656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:40.178 LosslessSwitcher[13678:163896] [ProxyRender] available: 206656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:40.178 LosslessSwitcher[13678:163896] [ProxyRender] available: 206656, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:41.244 LosslessSwitcher[13678:163896] [ProxyRender] available: 259456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:41.244 LosslessSwitcher[13678:163896] [ProxyRender] available: 259456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:41.244 LosslessSwitcher[13678:163896] [ProxyRender] available: 259456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:41.244 LosslessSwitcher[13678:163896] [ProxyRender] available: 259456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:41.244 LosslessSwitcher[13678:163896] [ProxyRender] available: 259456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:42.311 LosslessSwitcher[13678:163896] [ProxyRender] available: 307456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:42.311 LosslessSwitcher[13678:163896] [ProxyRender] available: 307456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:42.311 LosslessSwitcher[13678:163896] [ProxyRender] available: 307456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:42.311 LosslessSwitcher[13678:163896] [ProxyRender] available: 307456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:42.311 LosslessSwitcher[13678:163896] [ProxyRender] available: 307456, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:43.378 LosslessSwitcher[13678:163896] [ProxyRender] available: 360256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:43.378 LosslessSwitcher[13678:163896] [ProxyRender] available: 360256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:43.378 LosslessSwitcher[13678:163896] [ProxyRender] available: 360256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:43.378 LosslessSwitcher[13678:163896] [ProxyRender] available: 360256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:43.378 LosslessSwitcher[13678:163896] [ProxyRender] available: 360256, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:44.444 LosslessSwitcher[13678:163896] [ProxyRender] available: 413056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:44.444 LosslessSwitcher[13678:163896] [ProxyRender] available: 413056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:44.444 LosslessSwitcher[13678:163896] [ProxyRender] available: 413056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:44.444 LosslessSwitcher[13678:163896] [ProxyRender] available: 413056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:44.444 LosslessSwitcher[13678:163896] [ProxyRender] available: 413056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:45.511 LosslessSwitcher[13678:163896] [ProxyRender] available: 461056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:45.511 LosslessSwitcher[13678:163896] [ProxyRender] available: 461056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:45.511 LosslessSwitcher[13678:163896] [ProxyRender] available: 461056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:45.511 LosslessSwitcher[13678:163896] [ProxyRender] available: 461056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:45.511 LosslessSwitcher[13678:163896] [ProxyRender] available: 461056, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:46.577 LosslessSwitcher[13678:163896] [ProxyRender] available: 337216, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:46.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 336704, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:46.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 336192, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:46.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 335680, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:46.578 LosslessSwitcher[13678:163896] [ProxyRender] available: 335168, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:47.644 LosslessSwitcher[13678:163896] [ProxyRender] available: 134016, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:47.644 LosslessSwitcher[13678:163896] [ProxyRender] available: 133504, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:47.644 LosslessSwitcher[13678:163896] [ProxyRender] available: 132992, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:47.644 LosslessSwitcher[13678:163896] [ProxyRender] available: 132480, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:47.644 LosslessSwitcher[13678:163896] [ProxyRender] available: 131968, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:48.711 LosslessSwitcher[13678:163896] [ProxyRender] available: 19200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:48.711 LosslessSwitcher[13678:163896] [ProxyRender] available: 19200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:48.711 LosslessSwitcher[13678:163896] [ProxyRender] available: 19200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:48.711 LosslessSwitcher[13678:163896] [ProxyRender] available: 19200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:48.711 LosslessSwitcher[13678:163896] [ProxyRender] available: 19200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:49.777 LosslessSwitcher[13678:163896] [ProxyRender] available: 72000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:49.777 LosslessSwitcher[13678:163896] [ProxyRender] available: 72000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:49.777 LosslessSwitcher[13678:163896] [ProxyRender] available: 72000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:49.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 72000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:49.778 LosslessSwitcher[13678:163896] [ProxyRender] available: 72000, threshold: 480000, isPlaying: 0
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+2026-07-10 16:50:50.844 LosslessSwitcher[13678:163896] [ProxyRender] available: 124800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:50.844 LosslessSwitcher[13678:163896] [ProxyRender] available: 124800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:50.844 LosslessSwitcher[13678:163896] [ProxyRender] available: 124800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:50.844 LosslessSwitcher[13678:163896] [ProxyRender] available: 124800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:50.844 LosslessSwitcher[13678:163896] [ProxyRender] available: 124800, threshold: 480000, isPlaying: 0
+[getAllStats] []
+[getAllStats] []
+2026-07-10 16:50:51.911 LosslessSwitcher[13678:163896] [ProxyRender] available: 172800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:51.911 LosslessSwitcher[13678:163896] [ProxyRender] available: 172800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:51.911 LosslessSwitcher[13678:163896] [ProxyRender] available: 172800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:51.911 LosslessSwitcher[13678:163896] [ProxyRender] available: 172800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:51.911 LosslessSwitcher[13678:163896] [ProxyRender] available: 172800, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:52.977 LosslessSwitcher[13678:163896] [ProxyRender] available: 225600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:52.977 LosslessSwitcher[13678:163896] [ProxyRender] available: 225600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:52.977 LosslessSwitcher[13678:163896] [ProxyRender] available: 225600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:52.977 LosslessSwitcher[13678:163896] [ProxyRender] available: 225600, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:52.977 LosslessSwitcher[13678:163896] [ProxyRender] available: 225600, threshold: 480000, isPlaying: 0
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+2026-07-10 16:50:54.044 LosslessSwitcher[13678:163896] [ProxyRender] available: 278400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:54.044 LosslessSwitcher[13678:163896] [ProxyRender] available: 278400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:54.044 LosslessSwitcher[13678:163896] [ProxyRender] available: 278400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:54.044 LosslessSwitcher[13678:163896] [ProxyRender] available: 278400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:54.044 LosslessSwitcher[13678:163896] [ProxyRender] available: 278400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:55.110 LosslessSwitcher[13678:163896] [ProxyRender] available: 326400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:55.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 326400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:55.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 326400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:55.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 326400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:55.111 LosslessSwitcher[13678:163896] [ProxyRender] available: 326400, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:56.177 LosslessSwitcher[13678:163896] [ProxyRender] available: 379200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:56.177 LosslessSwitcher[13678:163896] [ProxyRender] available: 379200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:56.177 LosslessSwitcher[13678:163896] [ProxyRender] available: 379200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:56.177 LosslessSwitcher[13678:163896] [ProxyRender] available: 379200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:56.177 LosslessSwitcher[13678:163896] [ProxyRender] available: 379200, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:57.244 LosslessSwitcher[13678:163896] [ProxyRender] available: 432000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:57.244 LosslessSwitcher[13678:163896] [ProxyRender] available: 432000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:57.244 LosslessSwitcher[13678:163896] [ProxyRender] available: 432000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:57.244 LosslessSwitcher[13678:163896] [ProxyRender] available: 432000, threshold: 480000, isPlaying: 0
+2026-07-10 16:50:57.244 LosslessSwitcher[13678:163896] [ProxyRender] available: 432000, threshold: 480000, isPlaying: 0
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+2026-07-10 16:50:58.310 LosslessSwitcher[13678:163896] [ProxyRender] available: 462080, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:58.311 LosslessSwitcher[13678:163896] [ProxyRender] available: 461568, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:58.311 LosslessSwitcher[13678:163896] [ProxyRender] available: 461056, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:58.311 LosslessSwitcher[13678:163896] [ProxyRender] available: 460544, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:58.311 LosslessSwitcher[13678:163896] [ProxyRender] available: 460032, threshold: 480000, isPlaying: 1
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+2026-07-10 16:50:59.377 LosslessSwitcher[13678:163896] [ProxyRender] available: 258880, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:59.377 LosslessSwitcher[13678:163896] [ProxyRender] available: 258368, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:59.377 LosslessSwitcher[13678:163896] [ProxyRender] available: 257856, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:59.377 LosslessSwitcher[13678:163896] [ProxyRender] available: 257344, threshold: 480000, isPlaying: 1
+2026-07-10 16:50:59.377 LosslessSwitcher[13678:163896] [ProxyRender] available: 256832, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:00.443 LosslessSwitcher[13678:163896] [ProxyRender] available: 55680, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:00.444 LosslessSwitcher[13678:163896] [ProxyRender] available: 55168, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:00.444 LosslessSwitcher[13678:163896] [ProxyRender] available: 54656, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:00.444 LosslessSwitcher[13678:163896] [ProxyRender] available: 54144, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:00.444 LosslessSwitcher[13678:163896] [ProxyRender] available: 53632, threshold: 480000, isPlaying: 1
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+2026-07-10 16:51:01.510 LosslessSwitcher[13678:163896] [ProxyRender] available: 38656, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:01.510 LosslessSwitcher[13678:163896] [ProxyRender] available: 38656, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:01.510 LosslessSwitcher[13678:163896] [ProxyRender] available: 38656, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:01.510 LosslessSwitcher[13678:163896] [ProxyRender] available: 38656, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:01.511 LosslessSwitcher[13678:163896] [ProxyRender] available: 38656, threshold: 480000, isPlaying: 0
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:50:57 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+2026-07-10 16:51:02.577 LosslessSwitcher[13678:163896] [ProxyRender] available: 91456, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:02.577 LosslessSwitcher[13678:163896] [ProxyRender] available: 91456, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:02.577 LosslessSwitcher[13678:163896] [ProxyRender] available: 91456, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:02.577 LosslessSwitcher[13678:163896] [ProxyRender] available: 91456, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:02.577 LosslessSwitcher[13678:163896] [ProxyRender] available: 91456, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:03.644 LosslessSwitcher[13678:163896] [ProxyRender] available: 144256, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:03.644 LosslessSwitcher[13678:163896] [ProxyRender] available: 144256, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:03.644 LosslessSwitcher[13678:163896] [ProxyRender] available: 144256, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:03.644 LosslessSwitcher[13678:163896] [ProxyRender] available: 144256, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:03.644 LosslessSwitcher[13678:163896] [ProxyRender] available: 144256, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:04.710 LosslessSwitcher[13678:163896] [ProxyRender] available: 192256, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:04.710 LosslessSwitcher[13678:163896] [ProxyRender] available: 192256, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:04.710 LosslessSwitcher[13678:163896] [ProxyRender] available: 192256, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:04.710 LosslessSwitcher[13678:163896] [ProxyRender] available: 192256, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:04.710 LosslessSwitcher[13678:163896] [ProxyRender] available: 192256, threshold: 480000, isPlaying: 0
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+track GREATEST-音乃瀬奏-GREATEST - Single GREATEST
+2026-07-10 16:51:05.777 LosslessSwitcher[13678:163896] [ProxyRender] available: 245056, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:05.777 LosslessSwitcher[13678:163896] [ProxyRender] available: 245056, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:05.777 LosslessSwitcher[13678:163896] [ProxyRender] available: 245056, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:05.777 LosslessSwitcher[13678:163896] [ProxyRender] available: 245056, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:05.777 LosslessSwitcher[13678:163896] [ProxyRender] available: 245056, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:06.843 LosslessSwitcher[13678:163896] [ProxyRender] available: 297856, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:06.844 LosslessSwitcher[13678:163896] [ProxyRender] available: 297856, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:06.844 LosslessSwitcher[13678:163896] [ProxyRender] available: 297856, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:06.844 LosslessSwitcher[13678:163896] [ProxyRender] available: 297856, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:06.844 LosslessSwitcher[13678:163896] [ProxyRender] available: 297856, threshold: 480000, isPlaying: 0
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:51:05 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:51:05 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:51:05 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:51:05 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+2026-07-10 16:51:07.910 LosslessSwitcher[13678:163896] [ProxyRender] available: 345856, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:07.910 LosslessSwitcher[13678:163896] [ProxyRender] available: 345856, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:07.910 LosslessSwitcher[13678:163896] [ProxyRender] available: 345856, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:07.910 LosslessSwitcher[13678:163896] [ProxyRender] available: 345856, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:07.910 LosslessSwitcher[13678:163896] [ProxyRender] available: 345856, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:08.977 LosslessSwitcher[13678:163896] [ProxyRender] available: 398656, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:08.977 LosslessSwitcher[13678:163896] [ProxyRender] available: 398656, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:08.977 LosslessSwitcher[13678:163896] [ProxyRender] available: 398656, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:08.977 LosslessSwitcher[13678:163896] [ProxyRender] available: 398656, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:08.977 LosslessSwitcher[13678:163896] [ProxyRender] available: 398656, threshold: 480000, isPlaying: 0
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:51:05 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:51:05 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:51:05 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 07:51:05 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+2026-07-10 16:51:10.043 LosslessSwitcher[13678:163896] [ProxyRender] available: 451456, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:10.043 LosslessSwitcher[13678:163896] [ProxyRender] available: 451456, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:10.043 LosslessSwitcher[13678:163896] [ProxyRender] available: 451456, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:10.043 LosslessSwitcher[13678:163896] [ProxyRender] available: 451456, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:10.043 LosslessSwitcher[13678:163896] [ProxyRender] available: 451456, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:11.110 LosslessSwitcher[13678:163896] [ProxyRender] available: 386816, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:11.110 LosslessSwitcher[13678:163896] [ProxyRender] available: 386304, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:11.110 LosslessSwitcher[13678:163896] [ProxyRender] available: 385792, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:11.110 LosslessSwitcher[13678:163896] [ProxyRender] available: 385280, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:11.110 LosslessSwitcher[13678:163896] [ProxyRender] available: 384768, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:12.177 LosslessSwitcher[13678:163896] [ProxyRender] available: 183616, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:12.177 LosslessSwitcher[13678:163896] [ProxyRender] available: 183104, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:12.177 LosslessSwitcher[13678:163896] [ProxyRender] available: 182592, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:12.177 LosslessSwitcher[13678:163896] [ProxyRender] available: 182080, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:12.177 LosslessSwitcher[13678:163896] [ProxyRender] available: 181568, threshold: 480000, isPlaying: 1
+2026-07-10 16:51:13.243 LosslessSwitcher[13678:163896] [ProxyRender] available: 9600, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:13.243 LosslessSwitcher[13678:163896] [ProxyRender] available: 9600, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:13.243 LosslessSwitcher[13678:163896] [ProxyRender] available: 9600, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:13.243 LosslessSwitcher[13678:163896] [ProxyRender] available: 9600, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:13.243 LosslessSwitcher[13678:163896] [ProxyRender] available: 9600, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:14.310 LosslessSwitcher[13678:163896] [ProxyRender] available: 57600, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:14.310 LosslessSwitcher[13678:163896] [ProxyRender] available: 57600, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:14.310 LosslessSwitcher[13678:163896] [ProxyRender] available: 57600, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:14.310 LosslessSwitcher[13678:163896] [ProxyRender] available: 57600, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:14.310 LosslessSwitcher[13678:163896] [ProxyRender] available: 57600, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:15.376 LosslessSwitcher[13678:163896] [ProxyRender] available: 110400, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:15.377 LosslessSwitcher[13678:163896] [ProxyRender] available: 110400, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:15.377 LosslessSwitcher[13678:163896] [ProxyRender] available: 110400, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:15.377 LosslessSwitcher[13678:163896] [ProxyRender] available: 110400, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:15.377 LosslessSwitcher[13678:163896] [ProxyRender] available: 110400, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:16.443 LosslessSwitcher[13678:163896] [ProxyRender] available: 163200, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:16.443 LosslessSwitcher[13678:163896] [ProxyRender] available: 163200, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:16.443 LosslessSwitcher[13678:163896] [ProxyRender] available: 163200, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:16.443 LosslessSwitcher[13678:163896] [ProxyRender] available: 163200, threshold: 480000, isPlaying: 0
+2026-07-10 16:51:16.443 LosslessSwitcher[13678:163896] [ProxyRender] available: 163200, threshold: 480000, isPlaying: 0
+horikei@horikeinoMacBook-Air ~ % 

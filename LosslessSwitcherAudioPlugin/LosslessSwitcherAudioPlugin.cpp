@@ -25,6 +25,7 @@ static dispatch_once_t g_initOnce = 0;
 #include <os/lock.h>
 static os_unfair_lock g_lock = OS_UNFAIR_LOCK_INIT;
 static bool g_canBeDefaultSystemDevice = true;
+static bool g_readInitialized = false;
 
 #pragma mark - Helper Functions
 
@@ -583,6 +584,7 @@ OSStatus LosslessSwitcherPlugin_SetPropertyData(
                     // サンプルレートが実際に変更された場合のみ処理
                     if (abs(newSampleRate - oldSampleRate) > 0.1) {
                         g_device.currentFormat.mSampleRate = newSampleRate;
+                        g_readInitialized = false;
                         
                         // Extract bit depth from format
                         UInt32 bitDepth = g_device.currentFormat.mBitsPerChannel;
@@ -639,6 +641,7 @@ OSStatus LosslessSwitcherPlugin_SetPropertyData(
                     
                     if (formatSupported) {
                         g_device.currentFormat = newFormat;
+                        g_readInitialized = false;
                         
                         // Notify Host that properties changed
                         if (g_device.hostRef) {
@@ -1038,6 +1041,7 @@ static OSStatus LosslessSwitcherPlugin_StopIO(
     
     os_unfair_lock_lock(&g_lock);
     os_log(OS_LOG_DEFAULT, "[LosslessSwitcherPlugin] StopIO: deviceID=%u, clientID=%u", inDeviceID, inClientID);
+    g_readInitialized = false;
     os_unfair_lock_unlock(&g_lock);
     return noErr;
 }
@@ -1116,16 +1120,12 @@ static OSStatus LosslessSwitcherPlugin_DoIOOperation(
         uint8_t* dst = (uint8_t*)ioMainBuffer;
         uint32_t bytesToRead = inIOBufferFrameSize * bytesPerFrame;
         uint32_t readIdx = g_ringBufferReadIndex;
-        uint32_t writeIdx = g_ringBufferWriteIndex;
         
-        // Calculate distance in bytes
-        int32_t distance = (int32_t)writeIdx - (int32_t)readIdx;
-        if (distance < 0) distance += RING_BUFFER_SIZE_BYTES;
-        
-        // Maintain a safety offset (e.g. 1024 frames of bytesPerFrame)
-        uint32_t safetyOffset = 1024 * bytesPerFrame;
-        if ((uint32_t)distance < safetyOffset / 2 || (uint32_t)distance > safetyOffset * 4) {
-            readIdx = (writeIdx + RING_BUFFER_SIZE_BYTES - safetyOffset) % RING_BUFFER_SIZE_BYTES;
+        // Initialize read index to safety offset exactly once per active capture stream to prevent latency accumulation
+        if (!g_readInitialized) {
+            uint32_t safetyOffset = 1024 * bytesPerFrame;
+            readIdx = (g_ringBufferWriteIndex + RING_BUFFER_SIZE_BYTES - safetyOffset) % RING_BUFFER_SIZE_BYTES;
+            g_readInitialized = true;
         }
         
         for (uint32_t i = 0; i < bytesToRead; ++i) {

@@ -1,0 +1,94 @@
+Last login: Fri Jul 10 17:01:29 on ttys004
+horikei@horikeinoMacBook-Air ~ % # 実行中のアプリを終了
+killall LosslessSwitcher
+
+# 最新アプリをコピー
+cp -R /tmp/LosslessSwitcher.app /Applications/
+
+# ログをターミナルで確認しながら実行
+/Applications/LosslessSwitcher.app/Contents/MacOS/LosslessSwitcher
+
+zsh: command not found: #
+No matching processes belonging to you were found
+zsh: command not found: #
+zsh: command not found: #
+[OutputDevices] Enforcing default output device to: LosslessSwitcher Virtual Device
+[VirtualAudioProxy] starting proxy layer
+[VirtualAudioProxy] Microphone permission authorized via AVAudioApplication.
+[AudioPluginBridge] Plugin initialization in progress...
+[AudioPluginBridge] Plugin initialized successfully (listening to distributed notifications)
+[VirtualAudioProxy] Starting dual AVAudioEngine pass-through (AVAudioPlayerNode Jitter Buffer) from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Starting dual AVAudioEngine pass-through (AVAudioPlayerNode Jitter Buffer) from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Starting dual AVAudioEngine pass-through (AVAudioPlayerNode Jitter Buffer) from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Starting dual AVAudioEngine pass-through (AVAudioPlayerNode Jitter Buffer) from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Starting dual AVAudioEngine pass-through (AVAudioPlayerNode Jitter Buffer) from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+[VirtualAudioProxy] Starting dual AVAudioEngine pass-through (AVAudioPlayerNode Jitter Buffer) from LosslessSwitcher Virtual Device to MOONDROP Dawn Pro at 48.0 Hz
+track Deep Dive-轟はじめ-Deep Dive - Single Deep Dive
+track Deep Dive-轟はじめ-Deep Dive - Single Deep Dive
+[VirtualAudioProxy] Dual AVAudioEngine pass-through started successfully
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:03:38 +0000, priority: 5)
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:03:38 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:03:38 +0000, priority: 5)]
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:03:38 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+track Deep Dive-轟はじめ-Deep Dive - Single Deep Dive
+track Deep Dive-轟はじめ-Deep Dive - Single Deep Dive
+[getAllStats] []
+[getAllStats] []
+[VirtualAudioProxy] Pre-roll complete, started playerNode playback
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+track Deep Dive-轟はじめ-Deep Dive - Single Deep Dive
+track Deep Dive-轟はじめ-Deep Dive - Single Deep Dive
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+[getAllStats] []
+same track, ignore cache
+track Deep Dive-轟はじめ-Deep Dive - Single Deep Dive
+track Deep Dive-轟はじめ-Deep Dive - Single Deep Dive
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:04:31 +0000, priority: 5)
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:04:31 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:04:31 +0000, priority: 5)]
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:04:31 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:04:31 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:04:31 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+detected stat CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:04:31 +0000, priority: 5)
+[getAllStats] [LosslessSwitcher.CMPlayerStats(sampleRate: 48000.0, bitDepth: 24, date: 2026-07-10 08:04:31 +0000, priority: 5)]
+NEAREST FORMAT [__C.AudioStreamBasicDescription(mSampleRate: 48000.0, mFormatID: 1819304813, mFormatFlags: 12, mBytesPerPacket: 6, mFramesPerPacket: 1, mBytesPerFrame: 6, mChannelsPerFrame: 2, mBitsPerChannel: 24, mReserved: 0)]
+horikei@horikeinoMacBook-Air ~ % 

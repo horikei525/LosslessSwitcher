@@ -26,7 +26,7 @@ class Defaults: ObservableObject {
             kUserPreferIconStatusBarItem : true,
             kUserPreferBitDepthDetection : false,
             kUserPreferSampleRateMultiples : false,
-            kUserPreferLowLatencyMode : false,
+            kUserPreferLowLatencyMode : true,
             kUserPreferMuteNotifications : false,
             kUserPreferAutoUpdateCheck : true,
             kUserPrioritizedAppList : ["com.apple.Music", "com.spotify.client", "company.thebrowser.Browser", "com.google.Chrome", "com.apple.Safari"],

@@ -6,7 +6,7 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>45F3A682-EC61-4BDE-8DB9-99BC0983527E</key>
+		<key>890BE59F-C059-4692-AD95-DDBC2E9E741E</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>45F3A682-EC61-4BDE-8DB9-99BC0983527E.xcactivitylog</string>
+			<string>890BE59F-C059-4692-AD95-DDBC2E9E741E.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -40,97 +40,13 @@
 			<key>signature</key>
 			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
 			<key>timeStartedRecording</key>
-			<real>805359343.49214995</real>
+			<real>805361542.87658799</real>
 			<key>timeStoppedRecording</key>
-			<real>805359351.809394</real>
+			<real>805361550.77037704</real>
 			<key>title</key>
 			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
 			<key>uniqueIdentifier</key>
-			<string>45F3A682-EC61-4BDE-8DB9-99BC0983527E</string>
-		</dict>
-		<key>BACA1938-5FDE-4506-A17A-F366CC529093</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>BACA1938-5FDE-4506-A17A-F366CC529093.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-				<key>totalNumberOfAnalyzerIssues</key>
-				<integer>0</integer>
-				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
-				<key>totalNumberOfTestFailures</key>
-				<integer>0</integer>
-				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>Quality project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>LosslessSwitcher</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
-			<key>timeStartedRecording</key>
-			<real>805359665.56106603</real>
-			<key>timeStoppedRecording</key>
-			<real>805359673.75604606</real>
-			<key>title</key>
-			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
-			<key>uniqueIdentifier</key>
-			<string>BACA1938-5FDE-4506-A17A-F366CC529093</string>
-		</dict>
-		<key>C4769E8C-AA09-4F73-B2D8-B375C241E5FA</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>C4769E8C-AA09-4F73-B2D8-B375C241E5FA.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-				<key>totalNumberOfAnalyzerIssues</key>
-				<integer>0</integer>
-				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
-				<key>totalNumberOfTestFailures</key>
-				<integer>0</integer>
-				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>Quality project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>LosslessSwitcher</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
-			<key>timeStartedRecording</key>
-			<real>805359770.93048203</real>
-			<key>timeStoppedRecording</key>
-			<real>805359777.76666498</real>
-			<key>title</key>
-			<string>Building project Quality with scheme LosslessSwitcher and configuration Release</string>
-			<key>uniqueIdentifier</key>
-			<string>C4769E8C-AA09-4F73-B2D8-B375C241E5FA</string>
+			<string>890BE59F-C059-4692-AD95-DDBC2E9E741E</string>
 		</dict>
 	</dict>
 </dict>

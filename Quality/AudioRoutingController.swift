@@ -12,6 +12,7 @@ import AppKit
 import CoreAudioTypes
 import SimplyCoreAudio
 import UserNotifications
+import Combine
 
 struct AudioSource: Identifiable, Equatable {
     let id = UUID()
@@ -50,7 +51,8 @@ class AudioRoutingController: ObservableObject {
 
     private let outputDevices: OutputDevices
     private let defaults = Defaults.shared
-    private let virtualProxy: VirtualAudioProxy
+    private var virtualProxy: VirtualAudioProxy?
+    private var cancellables = Set<AnyCancellable>()
     
     // CoreAudio manager for device discovery
     // デバイス検出用のCoreAudioマネージャー
@@ -58,8 +60,6 @@ class AudioRoutingController: ObservableObject {
 
     init(outputDevices: OutputDevices) {
         self.outputDevices = outputDevices
-        self.virtualProxy = VirtualAudioProxy(outputDevices: outputDevices)
-        self.virtualProxy.startProxy()
         
         // Register callback to receive sample rate changes from the Audio Plugin
         // Audio Plugin からサンプルレート変更通知を受け取るコールバックを登録
@@ -68,6 +68,28 @@ class AudioRoutingController: ObservableObject {
                 self?.onAudioSourceDetected(info)
             }
         }
+        
+        // Observe and dynamically start/stop proxy based on Low Latency Mode preference.
+        // This avoids launching the proxy and requesting microphone permissions when low latency direct mode is preferred.
+        defaults.$userPreferLowLatencyMode
+            .sink { [weak self] preferLowLatency in
+                guard let self = self else { return }
+                if preferLowLatency {
+                    if let proxy = self.virtualProxy {
+                        print("[AudioRoutingController] Low Latency Mode enabled. Stopping proxy...")
+                        proxy.stop()
+                        self.virtualProxy = nil
+                    }
+                } else {
+                    if self.virtualProxy == nil {
+                        print("[AudioRoutingController] Normal Mode enabled. Starting proxy...")
+                        let proxy = VirtualAudioProxy(outputDevices: self.outputDevices)
+                        self.virtualProxy = proxy
+                        proxy.startProxy()
+                    }
+                }
+            }
+            .store(in: &cancellables)
         
         // Request notification authorization for conflict alerts
         // 競合警告用の通知権限を要求します
@@ -148,6 +170,21 @@ class AudioRoutingController: ObservableObject {
         self.routeAudioIfNeeded()
     }
 
+    /// Helper to control Apple Music app playback status via AppleScript.
+    private func controlMusicApp(action: String) {
+        let scriptSource = "tell application \"Music\" to \(action)"
+        print("[AudioRoutingController] Executing AppleScript: \(scriptSource)")
+        if let script = NSAppleScript(source: scriptSource) {
+            var error: NSDictionary?
+            script.executeAndReturnError(&error)
+            if let error = error {
+                print("[AudioRoutingController] AppleScript error during \(action): \(error)")
+            } else {
+                print("[AudioRoutingController] AppleScript \(action) command sent successfully.")
+            }
+        }
+    }
+
     /// Auto routing execution.
     /// 自動ルーティング処理を実行します。
     func routeAudioIfNeeded() {
@@ -159,27 +196,65 @@ class AudioRoutingController: ObservableObject {
             return
         }
 
-        activeSampleRate = source.sampleRate
-        activeBitDepth = source.bitDepth
+        let currentRate = activeSampleRate
+        let currentBitDepth = activeBitDepth
+        let newRate = source.sampleRate
+        let newBitDepth = source.bitDepth
+
+        activeSampleRate = newRate
+        activeBitDepth = newBitDepth
         
         let routingMsg = String(format: NSLocalizedString("Routing %@ at %@ / %@", comment: "%@ を %@ / %@ でルーティング中"),
                                 source.displayName, source.readableSampleRate, source.readableBitDepth)
         virtualDeviceStatus = routingMsg
 
-        if !defaults.userPreferLowLatencyMode {
-            virtualProxy.prepareBufferedTransition(sampleRate: source.sampleRate, bitDepth: source.bitDepth)
-        } else {
-            virtualDeviceStatus += NSLocalizedString(" (low latency bypass)", comment: " (低遅延バイパス)")
-        }
-
-        if let device = outputDevices.selectedOutputDevice ?? outputDevices.defaultOutputDevice,
-           let format = findBestFormat(for: device, sampleRate: source.sampleRate, bitDepth: source.bitDepth) {
-            outputDevices.setFormats(device: device, format: format)
-            outputDevices.updateSampleRate(source.sampleRate, bitDepth: source.bitDepth)
+        // If sample rate or bit depth actually changed, perform a clean pause-switch-play transition
+        if currentRate != newRate || currentBitDepth != newBitDepth {
+            print("[AudioRoutingController] Format change detected (\(currentRate)Hz/\(currentBitDepth)bit -> \(newRate)Hz/\(newBitDepth)bit). Performing clean transition...")
             
-            // Synchronize nominal sample rate of BlackHole if it is active.
-            // 仮想ループバック（BlackHole）のフォーマットも同期させます。
-            syncBlackHoleFormat(sampleRate: source.sampleRate)
+            // 1. Pause Apple Music
+            controlMusicApp(action: "pause")
+            
+            // 2. Wait for playback to pause, then switch hardware and proxy formats
+            let pauseDelay = 0.15
+            print("[AudioRoutingController] Waiting \(pauseDelay)s for Apple Music to pause and clear audio output buffer...")
+            DispatchQueue.main.asyncAfter(deadline: .now() + pauseDelay) { [weak self] in
+                guard let self = self else { return }
+                
+                if !self.defaults.userPreferLowLatencyMode {
+                    print("[AudioRoutingController] Low Latency Mode is OFF. Updating VirtualAudioProxy target format...")
+                    self.virtualProxy?.prepareBufferedTransition(sampleRate: newRate, bitDepth: newBitDepth)
+                } else {
+                    print("[AudioRoutingController] Low Latency Mode is ON. Skipping VirtualAudioProxy update.")
+                }
+                
+                if let device = self.outputDevices.selectedOutputDevice ?? self.outputDevices.defaultOutputDevice,
+                   let format = self.findBestFormat(for: device, sampleRate: newRate, bitDepth: newBitDepth) {
+                    print("[AudioRoutingController] Selected Output Device: \(device.name) (ID: \(device.id))")
+                    print("[AudioRoutingController] Target Format: \(format.mSampleRate)Hz / \(format.mBitsPerChannel)bit")
+                    
+                    self.outputDevices.setFormats(device: device, format: format)
+                    self.outputDevices.updateSampleRate(newRate, bitDepth: newBitDepth)
+                    self.syncBlackHoleFormat(sampleRate: newRate)
+                    print("[AudioRoutingController] Hardware output device formats updated successfully.")
+                } else {
+                    print("[AudioRoutingController] Warning: Could not find suitable format or selected device.")
+                }
+                
+                // 3. Wait for hardware clock to stabilize, then resume Apple Music
+                let stabilizeDelay = 0.8
+                print("[AudioRoutingController] Waiting \(stabilizeDelay)s for DAC clock to stabilize before resuming...")
+                DispatchQueue.main.asyncAfter(deadline: .now() + stabilizeDelay) { [weak self] in
+                    print("[AudioRoutingController] DAC clock stabilized. Resuming Apple Music.")
+                    self?.controlMusicApp(action: "play")
+                }
+            }
+        } else {
+            // No format change, just update proxy if running
+            print("[AudioRoutingController] Format unchanged (\(newRate)Hz/\(newBitDepth)bit). Keeping active configuration.")
+            if !defaults.userPreferLowLatencyMode {
+                virtualProxy?.prepareBufferedTransition(sampleRate: newRate, bitDepth: newBitDepth)
+            }
         }
     }
     

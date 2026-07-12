@@ -6,7 +6,5 @@
 	<true/>
 	<key>OSAScriptingDefinition</key>
 	<string>LosslessSwitcher.sdef</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>LosslessSwitcher requires microphone/audio input access to capture and forward audio from the virtual device to your physical DAC.</string>
 </dict>
 </plist>

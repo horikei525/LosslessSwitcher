@@ -7,7 +7,7 @@
 
 import CoreAudioTypes
 
-extension AudioStreamBasicDescription: @retroactive Equatable {
+extension AudioStreamBasicDescription: Equatable {
     public static func == (lhs: AudioStreamBasicDescription, rhs: AudioStreamBasicDescription) -> Bool {
         return lhs.mSampleRate == rhs.mSampleRate && lhs.mBitsPerChannel == rhs.mBitsPerChannel
     }

@@ -1,4 +1,0 @@
-module PrivateMediaRemote {
-umbrella header "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/MediaRemote/Sources/PrivateMediaRemote/PrivateMediaRemote.h"
-export *
-}

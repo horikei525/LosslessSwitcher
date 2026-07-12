@@ -1,4 +1,0 @@
-module SimplyCoreAudioC {
-umbrella "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/SimplyCoreAudio/Sources/SimplyCoreAudioC"
-export *
-}

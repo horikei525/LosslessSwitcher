@@ -47,19 +47,15 @@ class OutputDevices: ObservableObject {
         self.defaultOutputDevice = self.coreAudio.defaultOutputDevice
         self.getDeviceSampleRate()
         
-        self.enforceVirtualDeviceAsDefault()
-        
         changesCancellable =
             NotificationCenter.default.publisher(for: .deviceListChanged).sink(receiveValue: { _ in
                 self.outputDevices = self.coreAudio.allOutputDevices
-                self.enforceVirtualDeviceAsDefault()
             })
         
         defaultChangesCancellable =
             NotificationCenter.default.publisher(for: .defaultOutputDeviceChanged).sink(receiveValue: { _ in
                 self.defaultOutputDevice = self.coreAudio.defaultOutputDevice
                 self.getDeviceSampleRate()
-                self.enforceVirtualDeviceAsDefault()
             })
         
         outputSelectionCancellable = $selectedOutputDevice.sink(receiveValue: { _ in
@@ -71,18 +67,6 @@ class OutputDevices: ObservableObject {
         })
 
         
-    }
-    
-    /// Enforce that the "LosslessSwitcher Virtual Device" is selected as the default system output device.
-    /// 「LosslessSwitcher Virtual Device」がデフォルトのシステム出力デバイスとして選択されていることを強制します。
-    func enforceVirtualDeviceAsDefault() {
-        if let virtualDevice = coreAudio.allOutputDevices.first(where: { $0.name == "LosslessSwitcher Virtual Device" }) {
-            if coreAudio.defaultOutputDevice != virtualDevice {
-                print("[OutputDevices] Enforcing default output device to: \(virtualDevice.name)")
-                virtualDevice.isDefaultOutputDevice = true
-                virtualDevice.isDefaultSystemOutputDevice = true
-            }
-        }
     }
     
     deinit {
@@ -199,26 +183,11 @@ class OutputDevices: ObservableObject {
                 abs(Int32($0.mBitsPerChannel) - bitDepth) < abs(Int32($1.mBitsPerChannel) - bitDepth)
             })
             
-
             if Defaults.shared.userPreferSampleRateMultiples,
-                let nearestSampleRate = nearest,
-                nearestSampleRate != sampleRate {
-                    
-                    // Cast to Int for mathematically safe modulo operations
-                    let sourceInt = Int(sampleRate)
-                    let is44kFamily = sourceInt % 44100 == 0
-                    let baseRate = is44kFamily ? 44100 : 48000
-                    
-                    // Filter supported rates to match the family AND be strictly less than the source
-                    let familyRates = supported.filter {
-                        Int($0) % baseRate == 0 && $0 < sampleRate
-                    }
-                    
-                    // Fall back to the highest available matching rate
-                    if let bestMatch = familyRates.max() {
-                        nearest = bestMatch
-                    }
-                }
+               let nearestSampleRate = nearest,
+               nearestSampleRate != sampleRate, supported.contains(sampleRate / 2) {
+                nearest = sampleRate / 2
+            }
             
             let nearestFormat = formats.filter({
                 $0.mSampleRate == nearest && $0.mBitsPerChannel == nearestBitDepth?.mBitsPerChannel

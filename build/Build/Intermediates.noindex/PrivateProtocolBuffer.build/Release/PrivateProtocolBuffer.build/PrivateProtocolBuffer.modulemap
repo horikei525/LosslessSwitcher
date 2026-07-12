@@ -1,4 +1,0 @@
-module PrivateProtocolBuffer {
-umbrella header "/Users/horikei/Documents/LosslessSwitcher/build/SourcePackages/checkouts/ProtocolBuffer/Sources/PrivateProtocolBuffer/PrivateProtocolBuffer.h"
-export *
-}

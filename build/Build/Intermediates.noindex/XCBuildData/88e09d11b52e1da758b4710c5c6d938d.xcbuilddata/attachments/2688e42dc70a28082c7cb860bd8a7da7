@@ -1,4 +1,0 @@
-module Sweep {
-header "Sweep-Swift.h"
-export *
-}

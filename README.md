@@ -30,6 +30,15 @@ If you wish to have it running when logging in, you should be able to add Lossle
 > User & Groups > Login Items > Add LosslessSwitcher app
 ```
 
+## Prerequisites
+Due to how the app works, this app is not, and cannot be sandboxed.
+It also has the following requirements:
+- The user running LosslessSwitcher must be an **admin** (required to read the system log stream).
+- Apple Music app must have Lossless mode enabled.
+- Apple Music's **Crossfade** (under Music > Settings > Playback) must be turned **off** (blending songs will conflict with the physical DAC clock switching and mute-sync logic).
+
+Other than that, it should run on any Mac running macOS 11.4 or later.
+
 ## App details
 
 LosslessSwitcher runs quietly in your menu bar. The main mechanisms of the app are:
@@ -56,15 +65,6 @@ Ever since Apple Music Lossless launched along with macOS 11.4, the app would ne
 This still happens today, with macOS 12.3.1, despite iOS's Music app having such an ability.
 
 I think this improvement might be well appreciated by many, hence this project is here, free and open source.
-
-## Prerequisites
-Due to how the app works, this app is not, and cannot be sandboxed.
-It also has the following requirements:
-- The user running LosslessSwitcher must be an **admin** (required to read the system log stream).
-- Apple Music app must have Lossless mode enabled.
-- Apple Music's **Crossfade** (under Music > Settings > Playback) must be turned **off** (blending songs will conflict with the physical DAC clock switching and mute-sync logic).
-
-Other than that, it should run on any Mac running macOS 11.4 or later.
 
 ## Disclaimer
 By using LosslessSwitcher, you agree that under no circumstances will the developer or any contributors be held responsible or liable in any way for any claims, damages, losses, expenses, costs or liabilities whatsoever or any other consequences suffered by you or incurred by you directly or indirectly in connection with any form of usages of LosslessSwitcher.

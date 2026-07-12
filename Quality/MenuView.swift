@@ -28,7 +28,7 @@ struct MenuView: View {
                 defaults.userPreferBitDepthDetection.toggle()
             } label: {
                 HStack {
-                    Text("Bit Depth Switching")
+                    Text("Bit Depth Switching".localized)
                     if defaults.userPreferBitDepthDetection {
                         Image(systemName: "checkmark")
                     }
@@ -39,7 +39,7 @@ struct MenuView: View {
                 defaults.userPreferSampleRateMultiples.toggle()
             } label: {
                 HStack {
-                    Text("Prefer Closest Sample Rate Multiple")
+                    Text("Prefer Closest Sample Rate Multiple".localized)
                     if defaults.userPreferSampleRateMultiples {
                         Image(systemName: "checkmark")
                     }
@@ -54,7 +54,7 @@ struct MenuView: View {
                     if outputDevices.selectedOutputDevice == nil {
                         Image(systemName: "checkmark")
                     }
-                    Text("Default Device")
+                    Text("Default Device".localized)
                 }
 
                 ForEach(outputDevices.outputDevices, id: \.uid) { device in
@@ -69,23 +69,29 @@ struct MenuView: View {
                     }
                 }
             } label: {
-                Text("Selected Device")
+                Text("Selected Device".localized)
             }
             
             Menu {
-                Text("Version - \(currentVersion)")
-                Text("Build - \(currentBuild)")
+                Text(String(format: "%@ - %@", "Version".localized, currentVersion))
+                Text(String(format: "%@ - %@", "Build".localized, currentBuild))
             } label: {
-                Text("About")
+                Text("About".localized)
+            }
+            
+            Button {
+                UpdateChecker.shared.checkForUpdates(manually: true)
+            } label: {
+                Text("Check for Updates...".localized)
             }
             
             Menu {
-                Button("Select Script...") {
+                Button("Select Script...".localized) {
                     let panel = NSOpenPanel()
                     panel.canChooseFiles = true
                     panel.canChooseDirectories = false
                     panel.allowsMultipleSelection = false
-                    panel.message = "Select a script that should be invoked when sample rate changes."
+                    panel.message = "Select a script that should be invoked when sample rate changes.".localized
                     
                     panel.begin { response in
                         let path = panel.url?.path
@@ -95,20 +101,20 @@ struct MenuView: View {
                     }
                 }
                 
-                Button("Clear Selection") {
+                Button("Clear Selection".localized) {
                     defaults.shellScriptPath = nil
                 }
                 
-                Text(defaults.shellScriptPath ?? "No selection")
+                Text(defaults.shellScriptPath ?? "No selection".localized)
                 
             } label: {
-                Text("Scripting")
+                Text("Scripting".localized)
             }
             
             Button {
                 NSApp.terminate(self)
             } label: {
-                Text("Quit LosslessSwitcher")
+                Text("Quit LosslessSwitcher".localized)
             }
         }
     }

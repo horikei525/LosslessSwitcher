@@ -1,3 +1,4 @@
+<img width="369" height="319" alt="Screenshot 2026-07-12 at 15 32 31" src="https://github.com/user-attachments/assets/c56ced7b-8781-4c9f-83cd-394e4a585caf" />
 <p align="center">
   <img width="550" alt="header image with app icon" src="https://user-images.githubusercontent.com/23420208/164895903-1c95fe89-6198-433a-9100-8d9af32ca24f.png">
 

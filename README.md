@@ -1,6 +1,5 @@
 <p align="center">
   <img width="550" alt="header image with app icon" src="https://user-images.githubusercontent.com/23420208/164895903-1c95fe89-6198-433a-9100-8d9af32ca24f.png">
-
 </p>
 
 #  
@@ -40,11 +39,11 @@ LosslessSwitcher runs quietly in your menu bar. The main mechanisms of the app a
 
 As such, the app is extremely lightweight and operates with minimal CPU usage.
 
-<img width="252" alt="app screenshot, with music note icon shown as UI button" src="https://user-images.githubusercontent.com/23420208/164895657-35a6d8a3-7e85-4c7c-bcba-9d03bfd88b4d.png">
+<img width="252" alt="app screenshot, with music note icon shown as UI button" src="https://github.com/user-attachments/assets/0d6e62e6-bc52-4748-8d32-31de582799a1">
 
 If you wish, the sample rate can also be directly visible as the menu bar item.
 
-<img width="252" alt="app screenshot with sample rate shown as UI button" src="https://user-images.githubusercontent.com/23420208/164896404-c6d27328-47e5-4eb3-bd8b-71e3c9013c46.png">
+<img width="252" alt="app screenshot with sample rate shown as UI button" src="https://github.com/user-attachments/assets/77bf7ebf-4053-43f9-9ce1-07cc8f4e94fa">
 
 Do also note that:
 - There may be a short silent pause during track transitions as the DAC reconfigures its clocks.
@@ -69,14 +68,6 @@ Other than that, it should run on any Mac running macOS 11.4 or later.
 
 ## Disclaimer
 By using LosslessSwitcher, you agree that under no circumstances will the developer or any contributors be held responsible or liable in any way for any claims, damages, losses, expenses, costs or liabilities whatsoever or any other consequences suffered by you or incurred by you directly or indirectly in connection with any form of usages of LosslessSwitcher.
-
-## Devices tested
-
-Here are some device combinations tested to be working, by users of LosslessSwitcher.
-Regardless, you are still reminded to use LosslessSwitcher at your own risk.
-
-
-You can add to this list by modifying this README and opening a new pull request!
 
 Do note that Steven Slate Audio VSX software may not be fully compatible with LosslessSwitcher, and both software may interfere with each other. Please refer to discussion https://github.com/vincentneo/LosslessSwitcher/discussions/100 for more information.
 

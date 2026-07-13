@@ -54,6 +54,7 @@ class OutputDevices: ObservableObject {
     var currentTrack: MediaTrack?
     private var currentTrackDuration: Double = 0.0
     private var isNearEndOfTrack = false
+    var currentPlaybackTime: Double = 0.0
     init() {
         self.outputDevices = self.coreAudio.allOutputDevices
         self.defaultOutputDevice = self.coreAudio.defaultOutputDevice
@@ -92,6 +93,7 @@ class OutputDevices: ObservableObject {
         //timer.upstream.connect().cancel()
     }
     func playbackTimeDidChange(elapsedTime: Double) {
+        self.currentPlaybackTime = elapsedTime
         guard isPlaying, currentTrackDuration > 0.0 else { return }
         let remainingTime = currentTrackDuration - elapsedTime
         isNearEndOfTrack = (remainingTime <= 2.0 && remainingTime > 0.0)
@@ -336,10 +338,14 @@ class OutputDevices: ObservableObject {
                 
                 var unmuteTime: Date?
                 if wasPlaying {
-                    print("[LosslessSwitcher] Rewinding to 00:00 and Unmuting Apple Music")
-                    self.rewindMusicApp()
-                    rewindTime = Date()
-                    try? await Task.sleep(nanoseconds: 10_000_000) // 10ms wait for rewind to process
+                    if self.currentPlaybackTime < 5.0 {
+                        print("[LosslessSwitcher] Rewinding to 00:00 and Unmuting Apple Music")
+                        self.rewindMusicApp()
+                        rewindTime = Date()
+                        try? await Task.sleep(nanoseconds: 10_000_000) // 10ms wait for rewind to process
+                    } else {
+                        print("[LosslessSwitcher] Playback time is \(self.currentPlaybackTime)s (>= 5.0s), skipping rewind")
+                    }
                     
                     self.unmuteMusicApp()
                     unmuteTime = Date()
@@ -454,6 +460,7 @@ class OutputDevices: ObservableObject {
         let incomingTrack = MediaTrack(trackInfo: newTrack)
         if self.currentTrack != incomingTrack {
             self.trackChangeTime = Date()
+            self.currentPlaybackTime = 0.0
         }
         self.previousTrack = self.currentTrack
         self.currentTrack = incomingTrack

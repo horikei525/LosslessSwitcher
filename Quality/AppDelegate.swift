@@ -58,8 +58,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         AppDelegate.instance = self
-        outputDevices = OutputDevices()
-        mrController = MediaRemoteController(outputDevices: outputDevices)
+        // Core components are initialized by MenuBarController in QualityApp.swift.
+        // We comment them out here to prevent duplicate initialization and race conditions.
+        // outputDevices = OutputDevices()
+        // mrController = MediaRemoteController(outputDevices: outputDevices)
         
         checkPermissions()
         UpdateChecker.shared.checkForUpdates(manually: false)

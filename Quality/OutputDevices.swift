@@ -55,6 +55,31 @@ class OutputDevices: ObservableObject {
     private var currentTrackDuration: Double = 0.0
     private var isNearEndOfTrack = false
     var currentPlaybackTime: Double = 0.0
+    
+    private let loggerQueue = DispatchQueue(label: "outputDevicesLoggerQueue", qos: .utility)
+    
+    private func log(_ message: String) {
+        loggerQueue.async {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+            print("[\(formatter.string(from: Date()))] [OutputDevices] \(message)")
+            fflush(stdout)
+        }
+    }
+    
+    func applyCurrentFormatToActiveDevice() {
+        guard let targetSR = self.targetSampleRate else { return }
+        let targetBD = self.targetBitDepth ?? 24
+        
+        let defaultDevice = self.selectedOutputDevice ?? self.defaultOutputDevice
+        guard let defaultDevice = defaultDevice else { return }
+        
+        processQueue.async { [weak self] in
+            guard let self = self else { return }
+            let stat = CMPlayerStats(sampleRate: targetSR, bitDepth: targetBD, date: Date(), priority: 5)
+            self.switchSampleRateWithStat(stat, onDevice: defaultDevice, isDeviceChange: true)
+        }
+    }
     init() {
         self.outputDevices = self.coreAudio.allOutputDevices
         self.defaultOutputDevice = self.coreAudio.defaultOutputDevice
@@ -63,16 +88,21 @@ class OutputDevices: ObservableObject {
         changesCancellable =
             NotificationCenter.default.publisher(for: .deviceListChanged).sink(receiveValue: { _ in
                 self.outputDevices = self.coreAudio.allOutputDevices
+                if let savedUID = Defaults.shared.selectedDeviceUID {
+                    self.selectedOutputDevice = self.outputDevices.first(where: { $0.uid == savedUID })
+                }
             })
         
         defaultChangesCancellable =
             NotificationCenter.default.publisher(for: .defaultOutputDeviceChanged).sink(receiveValue: { _ in
                 self.defaultOutputDevice = self.coreAudio.defaultOutputDevice
                 self.getDeviceSampleRate()
+                self.applyCurrentFormatToActiveDevice()
             })
         
         outputSelectionCancellable = $selectedOutputDevice.sink(receiveValue: { _ in
             self.getDeviceSampleRate()
+            self.applyCurrentFormatToActiveDevice()
         })
         
         enableBitDepthDetectionCancellable = Defaults.shared.$userPreferBitDepthDetection.sink(receiveValue: { newValue in
@@ -83,6 +113,11 @@ class OutputDevices: ObservableObject {
             self?.handleRealtimeLog(stat)
         }
         logStreamListener.start()
+        
+        // Restore saved device selection at launch
+        if let savedUID = Defaults.shared.selectedDeviceUID {
+            self.selectedOutputDevice = self.outputDevices.first(where: { $0.uid == savedUID })
+        }
     }
     
     deinit {
@@ -215,20 +250,21 @@ class OutputDevices: ObservableObject {
         }
     }
     
-    func switchSampleRateWithStat(_ first: CMPlayerStats, onDevice defaultDevice: AudioDevice, recursion: Bool = false) {
+    func switchSampleRateWithStat(_ first: CMPlayerStats, onDevice defaultDevice: AudioDevice, recursion: Bool = false, isDeviceChange: Bool = false) {
         guard let supported = defaultDevice.nominalSampleRates else { return }
         
         let sampleRate = Float64(first.sampleRate)
         let bitDepth = Int32(first.bitDepth)
         
-        if self.currentTrack == self.previousTrack, let prevSampleRate = currentSampleRate, prevSampleRate > sampleRate {
-            print("same track, prev sample rate is higher")
-            return
-        }
-        
-        if sampleRate == 48000 && !recursion {
-            processQueue.asyncAfter(deadline: .now() + 1) {
-                self.switchLatestSampleRate(recursion: true)
+        if !isDeviceChange {
+            if self.currentTrack == self.previousTrack, let prevSampleRate = currentSampleRate, prevSampleRate > sampleRate {
+                return
+            }
+            
+            if sampleRate == 48000 && !recursion {
+                processQueue.asyncAfter(deadline: .now() + 1) {
+                    self.switchLatestSampleRate(recursion: true)
+                }
             }
         }
         
@@ -253,13 +289,11 @@ class OutputDevices: ObservableObject {
             $0.mSampleRate == nearest && $0.mBitsPerChannel == nearestBitDepth?.mBitsPerChannel
         })
         
-        print("NEAREST FORMAT \(nearestFormat)")
-        
         if let suitableFormat = nearestFormat.first {
             let targetSR = suitableFormat.mSampleRate
             let targetBD = Int(suitableFormat.mBitsPerChannel)
             
-            if targetSampleRate == targetSR && (!enableBitDepthDetection || targetBitDepth == targetBD) {
+            if !isDeviceChange && targetSampleRate == targetSR && (!enableBitDepthDetection || targetBitDepth == targetBD) {
                 return
             }
             
@@ -295,14 +329,12 @@ class OutputDevices: ObservableObject {
                 var rewindTime: Date?
                 
                 if wasPlaying {
-                    print("[LosslessSwitcher] Muting Apple Music")
                     self.muteMusicApp()
                     muteTime = Date()
                     try? await Task.sleep(nanoseconds: 10_000_000) // 10ms wait for mute to process
                 }
                 
                 let dacStartTime = Date()
-                print("[LosslessSwitcher] Changing DAC format to \(targetSR) Hz / \(targetBD) bit")
                 if self.enableBitDepthDetection {
                     self.setFormats(device: defaultDevice, format: suitableFormat)
                 } else {
@@ -327,7 +359,6 @@ class OutputDevices: ObservableObject {
                 }
                 let dacEndTime = Date()
                 
-                print("[LosslessSwitcher] DAC change completed: \(isComplete)")
                 try? await Task.sleep(nanoseconds: 20_000_000) // 20ms stabilizer sleep
                 
                 self.updateSampleRate(targetSR, bitDepth: targetBD)
@@ -338,13 +369,10 @@ class OutputDevices: ObservableObject {
                 
                 var unmuteTime: Date?
                 if wasPlaying {
-                    if self.currentPlaybackTime < 5.0 {
-                        print("[LosslessSwitcher] Rewinding to 00:00 and Unmuting Apple Music")
+                    if !isDeviceChange && self.currentPlaybackTime < 5.0 {
                         self.rewindMusicApp()
                         rewindTime = Date()
                         try? await Task.sleep(nanoseconds: 10_000_000) // 10ms wait for rewind to process
-                    } else {
-                        print("[LosslessSwitcher] Playback time is \(self.currentPlaybackTime)s (>= 5.0s), skipping rewind")
                     }
                     
                     self.unmuteMusicApp()
@@ -354,33 +382,26 @@ class OutputDevices: ObservableObject {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "HH:mm:ss.SSS"
                 
-                print("""
-                
-                [LosslessSwitcher Timing Diagnostics]
-                --------------------------------------------------
-                1. Track Change Fired:           \(formatter.string(from: trackFired)) (Base)
-                2. Music Log Written:            \(formatter.string(from: logTime)) (Diff: \(Int(logTime.timeIntervalSince(trackFired) * 1000))ms from Track Change)
-                3. Log Detected by App:          \(formatter.string(from: detectedTime)) (Diff: \(Int(detectedTime.timeIntervalSince(logTime) * 1000))ms log scan delay)
-                """)
+                var diag = "\n[Timing Diagnostics]\n--------------------------------------------------\n"
+                diag += "1. Track Change Fired:           \(formatter.string(from: trackFired)) (Base)\n"
+                diag += "2. Music Log Written:            \(formatter.string(from: logTime)) (Diff: \(Int(logTime.timeIntervalSince(trackFired) * 1000))ms from Track Change)\n"
+                diag += "3. Log Detected by App:          \(formatter.string(from: detectedTime)) (Diff: \(Int(detectedTime.timeIntervalSince(logTime) * 1000))ms log scan delay)\n"
                 if wasPlaying, let muteTime = muteTime, let rewindTime = rewindTime, let unmuteTime = unmuteTime {
-                    print("""
-                    4. Mute Sent:                    \(formatter.string(from: muteTime)) (Diff: \(Int(muteTime.timeIntervalSince(detectedTime) * 1000))ms from detect)
-                    5. DAC Change Sent:              \(formatter.string(from: dacStartTime)) (Diff: \(Int(dacStartTime.timeIntervalSince(muteTime) * 1000))ms from mute)
-                    6. DAC Change Confirmed:         \(formatter.string(from: dacEndTime)) (Diff: \(Int(dacEndTime.timeIntervalSince(dacStartTime) * 1000))ms DAC transition time)
-                    7. Rewind (00:00) Sent:          \(formatter.string(from: rewindTime)) (Diff: \(Int(rewindTime.timeIntervalSince(dacEndTime) * 1000))ms from DAC complete)
-                    8. Unmute Sent:                  \(formatter.string(from: unmuteTime)) (Diff: \(Int(unmuteTime.timeIntervalSince(rewindTime) * 1000))ms from rewind)
-                    --------------------------------------------------
-                    Total Sync Latency: \(Int(unmuteTime.timeIntervalSince(trackFired) * 1000))ms
-                    """)
+                    diag += "4. Mute Sent:                    \(formatter.string(from: muteTime)) (Diff: \(Int(muteTime.timeIntervalSince(detectedTime) * 1000))ms from detect)\n"
+                    diag += "5. DAC Change Sent:              \(formatter.string(from: dacStartTime)) (Diff: \(Int(dacStartTime.timeIntervalSince(muteTime) * 1000))ms from mute)\n"
+                    diag += "6. DAC Change Confirmed:         \(formatter.string(from: dacEndTime)) (Diff: \(Int(dacEndTime.timeIntervalSince(dacStartTime) * 1000))ms DAC transition time)\n"
+                    diag += "7. Rewind (00:00) Sent:          \(formatter.string(from: rewindTime)) (Diff: \(Int(rewindTime.timeIntervalSince(dacEndTime) * 1000))ms from DAC complete)\n"
+                    diag += "8. Unmute Sent:                  \(formatter.string(from: unmuteTime)) (Diff: \(Int(unmuteTime.timeIntervalSince(rewindTime) * 1000))ms from rewind)\n"
+                    diag += "--------------------------------------------------\n"
+                    diag += "Total Sync Latency: \(Int(unmuteTime.timeIntervalSince(trackFired) * 1000))ms\n"
                 } else {
-                    print("""
-                    4. DAC Change Sent:              \(formatter.string(from: dacStartTime))
-                    5. DAC Change Confirmed:         \(formatter.string(from: dacEndTime)) (Diff: \(Int(dacEndTime.timeIntervalSince(dacStartTime) * 1000))ms DAC transition time)
-                    --------------------------------------------------
-                    Total Sync Latency: \(Int(dacEndTime.timeIntervalSince(trackFired) * 1000))ms
-                    """)
+                    diag += "4. DAC Change Sent:              \(formatter.string(from: dacStartTime))\n"
+                    diag += "5. DAC Change Confirmed:         \(formatter.string(from: dacEndTime)) (Diff: \(Int(dacEndTime.timeIntervalSince(dacStartTime) * 1000))ms DAC transition time)\n"
+                    diag += "--------------------------------------------------\n"
+                    diag += "Total Sync Latency: \(Int(dacEndTime.timeIntervalSince(trackFired) * 1000))ms\n"
                 }
-                print("--------------------------------------------------\n")
+                diag += "--------------------------------------------------"
+                self.log(diag)
             }
         }
         else if !recursion {
@@ -390,7 +411,6 @@ class OutputDevices: ObservableObject {
         }
         else {
             if self.currentTrack == self.previousTrack {
-                print("same track, ignore cache")
                 return
             }
         }

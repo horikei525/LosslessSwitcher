@@ -154,7 +154,17 @@ class CMPlayerParser {
 class LogStreamListener {
     private var process: Process?
     private let outputQueue = DispatchQueue(label: "logStreamQueue", qos: .userInteractive)
+    private let loggerQueue = DispatchQueue(label: "logStreamLoggerQueue", qos: .utility)
     var onLogReceived: ((CMPlayerStats) -> Void)?
+    
+    private func log(_ message: String) {
+        loggerQueue.async {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+            print("[\(formatter.string(from: Date()))] [LogStreamListener] \(message)")
+            fflush(stdout)
+        }
+    }
     
     func start() {
         outputQueue.async { [weak self] in
@@ -182,12 +192,15 @@ class LogStreamListener {
                 }
             }
             
+            process.terminationHandler = { [weak self] proc in
+                self?.log("Log stream process terminated with status: \(proc.terminationStatus)")
+            }
+            
             self.process = process
             do {
                 try process.run()
-                print("[LogStreamListener] Background log stream started successfully.")
             } catch {
-                print("[LogStreamListener] Failed to start log stream process: \(error)")
+                self.log("Failed to start log stream process: \(error)")
             }
         }
     }

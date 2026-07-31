@@ -25,6 +25,8 @@ class OutputDevices: ObservableObject {
     private var targetSampleRate: Float64?
     private var targetBitDepth: Int?
     private var trackChangeTime: Date?
+    private var pendingTargetSampleRate: Float64?
+    private var pendingTargetBitDepth: Int?
     
     private let pauseScript = NSAppleScript(source: "tell application \"Music\" to pause")
     private let playScript = NSAppleScript(source: "tell application \"Music\" to play")
@@ -266,6 +268,19 @@ class OutputDevices: ObservableObject {
                     self.switchLatestSampleRate(recursion: true)
                 }
             }
+            
+            let timeSinceTrackChange = Date().timeIntervalSince(self.trackChangeTime ?? Date())
+            let isPreBuffered = self.isPlaying && 
+                                self.currentPlaybackTime > 10.0 && 
+                                timeSinceTrackChange > 10.0 && 
+                                (self.currentTrackDuration <= 0.0 || (self.currentTrackDuration - self.currentPlaybackTime) < 30.0)
+            
+            if isPreBuffered {
+                self.log("Detected pre-buffered log for next track. Saving pending format (\(sampleRate)Hz/\(bitDepth)bit)")
+                self.pendingTargetSampleRate = sampleRate
+                self.pendingTargetBitDepth = Int(bitDepth)
+                return
+            }
         }
         
         guard let formats = self.getFormats(bestStat: first, device: defaultDevice) else { return }
@@ -318,6 +333,8 @@ class OutputDevices: ObservableObject {
             
             self.targetSampleRate = targetSR
             self.targetBitDepth = targetBD
+            self.pendingTargetSampleRate = nil
+            self.pendingTargetBitDepth = nil
             
             Task {
                 let trackFired = self.trackChangeTime ?? Date()
@@ -481,6 +498,19 @@ class OutputDevices: ObservableObject {
         if self.currentTrack != incomingTrack {
             self.trackChangeTime = Date()
             self.currentPlaybackTime = 0.0
+            
+            if let pendingSR = self.pendingTargetSampleRate {
+                let pendingBD = self.pendingTargetBitDepth ?? 24
+                self.pendingTargetSampleRate = nil
+                self.pendingTargetBitDepth = nil
+                
+                self.log("Applying pending pre-buffered format (\(pendingSR)Hz/\(pendingBD)bit) for new track")
+                let defaultDevice = self.selectedOutputDevice ?? self.defaultOutputDevice
+                if let defaultDevice = defaultDevice {
+                    let stat = CMPlayerStats(sampleRate: pendingSR, bitDepth: pendingBD, date: Date(), priority: 5)
+                    self.switchSampleRateWithStat(stat, onDevice: defaultDevice)
+                }
+            }
         }
         self.previousTrack = self.currentTrack
         self.currentTrack = incomingTrack

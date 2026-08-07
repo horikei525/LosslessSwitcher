@@ -27,7 +27,7 @@ class OutputDevices: ObservableObject {
     private var trackChangeTime: Date?
     private var pendingTargetSampleRate: Float64?
     private var pendingTargetBitDepth: Int?
-    private var isAwaitingInitialFormatForTrack: Bool = true
+    private var initialFormatSetForCurrentTrack: Bool = false
     
     private let pauseScript = NSAppleScript(source: "tell application \"Music\" to pause")
     private let playScript = NSAppleScript(source: "tell application \"Music\" to play")
@@ -270,33 +270,21 @@ class OutputDevices: ObservableObject {
                 }
             }
             
-            let timeSinceTrackChange = Date().timeIntervalSince(self.trackChangeTime ?? Date())
-            let isPreBuffered = self.isPlaying && 
-                                self.currentPlaybackTime > 10.0 && 
-                                timeSinceTrackChange > 10.0 && 
-                                (self.currentTrackDuration <= 0.0 || (self.currentTrackDuration - self.currentPlaybackTime) < 30.0)
-            
-            if isPreBuffered {
-                self.pendingTargetSampleRate = sampleRate
-                self.pendingTargetBitDepth = Int(bitDepth)
-                return
-            }
-            
-            let isMidSongUpdate = self.isPlaying && !self.isAwaitingInitialFormatForTrack && (self.currentPlaybackTime > 5.0 || timeSinceTrackChange > 5.0)
-            if isMidSongUpdate {
-                let curSR = self.currentSampleRate.map { $0 * 1000 } ?? (defaultDevice.nominalSampleRate ?? 0.0)
-                let curBD = self.currentBitDepth ?? 16
+            if self.isPlaying && self.initialFormatSetForCurrentTrack {
+                let curSR = self.targetSampleRate ?? (defaultDevice.nominalSampleRate ?? 0.0)
+                let curBD = self.targetBitDepth ?? 16
                 let inBD = Int(bitDepth)
                 
-                let isDowngrade = (sampleRate < curSR) || (sampleRate == curSR && inBD < curBD)
-                let isUpgrade = (sampleRate > curSR) || (sampleRate == curSR && inBD > curBD)
-                
-                if isDowngrade {
-                    return
-                }
-                
-                if isUpgrade && !Defaults.shared.userPreferMidSongUpgrades {
-                    return
+                let isDifferentFormat = (sampleRate != curSR) || (enableBitDepthDetection && inBD != curBD)
+                if isDifferentFormat {
+                    let isDowngrade = (sampleRate < curSR) || (sampleRate == curSR && inBD < curBD)
+                    let isUpgrade = (sampleRate > curSR) || (sampleRate == curSR && inBD > curBD)
+                    
+                    if isDowngrade || (isUpgrade && !Defaults.shared.userPreferMidSongUpgrades) {
+                        self.pendingTargetSampleRate = sampleRate
+                        self.pendingTargetBitDepth = inBD
+                        return
+                    }
                 }
             }
         }
@@ -346,7 +334,7 @@ class OutputDevices: ObservableObject {
                 self.targetSampleRate = targetSR
                 self.targetBitDepth = targetBD
                 self.updateSampleRate(targetSR, bitDepth: targetBD)
-                self.isAwaitingInitialFormatForTrack = false
+                self.initialFormatSetForCurrentTrack = true
                 return
             }
             
@@ -354,7 +342,7 @@ class OutputDevices: ObservableObject {
             self.targetBitDepth = targetBD
             self.pendingTargetSampleRate = nil
             self.pendingTargetBitDepth = nil
-            self.isAwaitingInitialFormatForTrack = false
+            self.initialFormatSetForCurrentTrack = true
             
             Task {
                 let trackFired = self.trackChangeTime ?? Date()
@@ -518,7 +506,7 @@ class OutputDevices: ObservableObject {
         if self.currentTrack != incomingTrack {
             self.trackChangeTime = Date()
             self.currentPlaybackTime = 0.0
-            self.isAwaitingInitialFormatForTrack = true
+            self.initialFormatSetForCurrentTrack = false
             
             if let pendingSR = self.pendingTargetSampleRate {
                 let pendingBD = self.pendingTargetBitDepth ?? 24

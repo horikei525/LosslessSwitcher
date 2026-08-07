@@ -62,12 +62,11 @@ jobs:
           echo "DMG_NAME=$DMG_NAME" >> $GITHUB_ENV
 
       - name: Create GitHub Release and Upload DMG Asset
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ env.TAG_NAME }}
-          name: ${{ env.TAG_NAME }}
-          files: ${{ env.DMG_NAME }}
-          draft: false
-          prerelease: false
+        run: |
+          gh release create "${TAG_NAME}" "${DMG_NAME}" \
+            --title "${TAG_NAME}" \
+            --notes "Release ${TAG_NAME}" \
+            --clobber || \
+          gh release upload "${TAG_NAME}" "${DMG_NAME}" --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

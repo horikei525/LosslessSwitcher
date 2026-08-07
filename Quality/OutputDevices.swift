@@ -27,6 +27,7 @@ class OutputDevices: ObservableObject {
     private var trackChangeTime: Date?
     private var pendingTargetSampleRate: Float64?
     private var pendingTargetBitDepth: Int?
+    private var isAwaitingInitialFormatForTrack: Bool = true
     
     private let pauseScript = NSAppleScript(source: "tell application \"Music\" to pause")
     private let playScript = NSAppleScript(source: "tell application \"Music\" to play")
@@ -281,7 +282,7 @@ class OutputDevices: ObservableObject {
                 return
             }
             
-            let isMidSongUpdate = self.isPlaying && (self.currentPlaybackTime > 5.0 || timeSinceTrackChange > 5.0)
+            let isMidSongUpdate = self.isPlaying && !self.isAwaitingInitialFormatForTrack && (self.currentPlaybackTime > 5.0 || timeSinceTrackChange > 5.0)
             if isMidSongUpdate {
                 let curSR = self.currentSampleRate.map { $0 * 1000 } ?? (defaultDevice.nominalSampleRate ?? 0.0)
                 let curBD = self.currentBitDepth ?? 16
@@ -345,6 +346,7 @@ class OutputDevices: ObservableObject {
                 self.targetSampleRate = targetSR
                 self.targetBitDepth = targetBD
                 self.updateSampleRate(targetSR, bitDepth: targetBD)
+                self.isAwaitingInitialFormatForTrack = false
                 return
             }
             
@@ -352,6 +354,7 @@ class OutputDevices: ObservableObject {
             self.targetBitDepth = targetBD
             self.pendingTargetSampleRate = nil
             self.pendingTargetBitDepth = nil
+            self.isAwaitingInitialFormatForTrack = false
             
             Task {
                 let trackFired = self.trackChangeTime ?? Date()
@@ -515,6 +518,7 @@ class OutputDevices: ObservableObject {
         if self.currentTrack != incomingTrack {
             self.trackChangeTime = Date()
             self.currentPlaybackTime = 0.0
+            self.isAwaitingInitialFormatForTrack = true
             
             if let pendingSR = self.pendingTargetSampleRate {
                 let pendingBD = self.pendingTargetBitDepth ?? 24

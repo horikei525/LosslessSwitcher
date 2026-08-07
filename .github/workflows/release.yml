@@ -65,8 +65,7 @@ jobs:
         run: |
           gh release create "${TAG_NAME}" "${DMG_NAME}" \
             --title "${TAG_NAME}" \
-            --notes "Release ${TAG_NAME}" \
-            --clobber || \
+            --notes "Release ${TAG_NAME}" || \
           gh release upload "${TAG_NAME}" "${DMG_NAME}" --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

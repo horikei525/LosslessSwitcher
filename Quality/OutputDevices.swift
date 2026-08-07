@@ -276,10 +276,27 @@ class OutputDevices: ObservableObject {
                                 (self.currentTrackDuration <= 0.0 || (self.currentTrackDuration - self.currentPlaybackTime) < 30.0)
             
             if isPreBuffered {
-                self.log("Detected pre-buffered log for next track. Saving pending format (\(sampleRate)Hz/\(bitDepth)bit)")
                 self.pendingTargetSampleRate = sampleRate
                 self.pendingTargetBitDepth = Int(bitDepth)
                 return
+            }
+            
+            let isMidSongUpdate = self.isPlaying && (self.currentPlaybackTime > 5.0 || timeSinceTrackChange > 5.0)
+            if isMidSongUpdate {
+                let curSR = self.currentSampleRate.map { $0 * 1000 } ?? (defaultDevice.nominalSampleRate ?? 0.0)
+                let curBD = self.currentBitDepth ?? 16
+                let inBD = Int(bitDepth)
+                
+                let isDowngrade = (sampleRate < curSR) || (sampleRate == curSR && inBD < curBD)
+                let isUpgrade = (sampleRate > curSR) || (sampleRate == curSR && inBD > curBD)
+                
+                if isDowngrade {
+                    return
+                }
+                
+                if isUpgrade && !Defaults.shared.userPreferMidSongUpgrades {
+                    return
+                }
             }
         }
         

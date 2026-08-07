@@ -46,6 +46,17 @@ struct MenuView: View {
                 }
             }
             
+            Button {
+                defaults.userPreferMidSongUpgrades.toggle()
+            } label: {
+                HStack {
+                    Text("Follow Quality Upgrades Mid-Song (Causes Interruption)".localized)
+                    if defaults.userPreferMidSongUpgrades {
+                        Image(systemName: "checkmark")
+                    }
+                }
+            }
+            
             Menu {
                 Button {
                     outputDevices.selectedOutputDevice = nil

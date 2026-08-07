@@ -40,6 +40,10 @@ func localizedString(_ key: String) -> String {
             .en: "Prefer Closest Sample Rate Multiple",
             .ja: "最も近いサンプルレートの倍数を優先"
         ],
+        "Follow Quality Upgrades Mid-Song (Causes Interruption)": [
+            .en: "Follow Quality Upgrades Mid-Song (Causes Interruption)",
+            .ja: "ストリーミング中に品質が上がった場合追従させる（再生中に音切れ発生）"
+        ],
         "Default Device": [
             .en: "Default Device",
             .ja: "デフォルトのデバイス"
